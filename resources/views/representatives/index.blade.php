@@ -76,7 +76,7 @@
                                                                 <li>
                                                                     <a href="{{ route('representatives.alumno', ['id' => $item->id]) }}"
                                                                         class="btn btn-greys me-2"><i
-                                                                            class="fa fa-users me-2"></i>@lang('Alumnos')</a>
+                                                                            class="fa fa-users me-2"></i>@lang('Student')</a>
                                                                 </li>
                                                             @endcan
                                                             @can('representatives.destroy')

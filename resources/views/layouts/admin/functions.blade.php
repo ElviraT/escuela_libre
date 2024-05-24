@@ -114,7 +114,7 @@
     const intro = introJs().setOptions({
         steps: [{
                 title: 'Bienvenido',
-                intro: 'Bienvenido al sistema Salud Integral 360'
+                intro: 'Bienvenido al sistema Escuela Libre Chile'
             },
             {
                 title: "Barra informativa",

@@ -4,7 +4,7 @@
     <div class="card p-3">
         <div class="page-header">
             <div class="content-page-header">
-                <h5>@lang('Alumnos')</h5>
+                <h5>@lang('Students')</h5>
                 <div class="list-btn">
                     <ul class="filter-list">
                         <li>
@@ -17,7 +17,7 @@
                             <li>
                                 <a class="btn btn-primary" href="#" data-bs-toggle="modal"
                                     data-bs-action="{{ route('representatives.alumno.store') }}" data-bs-target="#add_alumno"><i
-                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Alumno')</a>
+                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Student')</a>
                             </li>
                         @endcan
                     </ul>
@@ -28,62 +28,83 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-table">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-center table-hover datatable" width="100%">
-                                <thead class="thead-light">
+                    <div class="card-body p-3">
+                        {{-- <div class="table-responsive"> --}}
+                        <table class="table table-center table-hover datatable" width="100%">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>@lang('Name')</th>
+                                    <th>@lang('Relationship')</th>
+                                    <th>@lang('Is Alergy?')</th>
+                                    <th>@lang('Is Disability?')</th>
+                                    <th>@lang('Created on')</th>
+                                    <th>@lang('Status')</th>
+                                    <th Class="no-sort">@lang('Actions')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($alumnos as $item)
                                     <tr>
-                                        <th>@lang('Name')</th>
-                                        <th>@lang('Relationship')</th>
-                                        <th>@lang('Alergy')</th>
-                                        <th>@lang('Created on')</th>
-                                        <th Class="no-sort">@lang('Actions')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($alumnos as $item)
-                                        <tr>
-                                            <td>{{ $item->name }}&nbsp;{{ $item->last_name }}</td>
-                                            <td>{{ $item->relacion->name }}</td>
-                                            <td>{{ $item->alergy }}</td>
-                                            <td>{{ $item->created_at->format('j F, Y, g:i A') }}</td>
-                                            <td class="d-flex align-items-center">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
-                                                        aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <ul>
-                                                            @can('representatives.alumno.edit')
-                                                                <li>
-                                                                    <a href="#" type="button" data-bs-toggle="modal"
-                                                                        data-bs-target="#add_alumno" class="btn btn-greys me-2"
-                                                                        data-bs-record-id="{{ $item->id }}"
-                                                                        data-bs-action="{{ route('representatives.alumno.update', $item) }}">
-                                                                        <i class="fa fa-edit me-1"></i>
-                                                                        {{ __('Edit Family') }}
-                                                                    </a>
-                                                                </li>
-                                                            @endcan
-                                                            @can('representatives.alumno.destroy')
-                                                                <li>
-                                                                    <a class="btn btn-greys me-2" data-bs-toggle="modal"
-                                                                        data-bs-target="#confirm-delete"
-                                                                        data-bs-record-id="{{ $item->id }}"
-                                                                        data-bs-record-title="{{ 'El Alumno ' }}{{ $item->name }}&nbsp;{{ $item->last_name }}"
-                                                                        data-bs-action="{{ route('representatives.alumno.destroy', $item) }}"
-                                                                        title="{{ __('Delete Alumno') }}"><i
-                                                                            class="far fa-trash-alt me-3"></i>@lang('Delete')</a>
-                                                                </li>
-                                                            @endcan
-                                                        </ul>
-                                                    </div>
+                                        <td>{{ $item->name }}&nbsp;{{ $item->last_name }}</td>
+                                        <td>{{ $item->relacion->name }}</td>
+                                        <td>
+                                            <div class="status-toggle">
+                                                <input id="alergy" class="check" type="checkbox"
+                                                    {{ $item->is_alergy == 1 ? 'checked' : '' }} disabled>
+                                                <label for="alergy"
+                                                    class="checktoggle checkbox-bg">@lang('Disability')</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="status-toggle">
+                                                <input id="disability" class="check" type="checkbox"
+                                                    {{ $item->is_disability == 1 ? 'checked' : '' }} disabled>
+                                                <label for="disability"
+                                                    class="checktoggle checkbox-bg">@lang('Disability')</label>
+                                            </div>
+                                        </td>
+                                        <td>{{ $item->created_at->format('j F, Y, g:i A') }}</td>
+                                        <td><span class="badge"
+                                                style="background-color: #E1FFED !important;
+                                            color: {{ $item->status->color }} !important;">{{ $item->status->name }}</span>
+                                        </td>
+                                        <td class="d-flex align-items-center">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <ul>
+                                                        @can('representatives.alumno.edit')
+                                                            <li>
+                                                                <a href="#" type="button" data-bs-toggle="modal"
+                                                                    data-bs-target="#add_alumno" class="btn btn-greys me-2"
+                                                                    data-bs-record-id="{{ $item->id }}"
+                                                                    data-bs-action="{{ route('representatives.alumno.update', $item) }}">
+                                                                    <i class="fa fa-edit me-1"></i>
+                                                                    {{ __('Edit Student') }}
+                                                                </a>
+                                                            </li>
+                                                        @endcan
+                                                        @can('representatives.alumno.destroy')
+                                                            <li>
+                                                                <a class="btn btn-greys me-2" data-bs-toggle="modal"
+                                                                    data-bs-target="#confirm-delete"
+                                                                    data-bs-record-id="{{ $item->id }}"
+                                                                    data-bs-record-title="{{ 'El Alumno ' }}{{ $item->name }}&nbsp;{{ $item->last_name }}"
+                                                                    data-bs-action="{{ route('representatives.alumno.destroy', $item) }}"
+                                                                    title="{{ __('Delete Student') }}"><i
+                                                                        class="far fa-trash-alt me-3"></i>@lang('Delete')</a>
+                                                            </li>
+                                                        @endcan
+                                                    </ul>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>

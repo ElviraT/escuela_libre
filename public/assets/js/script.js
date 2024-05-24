@@ -230,13 +230,14 @@
             bFilter: true,
             stateSave: true,
             autoWidth: true,
+            responsive:true,
             scrollX: "100%",
             sDom: "fBtlpi",
             ordering: true,
             columnDefs: [{ targets: "no-sort", orderable: false }],
             language: {
                 search: " ",
-                sLengthMenu: "_MENU_",
+                // sLengthMenu: "_MENU_",
                 paginate: {
                     next: 'Siguiente <i class=" fa fa-angle-double-right ms-2"></i>',
                     previous:

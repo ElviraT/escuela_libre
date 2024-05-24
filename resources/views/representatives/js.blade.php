@@ -42,12 +42,13 @@
             useCurrent: false,
             format: 'YYYY-MM-DD',
             debug: true,
+            maxDate: new Date(),
         })
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         modal.removeClass('loading');
         if (data.bsRecordId != undefined) {
-            $('.title').text("@lang('Edit Alumno')");
+            $('.title').text("@lang('Edit Student')");
             modal.addClass('loading');
             $('.modal_registro_alumno_id', modal).val(data.bsRecordId);
             $.getJSON('../representatives/alumno/' + data.bsRecordId + '/edit', function(data) {
@@ -60,14 +61,24 @@
                 $('#last_name', modal).val(obj.last_name);
                 $('#dni', modal).val(obj.dni);
                 $('#birthdate', modal).val(obj.birthdate);
-                $('#alergy', modal).val(obj.alergy);
-                $('#type_alergy', modal).val(obj.type_alergy);
+                if (obj.is_alergy == 1) {
+                    $('#alergy_id').prop('checked', true).change();
+                    $('#type_alergy', modal).val(obj.type_alergy);
+                } else {
+                    $('#alergy_id').prop('checked', false).change();
+                    $('#type_alergy', modal).val('');
+                }
+                if (obj.is_disability == 1) {
+                    $('#disability_id').prop('checked', true).change();
+                    $('#type_disability', modal).val(obj.type_disability);
+                } else {
+                    $('#disability_id').prop('checked', false).change();
+                    $('#type_disability', modal).val('');
+                }
                 $('#type_blood', modal).val(obj.type_blood);
-
-                modal.removeClass('loading');
             });
         } else {
-            $('.title').text("@lang('Add Alumno')");
+            $('.title').text("@lang('Add Student')");
         }
     });
     $(document).on('hidden.bs.modal', '#add_alumno', function(e) {
@@ -78,8 +89,10 @@
         $('#last_name', modal).val('');
         $('#dni', modal).val('');
         $('#birthdate', modal).val('');
-        $('#alergy', modal).val('');
+        $('#alergy_id', modal).prop('checked', false).change();
+        $('#disability_id', modal).prop('checked', false).change();
         $('#type_alergy', modal).val('');
+        $('#type_disability', modal).val('');
         $('#type_blood', modal).val('');
     });
     $(function() {
@@ -91,7 +104,7 @@
                 $('#tipo_al').attr('hidden', true);
             }
         });
-        $('#discapacity_id').change(function() {
+        $('#disability_id').change(function() {
             var discapacity = $(this).prop('checked');
             if (discapacity == true) {
                 $('#tipo_dis').attr('hidden', false);

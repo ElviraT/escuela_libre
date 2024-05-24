@@ -33,7 +33,7 @@
                     <li class="menu-title"><span>@lang('User Management')</span></li>
                     @canany(['users'])
                         <li class="submenu">
-                            <a href="#"><i class="fe fe-users"></i> <span> @lang('users')</span> <span
+                            <a href="#"><i class="fe fe-users"></i> <span> @lang('Users')</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 @can('users')
@@ -54,7 +54,7 @@
                                 @endcan
                                 @can('representatives')
                                     <li>
-                                        <a class="{{ @request()->routeIs('representatives') ? 'active' : ' ' }}"
+                                        <a class="{{ @request()->routeIs('representatives') || @request()->routeIs('representatives.alumno') ? 'active' : ' ' }}"
                                             href="{{ route('representatives') }}" onclick=" loading_show();">
                                             @lang('Representatives')
                                         </a>

@@ -42,19 +42,21 @@
     </div>
     <div class="col-xl-3 col-sm-6 col-12">
         <div class="card sombra">
-            <div class="card-body">
-                <div class="dash-widget-header">
-                    <span class="dash-widget-icon bg-3">
-                        <i class="fas fa-file-alt"></i>
-                    </span>
-                    <div class="dash-count">
-                        <div class="dash-title">Invoices</div>
-                        <div class="dash-counts">
-                            <p>1,041</p>
+            <a href="{{ route('teachers') }}" onclick=" loading_show();">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="dash-widget-icon bg-3">
+                            <i class="fas fa-file-alt"></i>
+                        </span>
+                        <div class="dash-count">
+                            <div class="dash-title">@lang('Teachers')</div>
+                            <div class="dash-counts">
+                                <p>{{ $teachers }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="col-xl-3 col-sm-6 col-12">
@@ -65,9 +67,9 @@
                         <i class="far fa-file"></i>
                     </span>
                     <div class="dash-count">
-                        <div class="dash-title">Estimates</div>
+                        <div class="dash-title">@lang('Students')</div>
                         <div class="dash-counts">
-                            <p>2,150</p>
+                            <p>{{ $students }}</p>
                         </div>
                     </div>
                 </div>

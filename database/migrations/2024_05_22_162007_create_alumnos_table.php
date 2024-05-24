@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('alumnos', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('id_representative');
             $table->unsignedBigInteger('id_gender');
             $table->unsignedBigInteger('id_relation');
@@ -20,8 +21,8 @@ return new class extends Migration
             $table->string('dni')->nullable();
             $table->string('birthdate');
             $table->string('type_blood');
-            $table->boolean('alergy');
-            $table->string('type_alergy');
+            $table->boolean('is_alergy')->default(0);
+            $table->string('type_alergy')->nullable();
             $table->timestamps();
 
             $table->foreign('id_representative')->references('id')->on('representatives');

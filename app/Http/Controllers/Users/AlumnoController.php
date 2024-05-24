@@ -25,12 +25,24 @@ class AlumnoController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->is_alergy == 'on') {
+            $request['is_alergy'] = '1';
+        } else {
+            $request['is_alergy'] = '0';
+        }
+        if ($request->is_disability == 'on') {
+            $request['is_disability'] = '1';
+        } else {
+            $request['is_disability'] = '0';
+        }
+
         try {
             $resultado = ($request->post());
             Alumno::create($resultado);
 
             Toastr::success(__('added successfully'),  __('Alumno'));
         } catch (\Illuminate\Database\QueryException $e) {
+
             Toastr::error(__('An error occurred please try again'), 'error');
         }
         return Redirect::back();
@@ -47,7 +59,19 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->is_alergy == 'on') {
+            $request['is_alergy'] = '1';
+        } else {
+            $request['is_alergy'] = '0';
+        }
+        if ($request->is_disability == 'on') {
+            $request['is_disability'] = '1';
+        } else {
+            $request['is_disability'] = '0';
+        }
+
         $input = $request->all();
+
         try {
             $alumno = Alumno::find($id);
             $alumno->update($input);
@@ -64,7 +88,7 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        $alumno->id_status = "2";
+        $alumno->idStatus = "2";
         $alumno->update();
         Toastr::success(__('Registration Successfully Disabled'), 'Disabled');
         return redirect()->back();

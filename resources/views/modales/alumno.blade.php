@@ -85,7 +85,7 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <label for="" class="mb-2">@lang('Is Alergy?')</label>
                                             <div class="status-toggle">
-                                                <input id="alergy_id" class="check" type="checkbox" name="alergy">
+                                                <input id="alergy_id" class="check" type="checkbox" name="is_alergy">
                                                 <label for="alergy_id"
                                                     class="checktoggle checkbox-bg">@lang('Alergy')</label>
                                             </div>
@@ -98,19 +98,19 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <label for="" class="mb-2">@lang('Is Discapacity?')</label>
+                                            <label for="" class="mb-2">@lang('Is Disability?')</label>
                                             <div class="status-toggle">
-                                                <input id="discapacity_id" class="check" type="checkbox"
-                                                    name="discapacity">
-                                                <label for="discapacity_id"
-                                                    class="checktoggle checkbox-bg">@lang('Discapacity')</label>
+                                                <input id="disability_id" class="check" type="checkbox"
+                                                    name="is_disability">
+                                                <label for="disability_id"
+                                                    class="checktoggle checkbox-bg">@lang('Disability')</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12" id="tipo_dis" hidden>
                                             <div class="input-block mb-3">
-                                                <label>@lang('Type Discapacity')</label>
-                                                <input type="text" name="type_discapacity" id="type_discapacity"
-                                                    class="form-control" placeholder="Enter Type Discapacity">
+                                                <label>@lang('Type Disability')</label>
+                                                <input type="text" name="type_disability" id="type_disability"
+                                                    class="form-control" placeholder="Enter Type Disability">
                                             </div>
                                         </div>
 

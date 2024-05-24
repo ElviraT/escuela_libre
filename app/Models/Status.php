@@ -33,4 +33,9 @@ class Status extends Model
     {
         return $this->hasMany(Representative::class, 'id_status');
     }
+
+    public function student(): HasMany
+    {
+        return $this->hasMany(Alumno::class, 'idStatus');
+    }
 }
