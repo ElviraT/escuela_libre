@@ -23,6 +23,18 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="input-block mb-3">
+                                                <label>@lang('User')</label>
+                                                <select class="form-control form-small select" name="id_user"
+                                                    id="id_user">
+                                                    <option>@lang('Select User')</option>
+                                                    @foreach ($users as $value)
+                                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="input-block mb-3">
                                                 <label>@lang('Relationship')</label>
                                                 <select class="form-control form-small select" name="id_relation"
                                                     id="id_relation">
@@ -56,6 +68,25 @@
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="input-block mb-3">
+                                                <label>@lang('Registration')</label>
+                                                <input type="text" name="registration" id="registration"
+                                                    class="form-control" placeholder="Enter registration">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="input-block mb-3">
+                                                <label>@lang('Groups')</label>
+                                                <select class="form-control form-small select" name="id_group"
+                                                    id="id_group">
+                                                    <option>@lang('Select Groups')</option>
+                                                    @foreach ($groups as $value)
+                                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="input-block mb-3">
                                                 <label>@lang('Type Blood')</label>
                                                 <input type="text" name="type_blood" id="type_blood"
                                                     class="form-control" placeholder="Enter Type Blood">
@@ -85,7 +116,8 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <label for="" class="mb-2">@lang('Is Alergy?')</label>
                                             <div class="status-toggle">
-                                                <input id="alergy_id" class="check" type="checkbox" name="is_alergy">
+                                                <input id="alergy_id" class="check" type="checkbox"
+                                                    name="is_alergy">
                                                 <label for="alergy_id"
                                                     class="checktoggle checkbox-bg">@lang('Alergy')</label>
                                             </div>

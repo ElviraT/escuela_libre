@@ -8,6 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\ControlsController;
+use App\Http\Controllers\Admin\GradesController;
+use App\Http\Controllers\Admin\GroupsController;
+use App\Http\Controllers\Admin\MattersController;
 use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -64,6 +68,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings/companies', [SettingController::class, 'company'])->name('settings.company');
     Route::get('/settings/banks', [SettingController::class, 'banks'])->name('settings.banks');
     Route::post('/settings-companies', [SettingController::class, 'store_companies'])->name('settings.company.store');
+    //CONTROLS
+    Route::get('/controls', [ControlsController::class, 'index'])->name('controls');
+    Route::get('/controls/matters', [ControlsController::class, 'matters'])->name('controls.matters');
+    Route::get('/controls/grades', [ControlsController::class, 'grades'])->name('controls.grades');
+    Route::get('/controls/groups', [ControlsController::class, 'groups'])->name('controls.groups');
+    // CRUD GRADES
+    Route::post('/grades/store', [GradesController::class, 'store'])->name('grades.store');
+    Route::get('/grades/{grade}/edit', [GradesController::class, 'edit'])->name('grades.edit');
+    Route::put('/grades/update/{grade}', [GradesController::class, 'update'])->name('grades.update');
+    Route::delete('/grades/destroy/{grade}', [GradesController::class, 'destroy'])->name('grades.destroy');
+    // CRUD GROUPS
+    Route::post('/groups/store', [GroupsController::class, 'store'])->name('groups.store');
+    Route::get('/groups/{group}/edit', [GroupsController::class, 'edit'])->name('groups.edit');
+    Route::put('/groups/update/{group}', [GroupsController::class, 'update'])->name('groups.update');
+    Route::delete('/groups/destroy/{group}', [GroupsController::class, 'destroy'])->name('groups.destroy');
+    // CRUD MATTERS
+    Route::post('/matters/store', [MattersController::class, 'store'])->name('matters.store');
+    Route::get('/matters/{matter}/edit', [MattersController::class, 'edit'])->name('matters.edit');
+    Route::put('/matters/update/{matter}', [MattersController::class, 'update'])->name('matters.update');
+    Route::delete('/matters/destroy/{matter}', [MattersController::class, 'destroy'])->name('matters.destroy');
     // CRUD TICKETS
     Route::get('/tickets/{id}', [TicketsController::class, 'index'])->name('tickets');
     Route::post('/tickets/store', [TicketsController::class, 'store'])->name('tickets.store');

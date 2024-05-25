@@ -266,6 +266,21 @@
     "Is Disability?": "¿Tiene Discapacidad?",
     "Type Disability": "Tipo de Discapacidad",
     "Type Alergy": "Tipo de Alergia",
-    "Type Blood": "Tipo de Sangre"
+    "Type Blood": "Tipo de Sangre",
+    "All Rights Reserved": "Todos los Derechos Reservados",
+    "Designed by": "Diseñado por",
+    "Grades": "Grados / Niveles",
+    "Grade": "Grado / Nivel",
+    "Add Grade": "Agregar Grado / Nivel",
+    "Edit Grade": "Editar Grado / Nivel",
+    "Study Control":"Control de Estudios",
+    "Groups": "Grupos",
+    "Group": "Grupo",
+    "Add Group": "Agregar Grupo",
+    "Edit Group": "Editar Grupo",
+    "Matters": "Materias",
+    "Matter": "Materia",
+    "Add Matter": "Agregar Materia",
+    "Edit Matter": "Editar Materia"
 
 }

@@ -55,12 +55,15 @@
                 var obj = data;
                 $('#id_gender').val(obj.id_gender).trigger('change.select2');
                 $('#id_relation').val(obj.id_relation).trigger('change.select2');
+                $('#id_user').val(obj.id_user).trigger('change.select2');
+                $('#id_group').val(obj.id_group).trigger('change.select2');
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
                 $('#name', modal).val(obj.name);
                 $('#last_name', modal).val(obj.last_name);
                 $('#dni', modal).val(obj.dni);
                 $('#birthdate', modal).val(obj.birthdate);
+                $('#registration', modal).val(obj.registration);
                 if (obj.is_alergy == 1) {
                     $('#alergy_id').prop('checked', true).change();
                     $('#type_alergy', modal).val(obj.type_alergy);
@@ -84,11 +87,14 @@
     $(document).on('hidden.bs.modal', '#add_alumno', function(e) {
         $('#id_gender').val('').trigger('change.select2');
         $('#id_relation').val('').trigger('change.select2');
+        $('#id_user').val('').trigger('change.select2');
+        $('#id_group').val('').trigger('change.select2');
         $("#method").val('post');
         $('#name', modal).val('');
         $('#last_name', modal).val('');
         $('#dni', modal).val('');
         $('#birthdate', modal).val('');
+        $('#registration', modal).val('');
         $('#alergy_id', modal).prop('checked', false).change();
         $('#disability_id', modal).prop('checked', false).change();
         $('#type_alergy', modal).val('');

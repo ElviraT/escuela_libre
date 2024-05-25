@@ -38,4 +38,19 @@ class Status extends Model
     {
         return $this->hasMany(Alumno::class, 'idStatus');
     }
+
+    public function grade(): HasMany
+    {
+        return $this->hasMany(Grade::class, 'id_status');
+    }
+
+    public function group(): HasMany
+    {
+        return $this->hasMany(Group::class, 'id_status');
+    }
+
+    public function matter(): HasMany
+    {
+        return $this->hasMany(Matter::class, 'id_status');
+    }
 }

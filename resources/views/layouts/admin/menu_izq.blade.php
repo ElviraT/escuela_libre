@@ -72,13 +72,20 @@
                         </li>
                     @endcan
                 @endcanany
-                @can('settings')
+                @canany(['settings', 'controls'])
                     <li class="menu-title"><span>@lang('Settings')</span></li>
                     <li>
                         <a class="{{ @request()->routeIs('settings') ? 'active' : ' ' }}" href="{{ route('settings') }}"
                             onclick=" loading_show();"><i class="fe fe-settings"></i>
                             <span>@lang('Setting')</span></a>
                     </li>
+                    @can('controls')
+                        <li>
+                            <a class="{{ @request()->routeIs('controls') || @request()->routeIs('controls.grades') || @request()->routeIs('controls.groups') || @request()->routeIs('controls.matters') ? 'active' : ' ' }}"
+                                href="{{ route('controls') }}" onclick=" loading_show();"><i class="fe fe-award"></i>
+                                <span>@lang('Study Control')</span></a>
+                        </li>
+                    @endcan
                 @endcan
             </ul>
         </div>

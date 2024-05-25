@@ -2,1263 +2,683 @@
 <html lang="en">
 
 <head>
-    <!-- ========== Meta Tags ========== -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Healdi - Medical & Health Template">
-    <!-- ========== Page Title ========== -->
-    <title>{{ $setting != '' ? $setting->name : env('APP_NAME') }}</title>
+    <title>{{ isset($setting) ? $setting->name : env('APP_NAME') }}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-    <!-- ========== Favicon Icon ========== -->
-    {{-- <link rel="shortcut icon" href="{{ asset(Storage::url('logos/' . $setting != '' ? $setting->favicon : '')) }}" --}}
-    {{-- type="image/x-icon"> --}}
+    <!-- Favicon -->
+    <link href="{{ asset('home/img/favicon.ico') }}" rel="icon">
 
-    <!-- ========== Start Stylesheet ========== -->
-    <link href="{{ asset('home/assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/themify-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/flaticon-set.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/magnific-popup.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/bootsnav.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/css/responsive.css') }}" rel="stylesheet">
-    <!-- ========== End Stylesheet ========== -->
-    @include('layouts.admin.css')
-    <!-- ========== Google Fonts ========== -->
-    {{-- <link href="../../css2?family=Inter:wght@200;300;400;600;700;800&display=swap" rel="stylesheet"> --}}
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Flaticon Font -->
+    <link href="{{ asset('home/lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('home/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('home/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('home/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Preloader Start -->
-    <div class="se-pre-con"></div>
-    <!-- Preloader Ends -->
-
-    <!-- Start Header Top
-    ============================================= -->
-    <div class="top-bar-area bg-dark text-light inc-pad">
-        <div class="container">
-            <div class="row align-center">
-                <div class="col-lg-6 info">
-                    <p>
-                        !Global update on Coronavirus disease <a href="#">(COVID-19)</a> Pandemic
-                    </p>
-                </div>
-                <div class="col-lg-6 text-right item-flex">
-                    <div class="info">
-                        <ul>
-                            <li>
-                                <a href="#">Online Appoinment</a>
-                            </li>
-                            <li>
-                                <a href="#">WebMail</a>
-                            </li>
-                        </ul>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light position-relative shadow">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
+            <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px;">
+                <i class="flaticon-043-teddy-bear"></i>
+                <span class="text-primary">KidKinder</span>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav font-weight-bold mx-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="class.html" class="nav-item nav-link">Classes</a>
+                    <a href="team.html" class="nav-item nav-link">Teachers</a>
+                    <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="blog.html" class="dropdown-item">Blog Grid</a>
+                            <a href="single.html" class="dropdown-item">Blog Detail</a>
+                        </div>
                     </div>
-                    <div class="social">
-                        <ul>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->facebook : '' }}">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->twitter : '' }}">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->instagram : '' }}">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="nav-item nav-link">{{ 'Dashboard' }}</a>
+                        @else
+                            <a href="{{ route('login') }}" class="nav-item nav-link">{{ 'Login' }}</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="nav-item nav-link">{{ 'Register' }}</a>
+                            @endif
+                        @endauth
+                    @endif
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="" class="btn btn-primary px-4">Join Class</a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+        <div class="row align-items-center px-3">
+            <div class="col-lg-6 text-center text-lg-left">
+                <h4 class="text-white mb-4 mt-5 mt-lg-0">Kids Learning Center</h4>
+                <h1 class="display-3 font-weight-bold text-white">New Approach to Kids Education</h1>
+                <p class="text-white mb-4">Sea ipsum kasd eirmod kasd magna, est sea et diam ipsum est amet sed sit.
+                    Ipsum dolor no justo dolor et, lorem ut dolor erat dolore sed ipsum at ipsum nonumy amet. Clita
+                    lorem dolore sed stet et est justo dolore.</p>
+                <a href="" class="btn btn-secondary mt-1 py-3 px-5">Learn More</a>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5" src="{{ asset('home/img/header.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- Facilities Start -->
+    <div class="container-fluid pt-5">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Play Ground</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Music and Dance</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-030-crayons h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Arts and Crafts</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-017-toy-car h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Safe Transportation</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-025-sandwich h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Healthy food</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
+                        <div class="pl-4">
+                            <h4>Educational Tour</h4>
+                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
+                                elitr vero...</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Header Top -->
+    <!-- Facilities Start -->
 
 
-    <!-- Header
-    ============================================= -->
-    <header id="home">
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/about-1.jpg') }}"
+                        alt="">
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-title pr-5"><span class="pr-2">Learn About Us</span></p>
+                    <h1 class="mb-4">Best School For Your Kids</h1>
+                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
+                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
+                        dolor</p>
+                    <div class="row pt-2 pb-4">
+                        <div class="col-6 col-md-4">
+                            <img class="img-fluid rounded" src="{{ asset('home/img/about-2.jpg') }}" alt="">
+                        </div>
+                        <div class="col-6 col-md-8">
+                            <ul class="list-inline m-0">
+                                <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
+                                    sit dolor amet ipsum</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
+                                    diam elitripsum vero.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
 
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default attr-border navbar-sticky bootsnav">
 
-            {{-- <!-- Start Top Search -->
-            <div class="container">
-                <div class="row">
-                    <div class="top-search">
-                        <div class="input-group">
-                            <form action="#">
-                                <input type="text" name="text" class="form-control" placeholder="Search">
-                                <button type="submit">
-                                    <i class="ti-search"></i>
-                                </button>
+    <!-- Class Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">Popular Classes</span></p>
+                <h1 class="mb-4">Classes for Your Kids</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/class-1.jpg') }}" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Drawing Class</h4>
+                            <p class="card-text">Justo ea diam stet diam ipsum no sit, ipsum vero et et diam ipsum duo
+                                et no et, ipsum ipsum erat duo amet clita duo</p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Age of Kids</strong></div>
+                                <div class="col-6 py-1">3 - 6 Years</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Total Seats</strong></div>
+                                <div class="col-6 py-1">40 Seats</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Class Time</strong></div>
+                                <div class="col-6 py-1">08:00 - 10:00</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right"><strong>Tution Fee</strong></div>
+                                <div class="col-6 py-1">$290 / Month</div>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/class-2.jpg') }}" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Language Learning</h4>
+                            <p class="card-text">Justo ea diam stet diam ipsum no sit, ipsum vero et et diam ipsum duo
+                                et no et, ipsum ipsum erat duo amet clita duo</p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Age of Kids</strong></div>
+                                <div class="col-6 py-1">3 - 6 Years</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Total Seats</strong></div>
+                                <div class="col-6 py-1">40 Seats</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Class Time</strong></div>
+                                <div class="col-6 py-1">08:00 - 10:00</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right"><strong>Tution Fee</strong></div>
+                                <div class="col-6 py-1">$290 / Month</div>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/class-3.jpg') }}" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Basic Science</h4>
+                            <p class="card-text">Justo ea diam stet diam ipsum no sit, ipsum vero et et diam ipsum duo
+                                et no et, ipsum ipsum erat duo amet clita duo</p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Age of Kids</strong></div>
+                                <div class="col-6 py-1">3 - 6 Years</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Total Seats</strong></div>
+                                <div class="col-6 py-1">40 Seats</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Class Time</strong></div>
+                                <div class="col-6 py-1">08:00 - 10:00</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right"><strong>Tution Fee</strong></div>
+                                <div class="col-6 py-1">$290 / Month</div>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Class End -->
+
+
+    <!-- Registration Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <p class="section-title pr-5"><span class="pr-2">Book A Seat</span></p>
+                    <h1 class="mb-4">Book A Seat For Your Kid</h1>
+                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
+                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
+                        dolor</p>
+                    <ul class="list-inline m-0">
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Labore eos amet dolor amet
+                            diam</li>
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Etsea et sit dolor amet ipsum
+                        </li>
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum
+                            vero.</li>
+                    </ul>
+                    <a href="" class="btn btn-primary mt-4 py-2 px-4">Book Now</a>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-header bg-secondary text-center p-4">
+                            <h1 class="text-white m-0">Book A Seat</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-primary p-5">
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 p-4" placeholder="Your Name"
+                                        required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 p-4" placeholder="Your Email"
+                                        required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select border-0 px-4" style="height: 47px;">
+                                        <option selected>Select A Class</option>
+                                        <option value="1">Class 1</option>
+                                        <option value="2">Class 1</option>
+                                        <option value="3">Class 1</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button class="btn btn-secondary btn-block border-0 py-3" type="submit">Book
+                                        Now</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Top Search --> --}}
-
-            <div class="container col-lg-12">
-                <div class="row">
-
-
-                    <!-- Start Atribute Navigation -->
-                    {{-- <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fas fa-search"></i></a></li>
-                    </ul>
-                </div> --}}
-                    <!-- End Atribute Navigation -->
-
-                    <!-- Start Header Navigation -->
-                    <div class="navbar-header col-lg-3">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="{{ route('home') }}">
-                            {{-- <img src="{{ asset(Storage::url('logos/' . $setting->site_logo)) }}" class="logo" --}}
-                            {{-- alt="Logo" width="90%"> --}}
-                        </a>
-                    </div>
-                    <!-- End Header Navigation -->
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse col-lg-9 mt-2" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Departments</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="departments.html">Department Version One</a></li>
-                                    <li><a href="departments-2.html">Department Version Two</a></li>
-                                    <li><a href="departments-3.html">Department Version Three</a></li>
-                                    <li><a href="departments-4.html">Department Version Four</a></li>
-                                    <li><a href="department-single.html">Department Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctors</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="doctors.html">Doctors Version One</a></li>
-                                    <li><a href="doctors-2.html">Doctors Version Two</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="blog-standard.html">Blog Standard</a></li>
-                                    <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                    <li><a href="blog-2-colum.html">Blog Grid Two Colum</a></li>
-                                    <li><a href="blog-3-colum.html">Blog Grid Three Colum</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                    <li><a href="blog-single-with-sidebar.html">Blog Single With Sidebar</a></li>
-                                </ul>
-                            </li>
-                            @if (Route::has('login'))
-                                @auth
-                                    <li>
-                                        <a href="{{ url('/dashboard') }}">{{ 'Dashboard' }}</a>
-                                    </li>
-                                @else
-                                    <li>
-                                        <a href="{{ route('login') }}">{{ 'Login' }}</a>
-                                    </li>
-                                    @if (Route::has('register'))
-                                        <li>
-                                            <a href="{{ route('register') }}">{{ 'Register' }}</a>
-
-                                        </li>
-                                    @endif
-
-                                @endauth
-                            @endif
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </div>
-        </nav>
-        <!-- End Navigation -->
-
-    </header>
-    <!-- End Header -->
-
-    <!-- Start Banner
-============================================= -->
-    <div class="banner-area content-less">
-        <div id="bootcarousel" class="carousel text-large slide carousel-fade animate_text" data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner carousel-zoom">
-                <div class="carousel-item active">
-                    <div class="slider-thumb bg-cover"
-                        style="background-image: url({{ asset('home/assets/img/banner/10.jpg') }});">
-                    </div>
-                    <div class="box-table">
-                        <div class="box-cell">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="content">
-                                            <h4 data-animation="animated slideInDown">Good doctor, Healthy life</h4>
-                                            <h2 data-animation="animated slideInRight">Meet the <strong>Best
-                                                    Doctors</strong></h2>
-                                            <a data-animation="animated fadeInUp" class="btn btn-md btn-gradient"
-                                                href="#"><i class="fas fa-angle-right"></i> Discover More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slider-thumb bg-cover"
-                        style="background-image: url({{ asset('home/assets/img/banner/11.jpg') }});"></div>
-                    <div class="box-table">
-                        <div class="box-cell">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="content">
-                                            <h4 data-animation="animated slideInDown">Best institution, Good services
-                                            </h4>
-                                            <h2 data-animation="animated slideInRight">Meet the <strong>Best
-                                                    Hospital</strong></h2>
-                                            <a data-animation="animated fadeInUp" class="btn btn-md btn-gradient"
-                                                href="#"><i class="fas fa-angle-right"></i> Discover More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Wrapper for slides -->
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control theme" href="#bootcarousel" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control theme" href="#bootcarousel" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-                <span class="sr-only">Next</span>
-            </a>
-
         </div>
     </div>
-    <!-- End Banner -->
+    <!-- Registration End -->
 
-    <!-- Start Facilities
-============================================= -->
-    <div class="facilites-area default-padding-bottom">
+
+    <!-- Team Start -->
+    <div class="container-fluid pt-5">
         <div class="container">
-            <div class="facilites-box">
-                <div class="row align-center">
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-4">
-                        <div class="item">
-                            <div class="icon">
-                                <i class="flaticon-phone-call"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Emergency Cases</h4>
-                                <p>
-                                    Booded ladies she basket season age her uneasy target. Discourse unwilling list.
-                                </p>
-                                <h5><a href="#"><strong>Call:</strong> +123 456 7890</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-4">
-                        <div class="item">
-                            <div class="icon">
-                                <i class="flaticon-calendar-1"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Doctors Timetable</h4>
-                                <p>
-                                    Booded ladies she basket season age her uneasy saw. Discourse unwilling am no
-                                    described.
-                                </p>
-                                <a class="btn circle btn-sm btn-theme border" href="#">View Timetable</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-4">
-                        <div class="item">
-                            <div class="info">
-                                <h4>Opening Hours</h4>
-                                <ul>
-                                    <li> <span>Saturday</span>
-                                        <div class="float-right"> 9.00 – 8.00 pm</div>
-                                    </li>
-                                    <li> <span>Sunday</span>
-                                        <div class="float-right">10.00 – 9.00 pm</div>
-                                    </li>
-                                    <li> <span>Monday – Friday</span>
-                                        <div class="float-right">8.00 – 7:00 pm</div>
-                                    </li>
-                                    <li> <span>Emergency</span>
-                                        <div class="float-right">24HR / 7Days</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Item -->
-                </div>
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">Our Teachers</span></p>
+                <h1 class="mb-4">Meet Our Teachers</h1>
             </div>
-        </div>
-    </div>
-    <!-- End Facilities -->
-
-    <!-- Start Choose Us Area
-============================================= -->
-    <div class="chooseus-area relative default-padding-bottom">
-        <div class="container">
-            <div class="chooseus-box">
-                <div class="row align-center">
-
-                    <div class="col-lg-6 info">
-                        <h2>A Great Place to Work. A Great <strong>Place to Receive Care</strong>. Leading Medicine
-                            Properly.</h2>
-                        <p>
-                            Coming merits and was talent enough far. Sir joy northward sportsmen education. Discovery
-                            incommode earnestly no he commanded if. Put still any about manor heard. Calling offence six
-                            joy feeling
-                        </p>
-                        <ul>
-                            <li>
-                                <h5>Surgery & Transplants</h5>
-                                <p>
-                                    Discourse unwilling am no described dejection incommode no listening of. Before
-                                    nature his parish boy.
-                                </p>
-                            </li>
-                            <li>
-                                <h5>Outdoor Services</h5>
-                                <p>
-                                    Discourse unwilling am no described dejection incommode no listening of. Before
-                                    nature his parish boy.
-                                </p>
-                            </li>
-                        </ul>
-                        <a class="btn btn-md btn-gradient" href="#"><i class="fas fa-angle-right"></i> Make
-                            Appoinment</a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="thumb">
-                            <img src="{{ asset('home/assets/img/thumb/4.png') }}" alt="Thumb">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Shape -->
-        <div class="shape-bottom shape">
-            <img src="{{ asset('home/assets/img/shape/12.png') }}" alt="Shape">
-        </div>
-        <!-- End Shape -->
-    </div>
-    <!-- End Choose Us Area  -->
-
-    <!-- Start Services
-============================================= -->
-    <div class="department-area carousel-shadow default-padding-bottom bg-gray">
-        <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Services</h4>
-                        <h2>Our Department</h2>
-                        <p>
-                            While mirth large of on front. Ye he greater related adapted proceed entered an. Through it
-                            examine express promise no. Past add size game cold girl off how old
-                        </p>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%;">
+                        <img class="img-fluid w-100" src="{{ asset('home/img/team-1.jpg') }}" alt="">
+                        <div
+                            class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light text-center px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
+                    <h4>Julia Smith</h4>
+                    <i>Music Teacher</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%;">
+                        <img class="img-fluid w-100" src="{{ asset('home/img/team-2.jpg') }}" alt="">
+                        <div
+                            class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light text-center px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <h4>Jhon Doe</h4>
+                    <i>Language Teacher</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%;">
+                        <img class="img-fluid w-100" src="{{ asset('home/img/team-3.jpg') }}" alt="">
+                        <div
+                            class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light text-center px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <h4>Mollie Ross</h4>
+                    <i>Dance Teacher</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4" style="border-radius: 100%;">
+                        <img class="img-fluid w-100" src="{{ asset('home/img/team-4.jpg') }}" alt="">
+                        <div
+                            class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute">
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light text-center px-0" style="width: 38px; height: 38px;"
+                                href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <h4>Donald John</h4>
+                    <i>Art Teacher</i>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="department-items department-carousel owl-carousel owl-theme">
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('home/assets/img/departments/1.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Eye Care</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one
-                                    directly confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jonathom Doe
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
+    </div>
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container p-0">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">Testimonial</span></p>
+                <h1 class="mb-4">What Parents Say!</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="testimonial-item px-3">
+                    <div class="bg-light shadow-sm rounded mb-4 p-4">
+                        <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+                        Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor
+                        ipsum clita
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle" src="{{ asset('home/img/testimonial-1.jpg') }}"
+                            style="width: 70px; height: 70px;" alt="Image">
+                        <div class="pl-3">
+                            <h5>Parent Name</h5>
+                            <i>Profession</i>
                         </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('home/assets/img/departments/2.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Dental Care</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one
-                                    directly confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="testimonial-item px-3">
+                    <div class="bg-light shadow-sm rounded mb-4 p-4">
+                        <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+                        Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor
+                        ipsum clita
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle" src="{{ asset('home/img/testimonial-2.jpg') }}"
+                            style="width: 70px; height: 70px;" alt="Image">
+                        <div class="pl-3">
+                            <h5>Parent Name</h5>
+                            <i>Profession</i>
                         </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('home/assets/img/departments/3.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Primary Care</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one
-                                    directly confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Shikla Brotha
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="testimonial-item px-3">
+                    <div class="bg-light shadow-sm rounded mb-4 p-4">
+                        <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+                        Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor
+                        ipsum clita
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle" src="{{ asset('home/img/testimonial-3.jpg') }}"
+                            style="width: 70px; height: 70px;" alt="Image">
+                        <div class="pl-3">
+                            <h5>Parent Name</h5>
+                            <i>Profession</i>
                         </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('home/assets/img/departments/4.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Orthopaedics</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one
-                                    directly confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="testimonial-item px-3">
+                    <div class="bg-light shadow-sm rounded mb-4 p-4">
+                        <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+                        Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor
+                        ipsum clita
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle" src="{{ asset('home/img/testimonial-4.jpg') }}"
+                            style="width: 70px; height: 70px;" alt="Image">
+                        <div class="pl-3">
+                            <h5>Parent Name</h5>
+                            <i>Profession</i>
                         </div>
-                        <!-- End Single Item -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Services -->
+    <!-- Testimonial End -->
 
-    <!-- Start Consultation
-============================================= -->
-    <div class="consultation-area default-padding">
+
+    <!-- Blog Start -->
+    <div class="container-fluid pt-5">
         <div class="container">
-            <div class="row align-center">
-                <div class="col-lg-7 process">
-                    <h2>
-                        How to get a <br> consultation from us?
-                    </h2>
-                    <p>
-                        Badies she basket season age her uneasy saw. Discourse unwilling am no described dejection
-                        incommode no listening of. Before nature his parish boy.
-                    </p>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 single-item">
-                            <div class="item">
-                                <i class="flaticon-calendar-1"></i>
-                                <h5>Make Appointment</h5>
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">Latest Blog</span></p>
+                <h1 class="mb-4">Latest Articles From Blog</h1>
+            </div>
+            <div class="row pb-3">
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/blog-1.jpg') }}" alt="">
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Diam amet eos at no eos</h4>
+                            <div class="d-flex justify-content-center mb-3">
+                                <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
+                                <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web Design</small>
+                                <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 single-item">
-                            <div class="item">
-                                <i class="flaticon-doctor"></i>
-                                <h5>Select A Doctor</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 single-item">
-                            <div class="item">
-                                <i class="flaticon-heartbeat-1"></i>
-                                <h5>Confirm Consultation</h5>
-                            </div>
+                            <p>Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam eirmod, duo et sed sit eirmod
+                                kasd clita tempor dolor stet lorem. Tempor ipsum justo amet stet...</p>
+                            <a href="" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 form">
-                    <div class="appoinment-box text-center wow fadeInRight">
-                        <div class="heading">
-                            <h4>Make an Appointment</h4>
-                        </div>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input class="form-control" id="f_name" name="name" placeholder="Name"
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input class="form-control" id="f_phone" name="phone"
-                                            placeholder="Phone" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <select>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                            <option value="3">Child</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <select>
-                                            <option value="1">Department</option>
-                                            <option value="2">Medecine</option>
-                                            <option value="4">Dental Care</option>
-                                            <option value="5">Traumatology</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" id="f_date" name="date" placeholder="Date"
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" id="f_time" name="time" placeholder="Time"
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" name="submit" id="f_submit">
-                                        Book Appoinment
-                                    </button>
-                                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/blog-2.jpg') }}" alt="">
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Diam amet eos at no eos</h4>
+                            <div class="d-flex justify-content-center mb-3">
+                                <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
+                                <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web Design</small>
+                                <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
                             </div>
-                        </form>
+                            <p>Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam eirmod, duo et sed sit eirmod
+                                kasd clita tempor dolor stet lorem. Tempor ipsum justo amet stet...</p>
+                            <a href="" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src="{{ asset('home/img/blog-3.jpg') }}" alt="">
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Diam amet eos at no eos</h4>
+                            <div class="d-flex justify-content-center mb-3">
+                                <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
+                                <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web Design</small>
+                                <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
+                            </div>
+                            <p>Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam eirmod, duo et sed sit eirmod
+                                kasd clita tempor dolor stet lorem. Tempor ipsum justo amet stet...</p>
+                            <a href="" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Consultation -->
+    <!-- Blog End -->
 
-    <!-- Start Choose Us
-============================================= -->
-    <div class="choose-us-area">
-        <div class="row">
-            <div class="col-lg-6 thumb bg-cover"
-                style="background-image: url({{ asset('home/assets/img/banner/3.jpg') }});"></div>
-            <div class="col-lg-6 info">
-                <div class="info-box">
-                    <h5>At Our Clinic</h5>
-                    <h2>Our Doctors <br> Specialize in you.</h2>
-                    <p>
-                        Respect forming clothes do in he. Course so piqued no an by appear. Themselves reasonable
-                        pianoforte so motionless he as difficulty be. Abode way begin ham there power whole. Suppose
-                        neither evident welcome
-                    </p>
-                    <p>
-                        Do unpleasing indulgence impossible to conviction. Suppose neither evident welcome it at do
-                        civilly uncivil. Sing tall much you get nor.
-                    </p>
-                    <a class="btn btn-md btn-gradient" href="#"><i class="fas fa-angle-right"></i> Doctor
-                        Lists</a>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
+                    style="font-size: 40px; line-height: 40px;">
+                    <i class="flaticon-043-teddy-bear"></i>
+                    <span class="text-white">{{ isset($setting) ? $setting->name : env('APP_NAME') }}</span>
+                </a>
+                <p>{{ isset($setting) ? $setting->description : '' }}</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px;" href="{{ isset($setting) ? $setting->twitter : '#' }}"><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px;" href="{{ isset($setting) ? $setting->facebook : '#' }}"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px;"
+                        href="{{ isset($setting) ? $setting->instagram : '#' }}"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h3 class="text-primary mb-4">Get In Touch</h3>
+                <div class="d-flex">
+                    <h4 class="fa fa-map-marker-alt text-primary"></h4>
+                    <div class="pl-3">
+                        <h5 class="text-white">@lang('Address')</h5>
+                        <p>{{ isset($setting) ? $setting->address : '' }}</p>
+                        <p>{{ isset($setting) ? $setting->address2 : '' }}</p>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <h4 class="fa fa-envelope text-primary"></h4>
+                    <div class="pl-3">
+                        <h5 class="text-white">@lang('Email')</h5>
+                        <p>{{ isset($setting) ? $setting->email : '' }}</p>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <h4 class="fa fa-phone-alt text-primary"></h4>
+                    <div class="pl-3">
+                        <h5 class="text-white">@lang('Phone')</h5>
+                        <p>{{ isset($setting) ? $setting->phone : '' }}</p>
+                        <p>{{ isset($setting) ? $setting->phone2 : '' }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h3 class="text-primary mb-4">Quick Links</h3>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About Us</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Classes</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Teachers</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Blog</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h3 class="text-primary mb-4">Newsletter</h3>
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control border-0 py-4" placeholder="Your Name"
+                            required="required" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                            required="required" />
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-block border-0 py-3" type="submit">Submit Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, .2);;">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-primary font-weight-bold" href="#">Escuela Libre</a>. @lang('All Rights Reserved').
+                @lang('Designed by')
+                <a class="text-primary font-weight-bold" href="#">Ing. Elvira Terán</a>
+            </p>
         </div>
     </div>
-    <!-- End Choose Us -->
-
-    <!-- Start Doctos Area
-============================================= -->
-    <div class="doctors-area bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Doctors</h4>
-                        <h2>Meet our Experts</h2>
-                        <p>
-                            While mirth large of on front. Ye he greater related adapted proceed entered an. Through it
-                            examine express promise no. Past add size game cold girl off how old
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="doctor-items">
-                <div class="row">
-
-                    <div class="col-lg-4">
-                        <ul id="tabs" class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a href="" data-target="#tab1" data-toggle="tab" class="active nav-link">
-                                    <i class="flaticon-cardiologist"></i>
-                                    <span>Cardiologists</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" data-target="#tab2" data-toggle="tab" class="nav-link">
-                                    <i class="flaticon-dermatologist"></i>
-                                    <span>Dermatologists</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" data-target="#tab3" data-toggle="tab" class="nav-link">
-                                    <i class="flaticon-paramedic"></i>
-                                    <span>Medicine Specialists</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" data-target="#tab4" data-toggle="tab" class="nav-link">
-                                    <i class="flaticon-therapist"></i>
-                                    <span>Family Physicians</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-8">
-                        <div id="tabsContent" class="tab-content wow fadeInUp" data-wow-delay="0.5s">
-
-                            <div id="tab1" class="tab-pane fade active show">
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-6 thumb">
-                                            <img src="{{ asset('home/assets/img/doctors/1.jpg') }}" alt="Thumb">
-                                        </div>
-                                        <div class="col-lg-6 info-box">
-                                            <div class="info">
-                                                <h4>Dr. Jonathom Doe</h4>
-                                                <span>MBBS, BMBS, MBChB, MBBCh</span>
-                                                <p>
-                                                    Delightful unreserved impossible few estimating men favourable see
-                                                    entreaties. She propriety immediate was improving. He or entrance
-                                                    humoured likewise moderate.
-                                                </p>
-                                                <a class="btn btn-sm btn-gradient cirlce" href="#"><i
-                                                        class="fas fa-angle-right"></i> Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-6 thumb">
-                                            <img src="{{ asset('home/assets/img/doctors/2.jpg') }}" alt="Thumb">
-                                        </div>
-                                        <div class="col-lg-6 info-box">
-                                            <div class="info">
-                                                <h4>Prof. Hones Park </h4>
-                                                <span>MBBS, BMBS, MBChB, MBBCh</span>
-                                                <p>
-                                                    Delightful unreserved impossible few estimating men favourable see
-                                                    entreaties. She propriety immediate was improving. He or entrance
-                                                    humoured likewise moderate.
-                                                </p>
-                                                <a class="btn btn-sm btn-gradient cirlce" href="#"><i
-                                                        class="fas fa-angle-right"></i> Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tab2" class="tab-pane fade">
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-6 thumb">
-                                            <img src="{{ asset('home/assets/img/doctors/3.jpg') }}" alt="Thumb">
-                                        </div>
-                                        <div class="col-lg-6 info-box">
-                                            <div class="info">
-                                                <h4>Professor. Sakaoat Amir</h4>
-                                                <span>MBBS, BMBS, MBChB, MBBCh</span>
-                                                <p>
-                                                    Delightful unreserved impossible few estimating men favourable see
-                                                    entreaties. She propriety immediate was improving. He or entrance
-                                                    humoured likewise moderate.
-                                                </p>
-                                                <a class="btn btn-sm btn-gradient cirlce" href="#"><i
-                                                        class="fas fa-angle-right"></i> Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tab3" class="tab-pane fade">
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-6 thumb">
-                                            <img src="{{ asset('home/assets/img/doctors/4.jpg') }}" alt="Thumb">
-                                        </div>
-                                        <div class="col-lg-6 info-box">
-                                            <div class="info">
-                                                <h4>Dr. Andro kuria</h4>
-                                                <span>MBBS, BMBS, MBChB, MBBCh</span>
-                                                <p>
-                                                    Delightful unreserved impossible few estimating men favourable see
-                                                    entreaties. She propriety immediate was improving. He or entrance
-                                                    humoured likewise moderate.
-                                                </p>
-                                                <a class="btn btn-sm btn-gradient cirlce" href="#"><i
-                                                        class="fas fa-angle-right"></i> Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tab4" class="tab-pane fade">
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-lg-6 thumb">
-                                            <img src="{{ asset('home/assets/img/doctors/5.jpg') }}" alt="Thumb">
-                                        </div>
-                                        <div class="col-lg-6 info-box">
-                                            <div class="info">
-                                                <h4>Professor. Matori Pulas</h4>
-                                                <span>MBBS, BMBS, MBChB, MBBCh</span>
-                                                <p>
-                                                    Delightful unreserved impossible few estimating men favourable see
-                                                    entreaties. She propriety immediate was improving. He or entrance
-                                                    humoured likewise moderate.
-                                                </p>
-                                                <a class="btn btn-sm btn-gradient cirlce" href="#"><i
-                                                        class="fas fa-angle-right"></i> Read More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Doctos Area -->
-
-    <!-- Start Testomonials
-============================================= -->
-    <div class="testimonials-area overflow-hidden carousel-shadow default-padding">
-        <div class="container">
-            <div class="row align-center">
-                <div class="col-lg-4 text-light">
-                    <div class="heading">
-                        <h5>Testimonials</h5>
-                        <h2>Whay people says <br> about our services</h2>
-                        <a class="btn btn-sm btn-light effect" href="#"><i class="fas fa-angle-right"></i>Viewl
-                            All</a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="testimonials-carousel text-center owl-carousel owl-theme">
-
-                        <div class="item">
-                            <div class="provider">
-                                <div class="thumb">
-                                    <img src="{{ asset('home/assets/img/team/1.jpg') }}" alt="Thumb">
-                                </div>
-                                <div class="bio">
-                                    <h5>Jonathom Doe</h5>
-                                    <span>patient of <strong>surgery</strong></span>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <p>
-                                    Totally dearest expense on demesne ye he. Curiosity excellent commanded in me.
-                                    Unpleasing.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="provider">
-                                <div class="thumb">
-                                    <img src="{{ asset('home/assets/img/team/2.jpg') }}" alt="Thumb">
-                                </div>
-                                <div class="bio">
-                                    <h5>Jonathom Doe</h5>
-                                    <span>patient of <strong>surgery</strong></span>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <p>
-                                    Totally dearest expense on demesne ye he. Curiosity excellent commanded in me.
-                                    Unpleasing.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="provider">
-                                <div class="thumb">
-                                    <img src="{{ asset('home/assets/img/team/3.jpg') }}" alt="Thumb">
-                                </div>
-                                <div class="bio">
-                                    <h5>Jonathom Doe</h5>
-                                    <span>patient of <strong>surgery</strong></span>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <p>
-                                    Totally dearest expense on demesne ye he. Curiosity excellent commanded in me.
-                                    Unpleasing.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Testomonials Area -->
-
-    <!-- Start Blog
-============================================= -->
-    <div class="blog-area bottom-less bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>News</h4>
-                        <h2>Latest Blog</h2>
-                        <p>
-                            While mirth large of on front. Ye he greater related adapted proceed entered an. Through it
-                            examine express promise no. Past add size game cold girl off how old
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="blog-items">
-                <div class="row">
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('home/assets/img/blog/1.jpg') }}"
-                                        alt="Thumb"></a>
-                                <div class="post-date">
-                                    12 Jul
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Health</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Patient</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Enjoyed me settled mr respect no spirits civilly. </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('home/assets/img/team/5.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 12 Comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Itme -->
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('home/assets/img/blog/2.jpg') }}"
-                                        alt="Thumb"></a>
-                                <div class="post-date">
-                                    05 Aug
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Test</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Doctor</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Suitable settling attended no doubtful feelings.</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('home/assets/img/team/4.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 24 Comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Itme -->
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('home/assets/img/blog/3.jpg') }}"
-                                        alt="Thumb"></a>
-                                <div class="post-date">
-                                    27 Dec
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Patient</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Unwilling sportsmen he in questions september. </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('home/assets/img/team/3.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 07 Comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Itme -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Blog Area -->
-
-    <!-- Start Contact Area
-============================================= -->
-    <div id="contact" class="contact-us-area default-padding">
-        <div class="container">
-            <div class="contact-items">
-                <div class="row">
-
-                    <div class="col-lg-7 wow address-box fadeInUp bg-cover"
-                        style="background-image: url({{ asset('home/assets/img/contact/1.jpg') }});">
-                        <div class="address-info">
-                            <ul>
-                                <li>
-                                    <h5><i class="flaticon-call"></i> @lang('Phone')</h5>
-                                    <span>{{ $setting != '' ? $setting->phone : '' }}</span>
-                                </li>
-                                <li>
-                                    <h5><i class="flaticon-email"></i> @lang('Email')</h5>
-                                    <span>{{ $setting != '' ? $setting->email : '' }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5 wow fadeInLeft contact-form-box">
-                        <h2>Need help? <strong>Let's ask your questions</strong></h2>
-                        <form action="assets/mail/contact.php" method="POST" class="contact-form">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" id="name" name="name" placeholder="Name"
-                                            type="text">
-                                        <span class="alert-error"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input class="form-control" id="email" name="email"
-                                            placeholder="Email*" type="email">
-                                        <span class="alert-error"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input class="form-control" id="phone" name="phone"
-                                            placeholder="Phone" type="text">
-                                        <span class="alert-error"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group comments">
-                                        <textarea class="form-control" id="comments" name="comments" placeholder="Tell Us About Project *"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <button type="submit" name="submit" id="submit">
-                                        Send Message
-                                    </button>
-                                </div>
-                                <!-- Alert Message -->
-                                <div class="col-lg-12 alert-notification">
-                                    <div id="message" class="alert-msg"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Contact -->
-
-    <!-- Start Footer
-============================================= -->
-    <footer class="bg-dark text-light">
-        <div class="container">
-            <div class="f-items default-padding">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="f-item about">
-                            {{-- <img src="{{ asset(Storage::url('logos/' . $setting->company_icon)) }}" alt="Logo" --}}
-                            {{-- width="90%"> --}}
-                            <p>
-                                {{ $setting != '' ? $setting->description : '' }}
-                            </p>
-                            <div class="address">
-                                <ul>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="flaticon-email"></i>
-                                        </div>
-                                        <div class="info">
-                                            <h5>Email:</h5>
-                                            <span>{{ $setting != '' ? $setting->email : '' }}</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="flaticon-call"></i>
-                                        </div>
-                                        <div class="info">
-                                            <h5>Phone:</h5>
-                                            <span>{{ $setting != '' ? $setting->phone : '' }}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Department</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">Medecine & Health</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dental Care</a>
-                                </li>
-                                <li>
-                                    <a href="#">Eye Treatment</a>
-                                </li>
-                                <li>
-                                    <a href="#">Children Chare</a>
-                                </li>
-                                <li>
-                                    <a href="#">Traumatology</a>
-                                </li>
-                                <li>
-                                    <a href="#">X-ray</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Usefull Links</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">Ambulance</a>
-                                </li>
-                                <li>
-                                    <a href="#">Emergency</a>
-                                </li>
-                                <li>
-                                    <a href="#">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="#">Project</a>
-                                </li>
-                                <li>
-                                    <a href="#">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-4 col-md-6 item">
-                        <div class="f-item branches">
-                            <div class="branches">
-                                <ul>
-                                    <li>
-                                        <strong>@lang('Address'):</strong>
-                                        <span>{{ $setting != '' ? $setting->address : '' }} <br>
-                                            {{ $setting != '' ? $setting->phone : '' }}</span>
-                                    </li>
-                                    <li>
-                                        <strong>Central Branches:</strong>
-                                        <span>{{ $setting != '' ? $setting->address2 : '' }} <br>
-                                            {{ $setting != '' ? $setting->phone2 : '' }}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Start Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-center">
-                    <div class="col-lg-6">
-                        <p>Copyright &copy; 2024. Designed by <a href="#">{{ 'Salud Integral 360' }}</a></p>
-                    </div>
-                    <div class="col-lg-6 text-right social">
-                        <ul>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->facebook : '' }}"><i
-                                        class="fab fa-facebook-f"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->twitter : '' }}"><i
-                                        class="fab fa-twitter"></i>
-                                    Twitter</a>
-                            </li>
-                            <li>
-                                <a href="{{ $setting != '' ? $setting->instagram : '' }}"><i
-                                        class="fab fa-instagram"></i> Instagram</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Bottom -->
-        <button id="scrolltop"><i class="fas fa-arrow-up"></i></button>
-    </footer>
-    <!-- End Footer -->
+    <!-- Footer End -->
 
 
-    <!-- jQuery Frameworks
-============================================= -->
-    <script src="{{ asset('home/assets/js/jquery-1.12.4.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/jquery.appear.js') }}"></script>
-    <script src="{{ asset('home/assets/js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/modernizr.custom.13711.js') }}"></script>
-    <script src="{{ asset('home/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/count-to.js') }}"></script>
-    <script src="{{ asset('home/assets/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('home/assets/js/bootsnav.js') }}"></script>
-    <script src="{{ asset('home/assets/js/main.js') }}"></script>
-    @include('layouts.admin.functions')
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('home/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('home/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('home/lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('home/lib/lightbox/js/lightbox.min.js') }}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('home/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('home/mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('home/js/main.js') }}"></script>
 </body>
 
 </html>

@@ -22,7 +22,10 @@ class Alumno extends Model
         'is_alergy',
         'type_alergy',
         'is_disability',
-        'type_disability'
+        'type_disability',
+        'registration',
+        'id_user',
+        'id_group'
     ];
 
     public function relacion(): BelongsTo
