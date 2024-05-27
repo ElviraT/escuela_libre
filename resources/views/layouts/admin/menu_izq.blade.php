@@ -93,18 +93,17 @@
                         </li>
                     @endcan
                 @endcan
-                @canany(['classromm'])
+                @canany(['shedules.teacher'])
                     <li class="menu-title"><span>@lang('Classromm')</span></li>
-                    <li>
-                        <a class="{{ @request()->routeIs('schedules') ? 'active' : ' ' }}" href="{{ route('schedules') }}"
-                            onclick=" loading_show();"><i class="fe fe-calendar"></i>
-                            <span>@lang('Shedules')</span></a>
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-calendar"></i> <span> @lang('Shedules')</span> <span
+                                class="menu-arrow"></span></a>
                         <ul>
-                            @can('teachers')
+                            @can('shedules.teacher')
                                 <li>
-                                    <a class="{{ @request()->routeIs('teachers') ? 'active' : ' ' }}"
-                                        href="{{ route('teachers') }}" onclick=" loading_show();">
-                                        @lang('Teachers')
+                                    <a class="{{ @request()->routeIs('shedules.teacher') ? 'active' : ' ' }}"
+                                        href="{{ route('shedules.teacher') }}" onclick=" loading_show();">
+                                        @lang('Schedules Teachers')
                                     </a>
                                 </li>
                             @endcan

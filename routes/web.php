@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ModalityController;
 use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Shedules\TeacherController as ShedulesTeacherController;
 use App\Http\Controllers\Users\AlumnoController;
 use App\Http\Controllers\Users\RepresentativeController;
 use App\Http\Controllers\Users\TeacherController;
@@ -112,6 +113,8 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
         Route::match(['get', 'post'], '/{grade}/group', 'group');
     });
+    // SHEDULES
+    Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
 });
 
 require __DIR__ . '/auth.php';
