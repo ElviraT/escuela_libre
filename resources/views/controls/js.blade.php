@@ -77,4 +77,30 @@
         $('#id_grade').val('').trigger('change.select2');
         $('#id_status').val('').trigger('change.select2');
     });
+
+    // MODAL MODALIDAD
+    $(document).on('show.bs.modal', '#modality_details', function(e) {
+        var modal = $(e.delegateTarget),
+            data = $(e.relatedTarget).data();
+        $("#form-enviar").attr('action', data.bsAction);
+        $("#method").val('post');
+        if (data.bsRecordId != undefined) {
+            $('.title').text("@lang('Edit Modality')");
+            $('.modal_registro_modality_id', modal).val(data.bsRecordId);
+            $.getJSON('../modalities/' + data.bsRecordId + '/edit', function(data) {
+                var obj = data;
+                $("#form-enviar").attr('action', data.bsAction);
+                $("#method").val('put');
+                $('#name', modal).val(obj.name);
+                $('#id_status').val(obj.id_status).trigger('change.select2');
+            });
+        } else {
+            $('.title').text("@lang('Add Modality')");
+        }
+    });
+
+    $(document).on('hidden.bs.modal', '#modality_details', function(e) {
+        $('#name').val('');
+        $('#id_status').val('').trigger('change.select2');
+    });
 </script>

@@ -32,7 +32,28 @@
         $("#method").val('post');
         $('#ocupation').val('');
     });
+    $(document).ready(function() {
+        $('#id_grade').on('select2:select', function(event) {
+            var grade = $(this).val();
+            $.ajax({
+                url: '../combo/' + grade + '/group',
+                method: "GET",
 
+                success: function(data) {
+                    $("#id_group").prop('disabled', false);
+                    var html = "";
+                    $.each(data, function(index, value) {
+                        html += '<option value="' + value.id + '">' + value.name +
+                            "</option>";
+                    });
+                    $("#id_group").html(html);
+                },
+                error: function() {
+                    alert("error")
+                }
+            });
+        });
+    });
     // modal familiares
     $(document).on('show.bs.modal', '#add_alumno', function(e) {
         var modal = $(e.delegateTarget),
@@ -57,6 +78,8 @@
                 $('#id_relation').val(obj.id_relation).trigger('change.select2');
                 $('#id_user').val(obj.id_user).trigger('change.select2');
                 $('#id_group').val(obj.id_group).trigger('change.select2');
+                $('#id_grade').val(obj.id_grade).trigger('change.select2');
+                $('#id_modality').val(obj.id_modality).trigger('change.select2');
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
                 $('#name', modal).val(obj.name);
@@ -88,18 +111,26 @@
         $('#id_gender').val('').trigger('change.select2');
         $('#id_relation').val('').trigger('change.select2');
         $('#id_user').val('').trigger('change.select2');
-        $('#id_group').val('').trigger('change.select2');
+        $('#id_group').val('').trigger('change.select2').prop('disabled', true);
+        $('#id_grade').val('').trigger('change.select2');
         $("#method").val('post');
-        $('#name', modal).val('');
-        $('#last_name', modal).val('');
-        $('#dni', modal).val('');
-        $('#birthdate', modal).val('');
-        $('#registration', modal).val('');
-        $('#alergy_id', modal).prop('checked', false).change();
-        $('#disability_id', modal).prop('checked', false).change();
-        $('#type_alergy', modal).val('');
-        $('#type_disability', modal).val('');
-        $('#type_blood', modal).val('');
+        $('#name').val('');
+        $('#last_name').val('');
+        $('#dni').val('');
+        $('#birthdate').val('');
+        $('#registration').val('');
+        $('#alergy_id').prop('checked', false).change();
+        $('#disability_id').prop('checked', false).change();
+        $('#type_alergy').val('');
+        $('#type_disability').val('');
+        $('#type_blood').val('');
+
+        $('#step1-tab').addClass('active');
+        $('#step1').addClass('show active');
+        $('#step2-tab').removeClass('active');
+        $('#step2').removeClass('show active');
+        $('#step3-tab').removeClass('active');
+        $('#step3').removeClass('show active');
     });
     $(function() {
         $('#alergy_id').change(function() {
@@ -117,6 +148,41 @@
             } else {
                 $('#tipo_dis').attr('hidden', true);
             }
+        });
+    });
+
+    $(function() {
+        $('#next').click(function() {
+            loading_show();
+            $('#step1-tab').removeClass('active');
+            $('#step1').removeClass('show active');
+            $('#step2-tab').addClass('active');
+            $('#step2').addClass('show active');
+            loading_hide();
+        });
+        $('#back').click(function() {
+            loading_show();
+            $('#step1-tab').addClass('active');
+            $('#step1').addClass('show active');
+            $('#step2-tab').removeClass('active');
+            $('#step2').removeClass('show active');
+            loading_hide();
+        });
+        $('#continue').click(function() {
+            loading_show();
+            $('#step2-tab').removeClass('active');
+            $('#step2').removeClass('show active');
+            $('#step3-tab').addClass('active');
+            $('#step3').addClass('show active');
+            loading_hide();
+        });
+        $('#previus').click(function() {
+            loading_show();
+            $('#step2-tab').addClass('active');
+            $('#step2').addClass('show active');
+            $('#step3-tab').removeClass('active');
+            $('#step3').removeClass('show active');
+            loading_hide();
         });
     });
 </script>

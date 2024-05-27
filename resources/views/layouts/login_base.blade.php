@@ -27,8 +27,8 @@
                 </div>
             </div>
             <div class="col-12" align="center">
-                <i class="fa fa-heartbeat" style="font-size: 100px; color:rgb(41, 41, 143)"></i>
-                <h1 style="font-size: 100px; color:rgb(41, 41, 143)">{{ 'SALUD INTEGRAL 360' }}</h1>
+                <i class="fa fa-book" style="font-size: 100px; color:rgb(41, 41, 143)"></i>
+                <h1 style="font-size: 100px; color:rgb(41, 41, 143)">{{ 'ESCUELA LIBRE CHILE' }}</h1>
             </div>
 
             <div class="row justify-content-center" style="margin-top: -250px">

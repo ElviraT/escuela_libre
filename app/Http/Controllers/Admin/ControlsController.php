@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Group;
 use App\Models\Matter;
+use App\Models\Modality;
 use App\Models\Status;
 
 class ControlsController extends Controller
@@ -35,5 +36,12 @@ class ControlsController extends Controller
         $grades = Grade::where('id_status', 1)->get();
         $status = Status::all();
         return view('controls.matters.index', compact('matters', 'grades', 'status'));
+    }
+
+    public function modalities()
+    {
+        $modalities = Modality::all();
+        $status = Status::all();
+        return view('controls.modalities.index', compact('modalities', 'status'));
     }
 }

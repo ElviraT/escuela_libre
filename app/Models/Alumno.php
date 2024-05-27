@@ -25,7 +25,9 @@ class Alumno extends Model
         'type_disability',
         'registration',
         'id_user',
-        'id_group'
+        'id_group',
+        'id_grade',
+        'id_modality'
     ];
 
     public function relacion(): BelongsTo

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ControlsController;
 use App\Http\Controllers\Admin\GradesController;
 use App\Http\Controllers\Admin\GroupsController;
 use App\Http\Controllers\Admin\MattersController;
+use App\Http\Controllers\Admin\ModalityController;
 use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -73,6 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/controls/matters', [ControlsController::class, 'matters'])->name('controls.matters');
     Route::get('/controls/grades', [ControlsController::class, 'grades'])->name('controls.grades');
     Route::get('/controls/groups', [ControlsController::class, 'groups'])->name('controls.groups');
+    Route::get('/controls/modalities', [ControlsController::class, 'modalities'])->name('controls.modalities');
     // CRUD GRADES
     Route::post('/grades/store', [GradesController::class, 'store'])->name('grades.store');
     Route::get('/grades/{grade}/edit', [GradesController::class, 'edit'])->name('grades.edit');
@@ -88,6 +90,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/matters/{matter}/edit', [MattersController::class, 'edit'])->name('matters.edit');
     Route::put('/matters/update/{matter}', [MattersController::class, 'update'])->name('matters.update');
     Route::delete('/matters/destroy/{matter}', [MattersController::class, 'destroy'])->name('matters.destroy');
+    // CRUD MODALITY
+    Route::post('/modalities/store', [ModalityController::class, 'store'])->name('modalities.store');
+    Route::get('/modalities/{modality}/edit', [ModalityController::class, 'edit'])->name('modalities.edit');
+    Route::put('/modalities/update/{modality}', [ModalityController::class, 'update'])->name('modalities.update');
+    Route::delete('/modalities/destroy/{modality}', [ModalityController::class, 'destroy'])->name('modalities.destroy');
     // CRUD TICKETS
     Route::get('/tickets/{id}', [TicketsController::class, 'index'])->name('tickets');
     Route::post('/tickets/store', [TicketsController::class, 'store'])->name('tickets.store');
@@ -103,6 +110,7 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{country}/state', 'state');
         Route::match(['get', 'post'], '/{state}/city', 'city');
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
+        Route::match(['get', 'post'], '/{grade}/group', 'group');
     });
 });
 

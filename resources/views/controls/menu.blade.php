@@ -36,6 +36,15 @@
                         </li>
                         <br>
                     @endcan
+                    @can('controls.modalities')
+                        <li class="nav-item">
+                            <a href="{{ route('controls.modalities') }}"
+                                class="nav-link {{ @request()->routeIs('controls.modalities') ? 'active' : ' ' }}">
+                                <i class="fe fe-file-text"></i> <span>@lang('Modalities')</span>
+                            </a>
+                        </li>
+                        <br>
+                    @endcan
                 </ul>
             </div>
 

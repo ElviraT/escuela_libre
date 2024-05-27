@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Grade;
 use App\Models\Group;
+use App\Models\Modality;
 use App\Models\Relationship;
 use App\Models\Sex;
 use App\Models\Status;
@@ -23,6 +25,8 @@ class AlumnoController extends Controller
         $relacion = Relationship::all();
         $genders = Sex::all();
         $groups = Group::where('id_status', 1)->get();
+        $grades = Grade::where('id_status', 1)->get();
+        $modalities = Modality::where('id_status', 1)->get();
         $id_representative = $_GET['id'];
         $users = User::join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
             ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
@@ -30,7 +34,7 @@ class AlumnoController extends Controller
             ->where('users.status', 1)
             ->select('users.id as id', DB::raw('CONCAT(users.name, " ", users.last_name) AS name'))
             ->get();
-        return view('representatives.alumno.index', compact('groups', 'users', 'alumnos', 'status', 'relacion', 'genders', 'id_representative'));
+        return view('representatives.alumno.index', compact('groups', 'users', 'grades', 'modalities', 'alumnos', 'status', 'relacion', 'genders', 'id_representative'));
     }
 
     public function store(Request $request)

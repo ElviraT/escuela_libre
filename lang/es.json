@@ -281,6 +281,13 @@
     "Matters": "Materias",
     "Matter": "Materia",
     "Add Matter": "Agregar Materia",
-    "Edit Matter": "Editar Materia"
+    "Edit Matter": "Editar Materia",
+    "Enter Your Personal Details": "Introduce Tus Datos Personales",
+    "Enter your health details": "Ingresa Tus Datos De Salud",
+    "Enter your academic details": "Ingresa Tus Datos Académicos",
+    "Modalities": "Modalidades",
+    "Modality": "Modalidad",
+    "Add Modality": "Agregar Modalidad",
+    "Edit Modality": "Editar Modalidad"
 
 }

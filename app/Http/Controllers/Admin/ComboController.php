@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Group;
 use App\Models\Municipality;
 use App\Models\Parish;
 use App\Models\State;
@@ -33,5 +34,11 @@ class ComboController extends Controller
     {
         $municipalities = Parish::select(['id', 'name'])->where('idMunicipality', $municipality)->get();
         return response()->json($municipalities);
+    }
+
+    public function group($grade)
+    {
+        $groups = Group::select(['id', 'name'])->where('id_grade', $grade)->get();
+        return response()->json($groups);
     }
 }

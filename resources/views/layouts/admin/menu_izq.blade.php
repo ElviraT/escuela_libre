@@ -81,11 +81,35 @@
                     </li>
                     @can('controls')
                         <li>
-                            <a class="{{ @request()->routeIs('controls') || @request()->routeIs('controls.grades') || @request()->routeIs('controls.groups') || @request()->routeIs('controls.matters') ? 'active' : ' ' }}"
+                            <a class="{{ @request()->routeIs('controls') ||
+                            @request()->routeIs('controls.grades') ||
+                            @request()->routeIs('controls.groups') ||
+                            @request()->routeIs('controls.matters') ||
+                            @request()->routeIs('controls.modalities')
+                                ? 'active'
+                                : ' ' }}"
                                 href="{{ route('controls') }}" onclick=" loading_show();"><i class="fe fe-award"></i>
                                 <span>@lang('Study Control')</span></a>
                         </li>
                     @endcan
+                @endcan
+                @canany(['classromm'])
+                    <li class="menu-title"><span>@lang('Classromm')</span></li>
+                    <li>
+                        <a class="{{ @request()->routeIs('schedules') ? 'active' : ' ' }}" href="{{ route('schedules') }}"
+                            onclick=" loading_show();"><i class="fe fe-calendar"></i>
+                            <span>@lang('Shedules')</span></a>
+                        <ul>
+                            @can('teachers')
+                                <li>
+                                    <a class="{{ @request()->routeIs('teachers') ? 'active' : ' ' }}"
+                                        href="{{ route('teachers') }}" onclick=" loading_show();">
+                                        @lang('Teachers')
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
                 @endcan
             </ul>
         </div>

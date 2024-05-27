@@ -53,4 +53,9 @@ class Status extends Model
     {
         return $this->hasMany(Matter::class, 'id_status');
     }
+
+    public function modality(): HasMany
+    {
+        return $this->hasMany(Modality::class, 'id_status');
+    }
 }
