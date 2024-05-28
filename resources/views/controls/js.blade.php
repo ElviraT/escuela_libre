@@ -1,3 +1,5 @@
+<script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
+
 <script>
     $(document).on('show.bs.modal', '#grade_details', function(e) {
         var modal = $(e.delegateTarget),

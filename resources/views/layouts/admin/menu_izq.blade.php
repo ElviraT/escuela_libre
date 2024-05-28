@@ -107,6 +107,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            {{-- @can('shedules.teacher') --}}
+                            <li>
+                                <a class="{{ @request()->routeIs('shedules.classroom') ? 'active' : ' ' }}"
+                                    href="{{ route('shedules.classroom') }}" onclick=" loading_show();">
+                                    @lang('Class Room')
+                                </a>
+                            </li>
+                            {{-- @endcan --}}
                         </ul>
                     </li>
                 @endcan

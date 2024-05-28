@@ -1,3 +1,5 @@
+<script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
+
 <script>
     $(document).ready(function() {
         var gender = $('#gender').val();

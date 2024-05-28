@@ -22,16 +22,16 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-3">
+                <div class="col-md-6 text-center">
                     <h2 class="heading-section">@lang('Login')</h2>
                 </div>
             </div>
             <div class="col-12" align="center">
                 <i class="fa fa-book" style="font-size: 100px; color:rgb(41, 41, 143)"></i>
-                <h1 style="font-size: 100px; color:rgb(41, 41, 143)">{{ 'ESCUELA LIBRE CHILE' }}</h1>
+                <h1 style="font-size: 90px; color:rgb(41, 41, 143)">{{ 'ESCUELA LIBRE CHILE' }}</h1>
             </div>
 
-            <div class="row justify-content-center" style="margin-top: -250px">
+            <div class="row justify-content-center" style="margin-top: -260px">
                 <div class="col-md-6 col-lg-4 p-4" style="background-color: black; opacity:0.7">
                     <div class="login-wrap p-0">
                         @yield('content')

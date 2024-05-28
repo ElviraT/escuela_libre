@@ -115,6 +115,7 @@ Route::middleware('auth')->group(function () {
     });
     // SHEDULES
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
+    Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
 });
 
 require __DIR__ . '/auth.php';

@@ -11,4 +11,8 @@ class TeacherController extends Controller
     {
         return view('shedules.teacher.index');
     }
+    public function classroom()
+    {
+        return view('classroom.index');
+    }
 }
