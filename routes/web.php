@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
@@ -113,6 +114,12 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
         Route::match(['get', 'post'], '/{grade}/group', 'group');
     });
+    // CRUD BANKS
+    Route::get('/banks', [BankController::class, 'index'])->name('banks');
+    Route::post('/banks/store', [BankController::class, 'store'])->name('banks.store');
+    Route::get('/banks/{bank}/edit', [BankController::class, 'edit'])->name('banks.edit');
+    Route::put('/banks/update/{bank}', [BankController::class, 'update'])->name('banks.update');
+    Route::delete('/banks/destroy/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
     // SHEDULES
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
     Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');

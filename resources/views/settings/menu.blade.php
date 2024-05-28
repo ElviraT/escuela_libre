@@ -32,10 +32,10 @@
                             <i class="fe fe-credit-card"></i> <span>@lang('Payment Methods')</span>
                         </a>
                     </li> --}}
-                    @can('settings.banks')
+                    @can('banks')
                         <li class="nav-item">
-                            <a href="{{ route('settings.banks') }}"
-                                class="nav-link {{ @request()->routeIs('settings.banks') ? 'active' : ' ' }}">
+                            <a href="{{ route('banks') }}"
+                                class="nav-link {{ @request()->routeIs('banks') ? 'active' : ' ' }}">
                                 <i class="fe fe-aperture"></i> <span>@lang('Bank Settings')</span>
                             </a>
                         </li>

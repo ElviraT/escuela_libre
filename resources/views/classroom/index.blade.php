@@ -19,12 +19,21 @@
     <script>
         const domain = 'meet.jit.si';
         const options = {
-            roomName: 'JitsiMeetAPIExample',
+            roomName: 'Grado-Sección',
             width: 700,
             height: 700,
             parentNode: document.querySelector('#meet'),
-            lang: 'de'
+            lang: 'es',
+
+            userInfo: {
+                email: '{{ auth()->user()->email }}',
+                displayName: '{{ auth()->user()->name }}'
+            }
         };
         const api = new JitsiMeetExternalAPI(domain, options);
+
+        $('.hangup-button').click(function() {
+            window.load();
+        });
     </script>
 @endsection
