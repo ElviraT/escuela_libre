@@ -3050,6 +3050,7 @@ div.dataTables_wrapper div.dataTables_filter label i {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   height: inherit;
+  width: 20%;
 }
 
 .sidebar-horizantal .submenu ul {

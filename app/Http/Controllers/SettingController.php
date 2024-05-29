@@ -10,6 +10,7 @@ use App\Models\Sex;
 use App\Models\State;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -66,12 +67,6 @@ class SettingController extends Controller
         return Redirect::back();
     }
 
-    public function banks()
-    {
-        $banks = Banks::all();
-        return view('settings.banks', compact('banks'));
-    }
-
     public function separadorDirectorios($path)
     {
         return str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
@@ -121,6 +116,9 @@ class SettingController extends Controller
     private function _eliminarArchivo($name)
     {
         $archivo = self::UPLOAD_PATH . '/' . $name;
-        Storage::disk('public')->delete([$archivo]);
+        app(FilesystemManager::class)->disk('public')->delete($archivo);
+        app(FilesystemManager::class)->disk('local')->delete($archivo);
+        Storage::disk('public')->delete($archivo);
+        Storage::disk('local')->delete($archivo);
     }
 }

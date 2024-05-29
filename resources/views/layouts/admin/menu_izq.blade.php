@@ -72,7 +72,7 @@
                         </li>
                     @endcan
                 @endcanany
-                @canany(['settings', 'controls'])
+                @canany(['settings', 'controls', 'banks'])
                     <li class="menu-title"><span>@lang('Settings')</span></li>
                     <li>
                         <a class="{{ @request()->routeIs('settings') ? 'active' : ' ' }}" href="{{ route('settings') }}"
@@ -92,13 +92,28 @@
                                 <span>@lang('Study Control')</span></a>
                         </li>
                     @endcan
+                    @can('banks')
+                        <li>
+                            <a class="{{ @request()->routeIs('banks') ? 'active' : ' ' }}" href="{{ route('banks') }}"
+                                onclick=" loading_show();"><i class="fe fe-award"></i>
+                                <span>@lang('Banks')</span></a>
+                        </li>
+                    @endcan
                 @endcan
-                @canany(['shedules.teacher'])
+                @canany(['shedules.teacher', 'times'])
                     <li class="menu-title"><span>@lang('Classromm')</span></li>
                     <li class="submenu">
                         <a href="#"><i class="fe fe-calendar"></i> <span> @lang('Shedules')</span> <span
                                 class="menu-arrow"></span></a>
                         <ul>
+                            @can('times')
+                                <li>
+                                    <a class="{{ @request()->routeIs('times') ? 'active' : ' ' }}" href="{{ route('times') }}"
+                                        onclick=" loading_show();">
+                                        @lang('Times')
+                                    </a>
+                                </li>
+                            @endcan
                             @can('shedules.teacher')
                                 <li>
                                     <a class="{{ @request()->routeIs('shedules.teacher') ? 'active' : ' ' }}"

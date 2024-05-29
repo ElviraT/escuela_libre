@@ -7,38 +7,10 @@
         <div class="page-header">
             <div class="content-page-header">
                 <h5>@lang('Shedules - Teachers')</h5>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-table">
-                    <div class="card-body">
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="input-block mb-3">
-                                <label>@lang('Teacher')</label>
-                                <select class="form-control form-small select" name="id_teacher" id="id_teacher">
-                                    <option>@lang('Select teachers')</option>
-                                    @foreach ($teachers as $value)
-                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card p-3">
-        <div class="page-header">
-            <div class="content-page-header">
                 <div class="list-btn">
                     <ul class="filter-list">
                         <li>
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#add_event">Create
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_event">Create
                                 Event</a>
                         </li>
                     </ul>

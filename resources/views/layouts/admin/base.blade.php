@@ -14,17 +14,20 @@
     <meta name="author" content="Ing. Elvira Terán">
 
     {{-- <meta property="og:url" content="https://kanakku.dreamguystech.com/"> --}}
-    {{-- <meta property="og:title" content="{{ 'Escuela Libre' }}">
+    <meta property="og:title" content="{{ 'Escuela Libre' }}">
     <meta property="og:description"
         content="Kanakku is a Sales, Invoices & Accounts Admin template for Accountant or Companies/Offices with various features for all your needs. Try Demo and Buy Now.">
-    <meta property="og:image" content="{{ asset(Storage::url('logos/' . $company->logo)) }}">
-    <meta property="og:image:secure_url" content="{{ asset(Storage::url('logos/' . $company->favicon)) }}">
+    <meta property="og:image"
+        content="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}">
+    <meta property="og:image:secure_url"
+        content="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('favicon')) : '') }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="600"> --}}
+    <meta property="og:image:height" content="600">
     <title>{{ isset($company) ? $company->name : env('APP_NAME') }}</title>
 
-    {{-- <link rel="shortcut icon" href="{{ asset(Storage::url('logos/' . $company->favicon)) }}"> --}}
+    <link rel="shortcut icon"
+        href="{{ asset(isset($company) ? Storage::url('logos/' . Session::get('favicon')) : '') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
