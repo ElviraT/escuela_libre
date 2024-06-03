@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="row">
+        @include('settings.menu')
         <div class="col-xl-9 col-md-8">
             <div class="card">
                 <div class="card-body w-100">
@@ -39,7 +40,7 @@
                                                             </h2>
                                                         </td>
                                                         <td>{{ $item->titular }}</span>
-                                                        <td>{{ $item->acccount }}</span>
+                                                        <td>{{ $item->account }}</span>
                                                         </td>
                                                         <td class="d-flex align-items-center">
                                                             <div class="dropdown dropdown-action">
@@ -91,10 +92,10 @@
         </div>
     </div>
 @endsection
-{{-- @section('modal')
-    @include('modales.modality')
+@section('modal')
+    @include('modales.bank')
     @include('modales.eliminar')
 @endsection
 @section('js')
-    @include('controls.js')
-@endsection --}}
+    @include('banks.js')
+@endsection

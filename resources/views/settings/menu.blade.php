@@ -36,7 +36,7 @@
                         <li class="nav-item">
                             <a href="{{ route('banks') }}"
                                 class="nav-link {{ @request()->routeIs('banks') ? 'active' : ' ' }}">
-                                <i class="fe fe-aperture"></i> <span>@lang('Bank Settings')</span>
+                                <i class="fe fe-aperture"></i> <span>@lang('Banks')</span>
                             </a>
                         </li>
                         <br>

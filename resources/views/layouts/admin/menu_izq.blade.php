@@ -72,7 +72,7 @@
                         </li>
                     @endcan
                 @endcanany
-                @canany(['settings', 'controls', 'banks'])
+                @canany(['settings', 'controls'])
                     <li class="menu-title"><span>@lang('Settings')</span></li>
                     <li>
                         <a class="{{ @request()->routeIs('settings') ? 'active' : ' ' }}" href="{{ route('settings') }}"
@@ -90,13 +90,6 @@
                                 : ' ' }}"
                                 href="{{ route('controls') }}" onclick=" loading_show();"><i class="fe fe-award"></i>
                                 <span>@lang('Study Control')</span></a>
-                        </li>
-                    @endcan
-                    @can('banks')
-                        <li>
-                            <a class="{{ @request()->routeIs('banks') ? 'active' : ' ' }}" href="{{ route('banks') }}"
-                                onclick=" loading_show();"><i class="fe fe-award"></i>
-                                <span>@lang('Banks')</span></a>
                         </li>
                     @endcan
                 @endcan

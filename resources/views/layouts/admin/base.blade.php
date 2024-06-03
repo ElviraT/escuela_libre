@@ -14,7 +14,7 @@
     <meta name="author" content="Ing. Elvira Terán">
 
     {{-- <meta property="og:url" content="https://kanakku.dreamguystech.com/"> --}}
-    <meta property="og:title" content="{{ 'Escuela Libre' }}">
+    <meta property="og:title" content="{{ isset($company) ? $company->name : env('APP_NAME') }}">
     <meta property="og:description"
         content="Kanakku is a Sales, Invoices & Accounts Admin template for Accountant or Companies/Offices with various features for all your needs. Try Demo and Buy Now.">
     <meta property="og:image"
