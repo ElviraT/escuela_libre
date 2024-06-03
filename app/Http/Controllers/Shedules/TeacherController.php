@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shedules;
 
 use App\Http\Controllers\Controller;
+use App\Models\Time;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,11 @@ class TeacherController extends Controller
             ->get();
 
         return view('shedules.teacher.index', compact('teachers'));
+    }
+    public function teacher_time($id)
+    {
+        $time = Time::where('id_teacher', $id)->get();
+        return response()->json($time);
     }
     public function classroom()
     {

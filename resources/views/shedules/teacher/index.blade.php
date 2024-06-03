@@ -17,7 +17,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Teacher')</label>
-                                <select class="form-control form-small select" name="id_teacher" id="id_teacher">
+                                <select class="form-control form-small select" name="combo_teacher" id="combo_teacher">
                                     <option>@lang('Select teachers')</option>
                                     @foreach ($teachers as $value)
                                         <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="card p-3">
+    <div class="card p-3" id="horario" hidden>
         <div class="page-header">
             <div class="content-page-header">
                 <div class="list-btn">
