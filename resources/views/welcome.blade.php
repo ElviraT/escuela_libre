@@ -9,7 +9,8 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="{{ asset('home/img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('favicon')) : 'home/img/favicon.ico') }}"
+        rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,11 +32,11 @@
 
 <body>
     <!-- Navbar Start -->
-    <div class="container-fluid bg-light position-relative shadow">
+    <div class="container-fluid bg-light position-relative shadow" style="position: fixed !important; z-index:1;">
         <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
-            <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px;">
-                <i class="flaticon-043-teddy-bear"></i>
-                <span class="text-primary">KidKinder</span>
+            <a href="#" class="navbar-brand font-weight-bold text-secondary">
+                <img src="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}"
+                    alt="Logo" width="45%">
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -47,13 +48,6 @@
                     <a href="class.html" class="nav-item nav-link">Classes</a>
                     <a href="team.html" class="nav-item nav-link">Teachers</a>
                     <a href="gallery.html" class="nav-item nav-link">Gallery</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                            <a href="single.html" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div>
                     @if (Route::has('login'))
                         @auth
                             <a href="{{ url('/dashboard') }}" class="nav-item nav-link">{{ 'Dashboard' }}</a>
@@ -576,10 +570,9 @@
     <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
-                    style="font-size: 40px; line-height: 40px;">
-                    <i class="flaticon-043-teddy-bear"></i>
-                    <span class="text-white">{{ isset($setting) ? $setting->name : env('APP_NAME') }}</span>
+                <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0">
+                    <img src="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}"
+                        alt="Logo" width="90%">
                 </a>
                 <p>{{ isset($setting) ? $setting->description : '' }}</p>
                 <div class="d-flex justify-content-start mt-4">

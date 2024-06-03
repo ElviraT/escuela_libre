@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Shedules\TeacherController as ShedulesTeacherController;
+use App\Http\Controllers\Shedules\TimeController;
 use App\Http\Controllers\Users\AlumnoController;
 use App\Http\Controllers\Users\RepresentativeController;
 use App\Http\Controllers\Users\TeacherController;
@@ -96,6 +98,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/modalities/{modality}/edit', [ModalityController::class, 'edit'])->name('modalities.edit');
     Route::put('/modalities/update/{modality}', [ModalityController::class, 'update'])->name('modalities.update');
     Route::delete('/modalities/destroy/{modality}', [ModalityController::class, 'destroy'])->name('modalities.destroy');
+    // CRUD TIMES
+    Route::get('/times', [TimeController::class, 'index'])->name('times');
+    Route::post('/times/store', [TimeController::class, 'store'])->name('times.store');
+    Route::get('/times/{time}/edit', [TimeController::class, 'edit'])->name('times.edit');
+    Route::put('/times/update/{time}', [TimeController::class, 'update'])->name('times.update');
+    Route::delete('/times/destroy/{time}', [TimeController::class, 'destroy'])->name('times.destroy');
     // CRUD TICKETS
     Route::get('/tickets/{id}', [TicketsController::class, 'index'])->name('tickets');
     Route::post('/tickets/store', [TicketsController::class, 'store'])->name('tickets.store');
@@ -113,6 +121,12 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
         Route::match(['get', 'post'], '/{grade}/group', 'group');
     });
+    // CRUD BANKS
+    Route::get('/banks', [BankController::class, 'index'])->name('banks');
+    Route::post('/banks/store', [BankController::class, 'store'])->name('banks.store');
+    Route::get('/banks/{bank}/edit', [BankController::class, 'edit'])->name('banks.edit');
+    Route::put('/banks/update/{bank}', [BankController::class, 'update'])->name('banks.update');
+    Route::delete('/banks/destroy/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
     // SHEDULES
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
     Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');

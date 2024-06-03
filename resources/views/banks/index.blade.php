@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body w-100">
                     <div class="content-page-header p-0">
-                        <h5>@lang('Bank Accounts')</h5>
+                        <h5>@lang('Banks')</h5>
                         @can('banks.store')
                             <div class="list-btn">
                                 <a class="btn btn-primary" href="#" data-bs-toggle="modal"
@@ -26,9 +26,8 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>@lang('Name')</th>
-                                                    <th>@lang('Bank Name')</th>
-                                                    <th>@lang('Account Number') </th>
-                                                    <th>@lang('Amount')</th>
+                                                    <th>@lang('Titular')</th>
+                                                    <th>@lang('Account')</th>
                                                     <th class="no-sort">@lang('Action')</th>
                                                 </tr>
                                             </thead>
@@ -37,12 +36,12 @@
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                {{ $item->titular }}
+                                                                {{ $item->name }}
                                                             </h2>
                                                         </td>
-                                                        <td>{{ $item->name }}</td>
-                                                        <td>{{ $item->account }}</td>
-                                                        <td>{{ $item->amount }}</td>
+                                                        <td>{{ $item->titular }}</span>
+                                                        <td>{{ $item->account }}</span>
+                                                        </td>
                                                         <td class="d-flex align-items-center">
                                                             <div class="dropdown dropdown-action">
                                                                 <a href="#" class=" btn-action-icon "
@@ -69,9 +68,9 @@
                                                                                     data-bs-toggle="modal"
                                                                                     data-bs-target="#confirm-delete"
                                                                                     data-bs-record-id="{{ $item->id }}"
-                                                                                    data-bs-record-title="{{ 'El Banco ' }}{{ $item->name }}"
+                                                                                    data-bs-record-title="{{ 'la modalidad ' }}{{ $item->name }}"
                                                                                     data-bs-action="{{ route('banks.destroy', $item) }}"
-                                                                                    title="{{ __('Delete Banks') }}"><i
+                                                                                    title="{{ __('Delete Bank') }}"><i
                                                                                         class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
                                                                             </li>
                                                                         @endcan
@@ -94,9 +93,9 @@
     </div>
 @endsection
 @section('modal')
-    @include('modales.banks')
+    @include('modales.bank')
     @include('modales.eliminar')
 @endsection
 @section('js')
-    @include('settings.js')
+    @include('banks.js')
 @endsection

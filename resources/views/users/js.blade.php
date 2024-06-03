@@ -1,3 +1,4 @@
+<script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
 <script>
     $(document).on('show.bs.modal', '#add_user', function(e) {
         var modal = $(e.delegateTarget),

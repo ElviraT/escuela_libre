@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Teacher extends Model
 {
@@ -20,5 +22,9 @@ class Teacher extends Model
     public function Idstatus(): BelongsTo
     {
         return $this->belongsTo(Status::class, 'idStatus', 'id');
+    }
+    public function time(): HasMany
+    {
+        return $this->hasMany(Time::class, 'id_teacher');
     }
 }
