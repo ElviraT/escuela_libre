@@ -1,28 +1,27 @@
 <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
 {{-- <script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script> --}}
 <script>
     $("#combo_teacher").on('select2:select', function(event) {
         var id = $(this).val();
         $.getJSON('../teacher-time/' + id, function(objch) {
             var array_businessHours = [];
-            var hora_minima = '00:00:00';
-            var hora_maxima = '11:59:59';
-            var array_dias = [];
-            var day = 0;
+            var hora_minima = '07:00:00';
+            var hora_maxima = '06:59:59';
+            var day_laborable = []
             loading_show();
-            for (i = 0; i <= 6; i++) {
-                if (objch[i] === null || objch[i] === undefined || objch[i].length === 0) {
-                    array_dias.push(i);
-                } else {
-                    array_businessHours.push({
-                        daysOfWeek: [objch[i].id_day],
-                        startTime: objch[i].start_hour,
-                        endTime: objch[i].end_hour
-                    });
-                    hora_minima = objch[i].start_hour;
-                    hora_maxima = objch[i].end_hour;
-                }
+            for (const registro of objch) {
+                day_laborable.push(registro.id_day);
+                const dia = {
+                    dow: registro.id_day,
+                    start: registro.start_hour,
+                    end: registro.end_hour
+                };
+                array_businessHours.push(dia);
             }
+
+            const day = [0, 1, 2, 3, 4, 5, 6];
+            const noLaborable = compareArrays(day, day_laborable);
             $('#horario').attr('hidden', false);
             ! function($) {
                 "use strict";
@@ -30,131 +29,16 @@
                 var CalendarApp = function() {
                     this.$body = $("body")
                     this.$calendar = $('#calendar'),
-                        this.$event = ('-events div.calendar-events'),
-                        this.$categoryForm = $('#add_new_event form'),
                         this.$extEvents = $('#calendar-events'),
                         this.$modal = $('#my_event'),
-                        this.$saveCategoryBtn = $('.save-category'),
                         this.$calendarObj = null
                 };
 
-                /* on click on event */
-                CalendarApp.prototype.onEventClick = function(calEvent, jsEvent, view) {
-                        var $this = this;
-                        var form = $("<form></form>");
-                        form.append("<label>Change event name</label>");
-                        form.append(
-                            "<div class='input-group'><input class='form-control' type=text value='" +
-                            calEvent.title +
-                            "' /><span class='input-group-addon'><button type='submit' class='btn btn-success'><i class='fas fa-check'></i> Save</button></span></div>"
-                        );
-                        $this.$modal.modal({
-                            backdrop: 'static'
-                        });
-                        $this.$modal.find('.delete-event').show().end().find(
-                                '.save-event').hide().end()
-                            .find(
-                                '.modal-body')
-                            .empty().prepend(form).end().find('.delete-event').unbind(
-                                'click').click(
-                                function() {
-                                    $this.$calendarObj.fullCalendar('removeEvents',
-                                        function(ev) {
-                                            return (ev._id == calEvent._id);
-                                        });
-                                    $this.$modal.modal('hide');
-                                });
-                        $this.$modal.find('form').on('submit', function() {
-                            calEvent.title = form.find("input[type=text]")
-                                .val();
-                            $this.$calendarObj.fullCalendar('updateEvent',
-                                calEvent);
-                            $this.$modal.modal('hide');
-                            return false;
-                        });
-                    },
-                    /* on select */
-                    CalendarApp.prototype.onSelect = function(start, end, allDay) {
-                        var $this = this;
-                        $this.$modal.modal({
-                            backdrop: 'static'
-                        });
-                        var form = $("<form></form>");
-                        form.append("<div class='event-inputs'></div>");
-                        form.find(".event-inputs")
-                            .append(
-                                "<div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div>"
-                            )
-                            .append(
-                                "<div class='form-group'><label class='control-label'>Category</label><select class='form-control' name='category'></select></div>"
-                            )
-                            .find("select[name='category']")
-                            .append("<option value='bg-danger'>Danger</option>")
-                            .append("<option value='bg-success'>Success</option>")
-                            .append("<option value='bg-purple'>Purple</option>")
-                            .append("<option value='bg-primary'>Primary</option>")
-                            .append("<option value='bg-info'>Info</option>")
-                            .append(
-                                "<option value='bg-warning'>Warning</option></div></div>"
-                            );
-                        $this.$modal.find('.delete-event').hide().end().find(
-                                '.save-event').show().end()
-                            .find(
-                                '.modal-body')
-                            .empty().prepend(form).end().find('.save-event').unbind(
-                                'click').click(
-                                function() {
-                                    form.submit();
-                                });
-                        $this.$modal.find('form').on('submit', function() {
-                            var title = form.find("input[name='title']").val();
-                            var beginning = form.find("input[name='beginning']")
-                                .val();
-                            var ending = form.find("input[name='ending']")
-                                .val();
-                            var categoryClass = form.find(
-                                    "select[name='category'] option:checked")
-                                .val();
-                            if (title !== null && title.length != 0) {
-                                $this.$calendarObj.fullCalendar('renderEvent', {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: false,
-                                    className: categoryClass
-                                }, true);
-                                $this.$modal.modal('hide');
-                            } else {
-                                alert('You have to give a title to your event');
-                            }
-                            return false;
-
-                        });
-                        $this.$calendarObj.fullCalendar('unselect');
-                    },
-                    CalendarApp.prototype.enableDrag = function() {
-                        //init events
-                        $(this.$event).each(function() {
-                            // it doesn't need to have a start or end
-                            var eventObject = {
-                                title: $.trim($(this)
-                                    .text()
-                                ) // use the element's text as the event title
-                            };
-                            // store the Event Object in the DOM element so we can get to it later
-                            $(this).data('eventObject', eventObject);
-                            // make the event draggable using jQuery UI
-                            $(this).draggable({
-                                zIndex: 999,
-                                revert: true, // will cause the event to go back to its
-                                revertDuration: 0 //  original position after the drag
-                            });
-                        });
-                    }
                 /* Initializing */
                 CalendarApp.prototype.init = function() {
-                        this.enableDrag();
+                        // this.enableDrag();
                         /*  Initialize the calendar  */
+                        var $this = this;
                         var date = new Date();
                         var d = date.getDate();
                         var m = date.getMonth();
@@ -167,13 +51,11 @@
                         //     className: 'bg-purple'
                         // }];
 
-                        var $this = this;
+
                         $this.$calendarObj = $this.$calendar.fullCalendar({
-                            locale: 'es',
-                            slotDuration: '00:15:00',
-                            /* If we want to split day time each 15minutes */
+                            timeZone: 'América/Santiago',
                             defaultView: 'agendaWeek',
-                            hiddenDays: array_dias,
+                            hiddenDays: noLaborable,
                             businessHours: array_businessHours,
                             handleWindowResize: true,
 
@@ -191,34 +73,14 @@
                             //     $this.onDrop($(this), date);
                             // },
                             select: function(start, end, allDay) {
-                                $this.onSelect(start, end, allDay);
+                                // $this.onSelect(start, end, allDay);
                             },
                             eventClick: function(calEvent, jsEvent, view) {
-                                $this.onEventClick(calEvent, jsEvent, view);
+                                // $this.onEventClick(calEvent, jsEvent, view);
                             }
 
                         });
                         loading_hide();
-                        //on new event
-                        this.$saveCategoryBtn.on('click', function() {
-                            var categoryName = $this.$categoryForm.find(
-                                    "input[name='category-name']")
-                                .val();
-                            var categoryColor = $this.$categoryForm.find(
-                                    "select[name='category-color']")
-                                .val();
-                            if (categoryName !== null && categoryName.length !=
-                                0) {
-                                $this.$extEvents.append(
-                                    '<div class="calendar-events" data-class="bg-' +
-                                    categoryColor +
-                                    '" style="position: relative;"><i class="fas fa-circle text-' +
-                                    categoryColor +
-                                    '"></i>' + categoryName + '</div>')
-                                $this.enableDrag();
-                            }
-
-                        });
                     },
 
                     //init CalendarApp
@@ -234,4 +96,136 @@
             }(window.jQuery);
         });
     });
+
+    function compareArrays(array1, array2) {
+        // Create a set from each array to efficiently check for unique values
+        const set1 = new Set(array1);
+        const set2 = new Set(array2);
+
+        // Find values unique to both arrays
+        const intersection = new Set([...array1].filter(x => set2.has(x)));
+
+        // Find values that don't match in either array
+        const differences = [...array1].filter(x => !intersection.has(x)).concat([...array2]
+            .filter(x => !intersection.has(x)));
+
+        // Return the array of mismatched values
+        return differences;
+    }
+
+    //CONTROL MODAL EVENTS
+    $(document).on('show.bs.modal', '#add_event', function(e) {
+        var modal = $(e.delegateTarget),
+            data = $(e.relatedTarget).data();
+        $("#form-enviar").attr('action', data.bsAction);
+        $("#method").val('post');
+        if (data.bsRecordId != undefined) {
+            $('.title').text("@lang('Edit Class')");
+            $('.modal_registro_event_id', modal).val(data.bsRecordId);
+            $.getJSON('../teachers/' + data.bsRecordId + '/edit', function(data) {
+                var obj = data;
+
+            });
+        } else {
+            $('.title').text("@lang('Add Class')");
+            var teacher = $('#combo_teacher').val();
+            $.getJSON('../consulta/' + teacher, function(data) {
+                console.log(data);
+                $('#id_teacher').val(teacher);
+                var html = "";
+                html += '<option>Seleccione un Día</option>';
+                $.each(data, function(index, value) {
+                    html += '<option value="' + value.id + '">' + value.name +
+                        "</option>";
+                });
+                $("#id_day").html(html);
+            });
+        }
+    });
+    $(document).on('hidden.bs.modal', '#add_event', function(e) {
+        $('#idSex').val('').trigger('change.select2');
+        $('#idMaritalState').val('').trigger('change.select2');
+        $('#idStatus').val('').trigger('change.select2');
+        $('#id_user').val('').trigger('change.select2');
+        $("#method").val('post');
+        $('#register').val('');
+        $('#ncolegio').val('');
+    });
+    $(document).ready(function() {
+        $("#id_day").on('select2:select', function(event) {
+            var day = $(this).val();
+            var teacher = $('#combo_teacher').val();
+            // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
+            $.ajax({
+                url: './consulta2/' + day + '/' + teacher,
+                method: "GET",
+                success: function(data) {
+                    var mensaje = 'Las horas disponibles para este día son de ' + data
+                        .start_hour + ' a ' + data.end_hour;
+                    $('#horas').html(mensaje);
+                    $('#startime').attr('disabled', false);
+                    $('#endtime').attr('disabled', false);
+
+                    // Definir el rango de horas válido
+                    var horaInicio = parseInt(data.start_hour.replace(':', '')) * 3600;
+                    var horaFin = parseInt(data.end_hour.replace(':', '')) * 3600;
+
+                    // Obtener el input time y su valor
+                    var inputTime = $("#startime");
+                    var inputTime1 = $("#endtime");
+                    var horaInput;
+                    // Función de validación
+                    function validarHora() {
+                        horaInput = parseInt(inputTime.val().replace(':', '')) * 3600;
+                        if (horaInput >= horaInicio && horaInput <= horaFin) {
+                            console.log("Hora válida");
+                            $('#mensaje').attr('hidden', true);
+                        } else {
+                            inputTime.val('');
+                            $('#mensaje').attr('hidden', false);
+                            $('#mensaje').html("Hora no válida");
+                        }
+                    }
+                    // Función de validación
+                    function validarHora2() {
+                        horaInput = parseInt(inputTime1.val().replace(':', '')) * 3600;
+                        if (horaInput >= horaInicio && horaInput <= horaFin) {
+                            console.log("Hora válida");
+                            $('#mensaje').attr('hidden', true);
+                        } else {
+                            inputTime1.val('');
+                            $('#mensaje').attr('hidden', false);
+                            $('#mensaje').html("Hora no válida");
+                        }
+                    }
+
+                    // Asociar la validación al evento change del input time
+                    inputTime.change(validarHora);
+                    inputTime1.change(validarHora2);
+                },
+                error: function() {
+                    alert("error")
+                }
+            });
+        });
+    })
+
+    $(document).ready(function() {
+        $("#id_matter").on('select2:select', function(event) {
+            var matter = $(this).val();
+            // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
+            $.ajax({
+                url: './title/' + matter,
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+                    var title = data.Materia + ' - ' + data.Grupo
+                    $('#title').val(title);
+                },
+                error: function() {
+                    alert("error")
+                }
+            });
+        });
+    })
 </script>

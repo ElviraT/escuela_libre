@@ -129,8 +129,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/banks/destroy/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
     // SHEDULES
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
-    Route::get('/teacher-time/{id}', [ShedulesTeacherController::class, 'teacher_time']);
     Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
+    //SHEDULES EXTRAS
+    Route::get('/teacher-time/{id}', [ShedulesTeacherController::class, 'teacher_time']);
+    Route::get('/consulta/{id}', [ShedulesTeacherController::class, 'consulta']);
+    Route::get('/consulta2/{id}/{teacher}', [ShedulesTeacherController::class, 'consulta2']);
+    Route::get('/title/{id}', [ShedulesTeacherController::class, 'title']);
+    Route::post('/shedules-class', [ShedulesTeacherController::class, 'shedules_class'])->name('shedules.class');
 });
 
 require __DIR__ . '/auth.php';
