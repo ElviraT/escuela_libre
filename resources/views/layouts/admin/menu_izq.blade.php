@@ -29,6 +29,26 @@
                         </ul>
                     </li>
                 @endcanany
+                {{-- @canany(['chatify', 'tickets']) --}}
+                <li class="submenu">
+                    <a href="#"><i class="fe fe-grid"></i> <span> @lang('Direction')</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        @can('countries')
+                            <li><a href="{{ route('countries') }}"
+                                    class="nav-link {{ @request()->routeIs('countries') ? 'active' : ' ' }}"
+                                    onclick=" loading_show();">@lang('Country')</a>
+                            </li>
+                        @endcan
+                        @can('regiones')
+                            <li><a href="{{ route('regiones') }}"
+                                    class="nav-link {{ @request()->routeIs('regiones') ? 'active' : ' ' }}"
+                                    onclick=" loading_show();">@lang('State')</a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            {{-- @endcanany --}}
                 @canany(['users', 'teachers', 'representatives', 'permissions'])
                     <li class="menu-title"><span>@lang('User Management')</span></li>
                     @canany(['users'])
