@@ -15,14 +15,19 @@ use App\Http\Controllers\Admin\GroupsController;
 use App\Http\Controllers\Admin\MattersController;
 use App\Http\Controllers\Admin\ModalityController;
 use App\Http\Controllers\Admin\TicketsController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Direction\CountryController;
+use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Shedules\TeacherController as ShedulesTeacherController;
 use App\Http\Controllers\Shedules\TimeController;
 use App\Http\Controllers\Users\AlumnoController;
 use App\Http\Controllers\Users\RepresentativeController;
 use App\Http\Controllers\Users\TeacherController;
+use App\Models\Country;
 use Illuminate\Support\Facades\Route;
+
 
 // RUTAS DE ACCESO SIN AUTENTICACIÓN
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -131,6 +136,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
     Route::get('/shedules-mostrar/{id}', [ShedulesTeacherController::class, 'mostrar'])->name('shedules.mostrar');
     Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
+
+    // CRUD COUNTRIES
+    Route::get('/countries', [CountryController::class, 'index'])->name('countries');
+
+    // CRUD REGIONES
+    Route::get('/regiones', [RegionController::class, 'index'])->name('regiones');
+    Route::post('/regiones/store', [RegionController::class, 'store'])->name('regiones.store');
+    Route::get('/regiones/{region}/edit', [RegionController::class, 'edit'])->name('regiones.edit');
+    Route::put('/regiones/update/{region}', [RegionController::class, 'update'])->name('regiones.update');
+    Route::delete('/regiones/destroy/{region}', [RegionController::class, 'destroy'])->name('regiones.destroy');
+
     //SHEDULES EXTRAS
     Route::get('/teacher-time/{id}', [ShedulesTeacherController::class, 'teacher_time']);
     Route::get('/consulta/{id}', [ShedulesTeacherController::class, 'consulta']);
