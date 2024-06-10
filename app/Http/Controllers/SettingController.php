@@ -61,7 +61,7 @@ class SettingController extends Controller
             Artisan::call("config:cache");
             Toastr::success(__('added successfully'), 'Success');
         } catch (\Illuminate\Database\QueryException $e) {
-            dd($e);
+
             Toastr::error(__('An error occurred please try again'), 'error');
         }
         return Redirect::back();

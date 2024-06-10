@@ -24,10 +24,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="600">
-    <title>{{ isset($company) ? $company->name : env('APP_NAME') }}</title>
+    <title>{{ Session::get('name') != '' ? Session::get('name') : env('APP_NAME') }}</title>
 
     <link rel="shortcut icon"
-        href="{{ asset(isset($company) ? Storage::url('logos/' . Session::get('favicon')) : '') }}">
+        href="{{ asset(Session::get('favicon') != '' ? Storage::url('logos/' . Session::get('favicon')) : '') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 

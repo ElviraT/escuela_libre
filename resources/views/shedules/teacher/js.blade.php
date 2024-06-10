@@ -4,6 +4,29 @@
 <script>
     $("#combo_teacher").on('select2:select', function(event) {
         var id = $(this).val();
+        // // listar eventos cargados
+        var url = "{{ route('shedules.mostrar', ':id') }}";
+        url = url.replace(':id', id);
+        var array_evento = []
+        $.getJSON(url, function(event) {
+            for (const ev of event) {
+                const clase = {
+                    'title': ev.title,
+                    'start': ev.startime,
+                    'end': ev.endtime,
+                    'dayOfWeek': ev.id_day, // Lunes
+                    recurrence: {
+                        'freq': ev.freq, //semanal
+                        'interval': ev.interval, // intervalo en este ejemplo cada semana
+                        'startRecur': ev.startRecur, // Fecha de inicio de la recurrencia
+                        'endRecur': ev.endRecur // Fecha de finalización de la recurrencia
+                    }
+                }
+                array_evento.push(clase);
+            }
+        });
+
+        console.log(array_evento);
         $.getJSON('../teacher-time/' + id, function(objch) {
             var array_businessHours = [];
             var hora_minima = '07:00:00';
@@ -19,7 +42,6 @@
                 };
                 array_businessHours.push(dia);
             }
-
             const day = [0, 1, 2, 3, 4, 5, 6];
             const noLaborable = compareArrays(day, day_laborable);
             $('#horario').attr('hidden', false);
@@ -30,7 +52,7 @@
                     this.$body = $("body")
                     this.$calendar = $('#calendar'),
                         this.$extEvents = $('#calendar-events'),
-                        this.$modal = $('#my_event'),
+                        this.$modal = $('#add_event'),
                         this.$calendarObj = null
                 };
 
@@ -45,12 +67,8 @@
                         var y = date.getFullYear();
                         var form = '';
                         var today = new Date($.now());
-                        // var defaultEvents = [{
-                        //     title: 'Event Name 4',
-                        //     start: new Date($.now() + 148000000),
-                        //     className: 'bg-purple'
-                        // }];
 
+                        var defaultEvents = array_evento;
 
                         $this.$calendarObj = $this.$calendar.fullCalendar({
                             timeZone: 'América/Santiago',
@@ -64,14 +82,12 @@
                                 center: 'title',
                                 right: 'month,agendaWeek,agendaDay'
                             },
-                            // events: defaultEvents,
+                            events: defaultEvents,
                             editable: true,
                             droppable: false, // this allows things to be dropped onto the calendar !!!
                             eventLimit: true, // allow "more" link when too many events
                             selectable: true,
-                            // drop: function(date) {
-                            //     $this.onDrop($(this), date);
-                            // },
+
                             select: function(start, end, allDay) {
                                 // $this.onSelect(start, end, allDay);
                             },
@@ -119,6 +135,16 @@
             data = $(e.relatedTarget).data();
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
+        $('#startRecur').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY',
+            debug: true,
+        });
+        $('#endRecur').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY',
+            debug: true,
+        })
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Class')");
             $('.modal_registro_event_id', modal).val(data.bsRecordId);
@@ -130,7 +156,7 @@
             $('.title').text("@lang('Add Class')");
             var teacher = $('#combo_teacher').val();
             $.getJSON('../consulta/' + teacher, function(data) {
-                console.log(data);
+
                 $('#id_teacher').val(teacher);
                 var html = "";
                 html += '<option>Seleccione un Día</option>';
@@ -160,15 +186,18 @@
                 url: './consulta2/' + day + '/' + teacher,
                 method: "GET",
                 success: function(data) {
-                    var mensaje = 'Las horas disponibles para este día son de ' + data
+                    var mensaje =
+                        'Las horas disponibles para este día son de ' + data
                         .start_hour + ' a ' + data.end_hour;
                     $('#horas').html(mensaje);
                     $('#startime').attr('disabled', false);
                     $('#endtime').attr('disabled', false);
 
                     // Definir el rango de horas válido
-                    var horaInicio = parseInt(data.start_hour.replace(':', '')) * 3600;
-                    var horaFin = parseInt(data.end_hour.replace(':', '')) * 3600;
+                    var horaInicio = parseInt(data.start_hour.replace(':',
+                        '')) * 3600;
+                    var horaFin = parseInt(data.end_hour.replace(':', '')) *
+                        3600;
 
                     // Obtener el input time y su valor
                     var inputTime = $("#startime");
@@ -176,7 +205,8 @@
                     var horaInput;
                     // Función de validación
                     function validarHora() {
-                        horaInput = parseInt(inputTime.val().replace(':', '')) * 3600;
+                        horaInput = parseInt(inputTime.val().replace(':', '')) *
+                            3600;
                         if (horaInput >= horaInicio && horaInput <= horaFin) {
                             console.log("Hora válida");
                             $('#mensaje').attr('hidden', true);
@@ -188,7 +218,8 @@
                     }
                     // Función de validación
                     function validarHora2() {
-                        horaInput = parseInt(inputTime1.val().replace(':', '')) * 3600;
+                        horaInput = parseInt(inputTime1.val().replace(':',
+                            '')) * 3600;
                         if (horaInput >= horaInicio && horaInput <= horaFin) {
                             console.log("Hora válida");
                             $('#mensaje').attr('hidden', true);
@@ -208,24 +239,39 @@
                 }
             });
         });
-    })
+    });
 
     $(document).ready(function() {
         $("#id_matter").on('select2:select', function(event) {
             var matter = $(this).val();
+            var texto = $(this).find('option:selected').text();
+
             // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
             $.ajax({
                 url: './title/' + matter,
                 method: "GET",
                 success: function(data) {
-                    console.log(data);
-                    var title = data.Materia + ' - ' + data.Grupo
+                    var title = texto;
                     $('#title').val(title);
+                    var html = "";
+                    html += '<option>Seleccione un Grupo</option>';
+                    $.each(data, function(index, value) {
+                        html += '<option value="' + value.id + '">' +
+                            value.name +
+                            "</option>";
+                    });
+                    $("#id_group").html(html);
                 },
                 error: function() {
                     alert("error")
                 }
             });
         });
-    })
+    });
+    $(document).ready(function() {
+        $("#id_group").on('select2:select', function(event) {
+            var texto = $(this).find('option:selected').text();
+            $("#title").val($("#title").val() + " - " + texto);
+        });
+    });
 </script>

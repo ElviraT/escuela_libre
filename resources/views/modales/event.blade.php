@@ -18,14 +18,22 @@
                         <input type="hidden" name="id_teacher" id="id_teacher">
                         <div class="col-lg-4 col-12">
                             <div class="input-block mb-3">
-                                <label>@lang('Class')</label>
+                                <label>@lang('Matter')</label>
                                 <select class="form-control form-small select" name="id_matter" id="id_matter">
                                     <option>@lang('Select Matter')</option>
                                     @foreach ($matters as $value)
                                         <option value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
-                                <input class="form-control" type="text" name="title" id="title">
+                                <input class="form-control" type="hidden" name="title" id="title">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="input-block mb-3">
+                                <label>@lang('Group')</label>
+                                <select class="form-control form-small select" name="id_group" id="id_group">
+                                    <option>@lang('Select Group')</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
@@ -53,6 +61,24 @@
                         </div>
                         <div class="col-12">
                             <span id="mensaje" style="color: darkred" hidden></span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="input-block mb-3">
+                                <label>@lang('Start Recur')</label>
+                                <div class="cal-icon cal-icon-info">
+                                    <input type="text" name="startRecur" id="startRecur"
+                                        class="datetimepicker form-control" placeholder="Select Date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="input-block mb-3">
+                                <label>@lang('End Recur')</label>
+                                <div class="cal-icon cal-icon-info">
+                                    <input type="text" name="endRecur" id="endRecur"
+                                        class="datetimepicker form-control" placeholder="Select Date">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="submit-section">

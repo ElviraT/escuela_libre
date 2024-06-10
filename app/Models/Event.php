@@ -20,5 +20,6 @@ class Event extends Model
         'endRecur',
         'id_teacher',
         'id_matter',
+        'id_group'
     ];
 }

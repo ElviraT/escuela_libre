@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Shedules;
 
 use App\Http\Controllers\Controller;
 use App\Models\Day;
+use App\Models\Event;
+use App\Models\Group;
 use App\Models\Matter;
 use App\Models\Time;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class TeacherController extends Controller
 {
@@ -52,10 +57,50 @@ class TeacherController extends Controller
 
     public function title($id)
     {
-        $title = Matter::join('groups', 'matters.id_grade', 'groups.id_grade')
-            ->where('matters.id', $id)
-            ->select('matters.name as Materia', 'groups.name as Grupo')
-            ->first();
-        return response()->json($title);
+        $title = Matter::where('id', $id)->first();
+        $groups = Group::where('id_grade', $title->id_grade)->get();
+        return response()->json($groups);
+    }
+
+    public function shedules_class(Request $request)
+    {
+        try {
+            $request['startRecur'] = DateTime::createFromFormat("d-m-Y", $request['startRecur'])->format("Y-m-d");
+            $request['endRecur'] = DateTime::createFromFormat("d-m-Y", $request['endRecur'])->format("Y-m-d");
+            $event = Event::create($request->post());
+            Toastr::success(__('added successfully'),  __('Event'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            Toastr::error(__('An error occurred please try again'), 'error');
+        }
+
+        return Redirect::back();
+    }
+
+    public function mostrar($id)
+    {
+        $event = Event::where('id_teacher', $id)->get();
+        return response()->json($event);
+        //->map(function ($event) {
+        // return $this->transformEvent($event); // Función definida a continuación
+        // });
+    }
+
+    private function transformEvent($event)
+    {
+        $recurrence = [
+            'freq' => $event->freq,
+            'interval' => $event->interval,
+            'startRecur' => $event->startRecur,
+            'endRecur' => $event->endRecur,
+        ];
+
+        return [
+            'id' => $event->id,
+            'title' => $event->title,
+            'startTime' => $event->startime,
+            'endTime' => $event->endtime,
+            'dayOfWeek' => $event->id_day, // 1 for Monday
+            'recurrence' => $recurrence,
+        ];
     }
 }
