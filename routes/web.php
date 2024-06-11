@@ -10,6 +10,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ControlsController;
+use App\Http\Controllers\Admin\folders\FolderController;
 use App\Http\Controllers\Admin\GradesController;
 use App\Http\Controllers\Admin\GroupsController;
 use App\Http\Controllers\Admin\MattersController;
@@ -136,6 +137,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
     Route::get('/shedules-mostrar/{id}', [ShedulesTeacherController::class, 'mostrar'])->name('shedules.mostrar');
     Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
+    Route::get('/shedules/{id}/edit', [ShedulesTeacherController::class, 'edit'])->name('shedules.edit');
+    Route::put('/shedules/update/{event}', [ShedulesTeacherController::class, 'update'])->name('shedules.update');
+    Route::get('/shedules/destroy/{event}', [ShedulesTeacherController::class, 'destroy'])->name('shedules.destroy');
 
     // CRUD COUNTRIES
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
@@ -153,6 +157,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/consulta2/{id}/{teacher}', [ShedulesTeacherController::class, 'consulta2']);
     Route::get('/title/{id}', [ShedulesTeacherController::class, 'title']);
     Route::post('/shedules-class', [ShedulesTeacherController::class, 'shedules_class'])->name('shedules.class');
+
+    // CRUD FOLDERS
+    Route::get('/folders', [FolderController::class, 'index'])->name('folders');
+    Route::post('/folders/store', [FolderController::class, 'store'])->name('folders.store');
+    Route::post('/folders/sub_folder', [FolderController::class, 'sub_folder'])->name('folders.store.subfolder');
+    Route::get('/folders/show/{id}', [FolderController::class, 'show'])->name('folders.show');
+    Route::get('/folders/{folder}/edit', [FolderController::class, 'edit'])->name('folders.edit');
+    Route::put('/folders/update/{folder}', [FolderController::class, 'update'])->name('folders.update');
+    Route::delete('/folders/destroy/{folder}', [FolderController::class, 'destroy'])->name('folders.destroy');
 });
 
 require __DIR__ . '/auth.php';

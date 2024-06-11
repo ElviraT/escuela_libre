@@ -31,16 +31,22 @@
                         <div class="col-lg-4 col-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Group')</label>
-                                <select class="form-control form-small select" name="id_group" id="id_group">
+                                <select class="form-control form-small select" name="id_group" id="id_group" disabled>
                                     <option>@lang('Select Group')</option>
+                                    @foreach ($groups as $value)
+                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Day')</label>
-                                <select class="form-control form-small select" name="id_day" id="id_day">
+                                <select class="form-control form-small select" name="id_day" id="id_day" disabled>
                                     <option>@lang('Select days')</option>
+                                    @foreach ($days as $value)
+                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -93,8 +99,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="submit-section">
-                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                    <div class="modal-footer">
+                        <button type="submit"
+                            class="btn btn-primary paid-continue-btn me-2">@lang('Submit')</button>
+                        <button type="button" class="btn btn-danger cancel-btn" id="btnEliminar"
+                            data-bs-dismiss="modal" hidden>@lang('Delete')</button>
                     </div>
                 </form>
             </div>

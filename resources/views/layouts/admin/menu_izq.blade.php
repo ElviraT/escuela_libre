@@ -48,7 +48,7 @@
                         @endcan
                     </ul>
                 </li>
-            {{-- @endcanany --}}
+                {{-- @endcanany --}}
                 @canany(['users', 'teachers', 'representatives', 'permissions'])
                     <li class="menu-title"><span>@lang('User Management')</span></li>
                     @canany(['users'])
@@ -135,6 +135,14 @@
                                     </a>
                                 </li>
                             @endcan
+                            {{-- @can('folders') --}}
+                            <li>
+                                <a class="{{ @request()->routeIs('folders') ? 'active' : ' ' }}"
+                                    href="{{ route('folders') }}" onclick=" loading_show();">
+                                    @lang('My Unit')
+                                </a>
+                            </li>
+                            {{-- @endcan --}}
                             {{-- @can('shedules.teacher') --}}
                             <li>
                                 <a class="{{ @request()->routeIs('shedules.classroom') ? 'active' : ' ' }}"

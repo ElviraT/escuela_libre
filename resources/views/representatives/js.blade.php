@@ -35,6 +35,18 @@
         $('#ocupation').val('');
     });
     $(document).ready(function() {
+        $('#id_user').on('select2:select', function(event) {
+            var user = $(this).val();
+            $.getJSON('../users/' + user + '/edit', function(data) {
+                $('#id_gender').val(data[0].gender_id).trigger('change.select2');
+                $('#name').val(data[0].name);
+                $('#last_name').val(data[0].last_name);
+                $('#dni').val(data[0].dni);
+                $('#birthdate').val(data[0].brithday);
+            });
+        });
+    });
+    $(document).ready(function() {
         $('#id_grade').on('select2:select', function(event) {
             var grade = $(this).val();
             $.ajax({

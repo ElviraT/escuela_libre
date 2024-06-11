@@ -1,7 +1,5 @@
-{{-- <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script> --}}
-<script src="{{ asset('js/index.global.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
-{{-- <script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script> --}}
+<script src="{{ asset('js/index.global.js') }}"></script>
 <script>
     $("#combo_teacher").on('select2:select', function(event) {
         var id = $(this).val();
@@ -12,6 +10,7 @@
         $.getJSON(url, function(event) {
             for (const ev of event) {
                 const clase = {
+                    'id': ev.id,
                     'title': ev.title,
                     'startTime': ev.startime,
                     'endTime': ev.endtime,
@@ -37,9 +36,9 @@
             for (const registro of objch) {
                 day_laborable.push(registro.id_day);
                 const dia = {
-                    dow: registro.id_day,
                     start: registro.start_hour,
-                    end: registro.end_hour
+                    end: registro.end_hour,
+                    dow: [registro.id_day]
                 };
                 array_businessHours.push(dia);
             }
@@ -49,92 +48,48 @@
 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                allDay: false,
+                locale: 'es',
                 timeZone: 'América/Santiago',
                 events: array_evento,
                 initialView: 'timeGridWeek',
                 hiddenDays: noLaborable,
-                businessHours: array_businessHours,
                 droppable: false,
+                businessHours: array_businessHours,
+
 
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                editable: false,
+                editable: true,
 
                 eventClick: function(info) {
-                    console.log('Event: ' + info.event.title);
+                    console.log('Event: ' + info.event.id);
+                    $('#id').val(info.event.id);
+                    $('#btnEliminar').attr('hidden', false);
+                    $('#add_event').modal('show');
+
                 }
 
             });
             loading_hide();
             calendar.render();
+            document.getElementById('btnEliminar').addEventListener('click', function() {
+                var id_event = $('#id').val();
+                var url_borrar = "{{ route('shedules.destroy', ':id') }}";
+                url_borrar = url_borrar.replace(':id', id_event);
 
-
-            //     var CalendarApp = function() {
-            //         this.$body = $("body")
-            //         this.$calendar = $('#calendar'),
-            //             this.$extEvents = $('#calendar-events'),
-            //             this.$modal = $('#add_event'),
-            //             this.$calendarObj = null
-            //     };
-
-            //     /* Initializing */
-            //     CalendarApp.prototype.init = function() {
-            //             // this.enableDrag();
-            //             /*  Initialize the calendar  */
-            //             var $this = this;
-            //             var date = new Date();
-            //             var d = date.getDate();
-            //             var m = date.getMonth();
-            //             var y = date.getFullYear();
-            //             var form = '';
-            //             var today = new Date($.now());
-
-            //             var defaultEvents = array_evento;
-
-            //             $this.$calendarObj = $this.$calendar.fullCalendar({
-            //                 timeZone: 'América/Santiago',
-            //                 defaultView: 'agendaWeek',
-            //                 hiddenDays: noLaborable,
-            //                 businessHours: array_businessHours,
-            //                 handleWindowResize: true,
-
-            //                 header: {
-            //                     left: 'prev,next today',
-            //                     center: 'title',
-            //                     right: 'month,agendaWeek,agendaDay'
-            //                 },
-            //                 events: defaultEvents,
-            //                 editable: true,
-            //                 droppable: false, // this allows things to be dropped onto the calendar !!!
-            //                 eventLimit: true, // allow "more" link when too many events
-            //                 selectable: true,
-
-            //                 select: function(start, end, allDay) {
-            //                     // $this.onSelect(start, end, allDay);
-            //                 },
-            //                 eventClick: function(calEvent, jsEvent, view) {
-            //                     // $this.onEventClick(calEvent, jsEvent, view);
-            //                 }
-
-            //             });
-            //             loading_hide();
-            //         },
-
-            //         //init CalendarApp
-            //         $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor =
-            //         CalendarApp
-
-            // }(window.jQuery),
-
-            // //initializing CalendarApp
-            // function($) {
-            //     "use strict";
-            //     $.CalendarApp.init()
-            // }(window.jQuery);
-
+                // Eliminar evento de la base de datos
+                $.ajax({
+                    url: url_borrar,
+                    method: 'get',
+                    success: function() {
+                        location.reload();
+                    }
+                });
+            });
         });
     });
 
@@ -158,7 +113,7 @@
     $(document).on('show.bs.modal', '#add_event', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        $("#form-enviar").attr('action', data.bsAction);
+
         $("#method").val('post');
         $('#startRecur').datetimepicker({
             useCurrent: false,
@@ -170,14 +125,32 @@
             format: 'DD-MM-YYYY',
             debug: true,
         })
-        if (data.bsRecordId != undefined) {
+        var id_event = $('#id').val();
+        if (id_event != '') {
             $('.title').text("@lang('Edit Class')");
-            $('.modal_registro_event_id', modal).val(data.bsRecordId);
-            $.getJSON('../teachers/' + data.bsRecordId + '/edit', function(data) {
-                var obj = data;
+            $.getJSON('../shedules/' + id_event + '/edit', function(data) {
+                var update = "{{ route('shedules.update', ':id') }}";
+                update = update.replace(':id', id_event);
+                $('#form-enviar').attr('action', update);
+                $('#method').val('put');
+                $('#id_teacher').val(data.id_teacher);
+                $('#id_matter').attr('disabled', false);
+                $('#id_matter').val(data.id_matter).trigger('change.select2');
+                $('#title').val(data.title);
+                $('#id_group').attr('disabled', false);
+                $('#id_group').val(data.id_group).trigger('change.select2');
+                $('#id_day').attr('disabled', false);
+                $('#id_day').val(data.id_day).trigger('change.select2');
+                $('#startime').attr('disabled', false).val(data.startime);
+                $('#endtime').attr('disabled', false).val(data.endtime);
+                $('#color').val(data.color);
+                $('#startRecur').val(data.startRecur);
+                $('#endRecur').val(data.endRecur);
 
             });
         } else {
+            $('#btnEliminar').attr('hidden', true);
+            $("#form-enviar").attr('action', data.bsAction);
             $('.title').text("@lang('Add Class')");
             var teacher = $('#combo_teacher').val();
             $.getJSON('../consulta/' + teacher, function(data) {
@@ -185,6 +158,7 @@
                 $('#id_teacher').val(teacher);
                 var html = "";
                 html += '<option>Seleccione un Día</option>';
+                $('#id_day').attr('disabled', false);
                 $.each(data, function(index, value) {
                     html += '<option value="' + value.id + '">' + value.name +
                         "</option>";
@@ -194,13 +168,21 @@
         }
     });
     $(document).on('hidden.bs.modal', '#add_event', function(e) {
-        $('#idSex').val('').trigger('change.select2');
-        $('#idMaritalState').val('').trigger('change.select2');
-        $('#idStatus').val('').trigger('change.select2');
-        $('#id_user').val('').trigger('change.select2');
-        $("#method").val('post');
-        $('#register').val('');
-        $('#ncolegio').val('');
+        $('#id_teacher').val('');
+        $('#id_matter').attr('disabled', true);
+        $('#id_matter').val('').trigger('change.select2');
+        $('#btnEliminar').attr('hidden', true);
+        $('#id').val('');
+        $('#title').val('');
+        $('#id_group').attr('disabled', true);
+        $('#id_group').val('').trigger('change.select2');
+        $('#id_day').attr('disabled', true);
+        $('#id_day').val('').trigger('change.select2');
+        $('#startime').attr('disabled', true).val('');
+        $('#endtime').attr('disabled', true).val('');
+        $('#color').val('');
+        $('#startRecur').val('');
+        $('#endRecur').val('');
     });
     $(document).ready(function() {
         $("#id_day").on('select2:select', function(event) {
@@ -280,6 +262,7 @@
                     $('#title').val(title);
                     var html = "";
                     html += '<option>Seleccione un Grupo</option>';
+                    $('#id_group').attr('disabled', false);
                     $.each(data, function(index, value) {
                         html += '<option value="' + value.id + '">' +
                             value.name +

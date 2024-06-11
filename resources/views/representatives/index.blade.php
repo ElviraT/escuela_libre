@@ -55,6 +55,11 @@
                                             </td>
 
                                             <td class="d-flex align-items-center">
+                                                @can('representatives.alumno')
+                                                    <a href="{{ route('representatives.alumno', ['id' => $item->id]) }}"
+                                                        class="btn btn-greys me-2"><i
+                                                            class="fa fa-users me-2"></i>@lang('Add Student')</a>
+                                                @endcan
                                                 <div class="dropdown dropdown-action">
                                                     <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
                                                         aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
@@ -70,13 +75,6 @@
                                                                         <i class="fa fa-edit me-1"></i>
                                                                         {{ __('Edit Representative') }}
                                                                     </a>
-                                                                </li>
-                                                            @endcan
-                                                            @can('representatives.alumno')
-                                                                <li>
-                                                                    <a href="{{ route('representatives.alumno', ['id' => $item->id]) }}"
-                                                                        class="btn btn-greys me-2"><i
-                                                                            class="fa fa-users me-2"></i>@lang('Student')</a>
                                                                 </li>
                                                             @endcan
                                                             @can('representatives.destroy')
