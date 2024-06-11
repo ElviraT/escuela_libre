@@ -1,4 +1,5 @@
-<script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script> --}}
+<script src="{{ asset('js/index.global.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
 {{-- <script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script> --}}
 <script>
@@ -12,15 +13,15 @@
             for (const ev of event) {
                 const clase = {
                     'title': ev.title,
-                    'start': ev.startime,
-                    'end': ev.endtime,
-                    'dayOfWeek': ev.id_day, // Lunes
-                    recurrence: {
-                        'freq': ev.freq, //semanal
-                        'interval': ev.interval, // intervalo en este ejemplo cada semana
-                        'startRecur': ev.startRecur, // Fecha de inicio de la recurrencia
-                        'endRecur': ev.endRecur // Fecha de finalización de la recurrencia
-                    }
+                    'startTime': ev.startime,
+                    'endTime': ev.endtime,
+                    'daysOfWeek': [ev.id_day],
+                    'freq': ev.freq, //semanal
+                    'interval': ev.interval, // intervalo en este ejemplo cada semana
+                    'startRecur': ev.startRecur, // Fecha de inicio de la recurrencia
+                    'endRecur': ev.endRecur, // Fecha de finalización de la recurrencia
+                    'color': ev.color, // Fecha de finalización de la recurrencia
+
                 }
                 array_evento.push(clase);
             }
@@ -45,71 +46,95 @@
             const day = [0, 1, 2, 3, 4, 5, 6];
             const noLaborable = compareArrays(day, day_laborable);
             $('#horario').attr('hidden', false);
-            ! function($) {
-                "use strict";
 
-                var CalendarApp = function() {
-                    this.$body = $("body")
-                    this.$calendar = $('#calendar'),
-                        this.$extEvents = $('#calendar-events'),
-                        this.$modal = $('#add_event'),
-                        this.$calendarObj = null
-                };
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                timeZone: 'América/Santiago',
+                events: array_evento,
+                initialView: 'timeGridWeek',
+                hiddenDays: noLaborable,
+                businessHours: array_businessHours,
+                droppable: false,
 
-                /* Initializing */
-                CalendarApp.prototype.init = function() {
-                        // this.enableDrag();
-                        /*  Initialize the calendar  */
-                        var $this = this;
-                        var date = new Date();
-                        var d = date.getDate();
-                        var m = date.getMonth();
-                        var y = date.getFullYear();
-                        var form = '';
-                        var today = new Date($.now());
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                editable: false,
 
-                        var defaultEvents = array_evento;
+                eventClick: function(info) {
+                    console.log('Event: ' + info.event.title);
+                }
 
-                        $this.$calendarObj = $this.$calendar.fullCalendar({
-                            timeZone: 'América/Santiago',
-                            defaultView: 'agendaWeek',
-                            hiddenDays: noLaborable,
-                            businessHours: array_businessHours,
-                            handleWindowResize: true,
+            });
+            loading_hide();
+            calendar.render();
 
-                            header: {
-                                left: 'prev,next today',
-                                center: 'title',
-                                right: 'month,agendaWeek,agendaDay'
-                            },
-                            events: defaultEvents,
-                            editable: true,
-                            droppable: false, // this allows things to be dropped onto the calendar !!!
-                            eventLimit: true, // allow "more" link when too many events
-                            selectable: true,
 
-                            select: function(start, end, allDay) {
-                                // $this.onSelect(start, end, allDay);
-                            },
-                            eventClick: function(calEvent, jsEvent, view) {
-                                // $this.onEventClick(calEvent, jsEvent, view);
-                            }
+            //     var CalendarApp = function() {
+            //         this.$body = $("body")
+            //         this.$calendar = $('#calendar'),
+            //             this.$extEvents = $('#calendar-events'),
+            //             this.$modal = $('#add_event'),
+            //             this.$calendarObj = null
+            //     };
 
-                        });
-                        loading_hide();
-                    },
+            //     /* Initializing */
+            //     CalendarApp.prototype.init = function() {
+            //             // this.enableDrag();
+            //             /*  Initialize the calendar  */
+            //             var $this = this;
+            //             var date = new Date();
+            //             var d = date.getDate();
+            //             var m = date.getMonth();
+            //             var y = date.getFullYear();
+            //             var form = '';
+            //             var today = new Date($.now());
 
-                    //init CalendarApp
-                    $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor =
-                    CalendarApp
+            //             var defaultEvents = array_evento;
 
-            }(window.jQuery),
+            //             $this.$calendarObj = $this.$calendar.fullCalendar({
+            //                 timeZone: 'América/Santiago',
+            //                 defaultView: 'agendaWeek',
+            //                 hiddenDays: noLaborable,
+            //                 businessHours: array_businessHours,
+            //                 handleWindowResize: true,
 
-            //initializing CalendarApp
-            function($) {
-                "use strict";
-                $.CalendarApp.init()
-            }(window.jQuery);
+            //                 header: {
+            //                     left: 'prev,next today',
+            //                     center: 'title',
+            //                     right: 'month,agendaWeek,agendaDay'
+            //                 },
+            //                 events: defaultEvents,
+            //                 editable: true,
+            //                 droppable: false, // this allows things to be dropped onto the calendar !!!
+            //                 eventLimit: true, // allow "more" link when too many events
+            //                 selectable: true,
+
+            //                 select: function(start, end, allDay) {
+            //                     // $this.onSelect(start, end, allDay);
+            //                 },
+            //                 eventClick: function(calEvent, jsEvent, view) {
+            //                     // $this.onEventClick(calEvent, jsEvent, view);
+            //                 }
+
+            //             });
+            //             loading_hide();
+            //         },
+
+            //         //init CalendarApp
+            //         $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor =
+            //         CalendarApp
+
+            // }(window.jQuery),
+
+            // //initializing CalendarApp
+            // function($) {
+            //     "use strict";
+            //     $.CalendarApp.init()
+            // }(window.jQuery);
+
         });
     });
 

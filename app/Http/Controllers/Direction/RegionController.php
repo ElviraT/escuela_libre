@@ -11,40 +11,39 @@ use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      */
     public function index()
     {
         $countries = Country::all();
         $regiones = State::all();
-        return view('regiones.index', compact('countries','regiones'));
+        return view('regiones.index', compact('countries', 'regiones'));
     }
 
     public function store(Request $request)
     {
-        
-        $this->validate($request,[
-            'name'=> 'required',
+
+        $this->validate($request, [
+            'name' => 'required',
         ]);
-        try{
-            $regiones= State::create($request->post());
+        try {
+            $regiones = State::create($request->post());
             Toastr::success(__('Added successfully'), __('State') . ': ' . $request->input('name'));
         } catch (\Illuminate\Database\QueryException $e) {
             Toastr::error(__('An error occurred please try again'), 'error');
         }
         return redirect()->back();
-        
     }
 
     /**
      * Display the specified resource.
      */
-    
+
     public function edit($id)
     {
-     $region = State::find($id);
-     return response()->json($region);
+        $region = State::find($id);
+        return response()->json($region);
     }
 
     /**

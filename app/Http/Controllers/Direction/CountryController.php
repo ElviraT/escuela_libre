@@ -9,11 +9,9 @@ use Illuminate\Http\Request;
 class CountryController extends Controller
 {
     public function index()
-{
-$countries= Country::all();
+    {
+        $countries = Country::all();
 
-return view('country.index', compact('countries'));
-
-
-}
+        return view('country.index', compact('countries'));
+    }
 }

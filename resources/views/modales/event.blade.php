@@ -59,6 +59,18 @@
                                 <input class="form-control" type="time" name="endtime" id="endtime" disabled>
                             </div>
                         </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="input-block mb-3">
+                                <label>@lang('Colors')</label>
+                                <input type="color" id="color" name="color" list="coloresPrimarios"
+                                    class="form-control">
+                                <datalist id="coloresPrimarios">
+                                    @foreach ($colores as $value)
+                                        <option value="{{ $value->name }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </datalist>
+                            </div>
+                        </div>
                         <div class="col-12">
                             <span id="mensaje" style="color: darkred" hidden></span>
                         </div>

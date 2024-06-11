@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shedules;
 
 use App\Http\Controllers\Controller;
+use App\Models\Color;
 use App\Models\Day;
 use App\Models\Event;
 use App\Models\Group;
@@ -27,7 +28,8 @@ class TeacherController extends Controller
             ->select('teachers.id as id', DB::raw('CONCAT(users.name, " ", users.last_name) AS name'))
             ->get();
         $matters = Matter::where('id_status', 1)->get();
-        return view('shedules.teacher.index', compact('teachers', 'matters'));
+        $colores = Color::all();
+        return view('shedules.teacher.index', compact('teachers', 'matters', 'colores'));
     }
     public function teacher_time($id)
     {
