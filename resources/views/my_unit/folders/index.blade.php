@@ -1,5 +1,16 @@
 @extends('layouts.admin.base')
+@section('style')
+    <style>
+        .dropdown-toggle {
+            background: white;
+            border: 0px;
+        }
 
+        .dropdown-toggle::after {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -21,21 +32,51 @@
                                 <div class="card-body">
                                     <div class="row">
                                         @foreach ($folders as $item)
-                                            <div class="col-xl-3 col-sm-6 col-12">
+                                            <div class="col-xl-3 col-sm-6 col-12" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" data-bs-original-title="{{ $item->name }}">
                                                 <div class="card sombra">
-                                                    <a href="{{ route('folders.show', $item->id) }}"
-                                                        onclick=" loading_show();">
-                                                        <div class="card-body">
-                                                            <div class="dash-widget-header">
+                                                    <div class="card-body">
+                                                        <div class="dash-widget-header">
+                                                            <div class="col-4">
                                                                 <span class="dash-widget-icon bg-2">
                                                                     <i class="fas fa-folder"></i>
                                                                 </span>
-                                                                <div class="dash-count">
-                                                                    <div class="dash-title"><b>{{ $item->name }}</b></div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <a href="{{ route('folders.show', $item->id) }}"
+                                                                    onclick=" loading_show();">
+                                                                    <div class="dash-count">
+                                                                        <div class="dash-title"><b>{{ $item->name }}</b>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <div class="btn-group" role="group"
+                                                                    style="margin-top: 5px; text-align:right;">
+                                                                    <button id="btnGroupDrop1" type="button"
+                                                                        class="dropdown-toggle" data-bs-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fa fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu sombra"
+                                                                        aria-labelledby="btnGroupDrop1">
+                                                                        <a class="dropdown-item" href="#"
+                                                                            id="btnEditar"
+                                                                            onclick="return editar({{ $item->id }})"><i
+                                                                                class="fa fa-edit me-1"></i>@lang('Edit')</a>
+                                                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                                                            data-bs-target="#confirm-delete"
+                                                                            data-bs-record-id="{{ $item->id }}"
+                                                                            data-bs-record-title="{{ 'la Carpeta ' }}{{ $item->name }}"
+                                                                            data-bs-action="{{ route('folders.destroy', $item) }}"
+                                                                            title="{{ __('Delete Users') }}"><i
+                                                                                class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -51,6 +92,8 @@
 @endsection
 @section('modal')
     @include('modales.folder')
+    @include('modales.edit_folder')
+    @include('modales.eliminar')
 @endsection
 @section('js')
     @include('my_unit.folders.js')

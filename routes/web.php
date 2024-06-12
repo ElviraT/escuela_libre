@@ -10,6 +10,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ControlsController;
+use App\Http\Controllers\Admin\folders\FileController;
 use App\Http\Controllers\Admin\folders\FolderController;
 use App\Http\Controllers\Admin\GradesController;
 use App\Http\Controllers\Admin\GroupsController;
@@ -166,6 +167,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/folders/{folder}/edit', [FolderController::class, 'edit'])->name('folders.edit');
     Route::put('/folders/update/{folder}', [FolderController::class, 'update'])->name('folders.update');
     Route::delete('/folders/destroy/{folder}', [FolderController::class, 'destroy'])->name('folders.destroy');
+
+    // CRUD FILE
+    Route::post('/folders/file', [FileController::class, 'upload'])->name('files.upload');
 });
 
 require __DIR__ . '/auth.php';

@@ -14,7 +14,7 @@ class FolderController extends Controller
      */
     public function index()
     {
-        $folders = Folder::all();
+        $folders = Folder::whereNull('id_parent_folder')->get();
         return view('my_unit.folders.index', compact('folders'));
     }
 
@@ -39,31 +39,46 @@ class FolderController extends Controller
     public function show(string $id)
     {
         $folders = Folder::findOrFail($id);
-        return view('my_unit.folders.show', compact('folders'));
+        $subfolders = $folders->childfolder;
+        return view('my_unit.folders.show', compact('folders', 'subfolders'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $folder = Folder::find($id);
+        return response()->json($folder);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        try {
+            $folder = Folder::find($id);
+            $folder->name = $request->input('name');
+            $folder->save();
+            Toastr::success(__('Updated registration'), __('Folder') . ': ' . $request->input('name'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            Toastr::error(__('An error occurred please try again'), 'error');
+        }
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Folder $folder)
     {
-        //
+        $folder->delete();
+        Toastr::success(__('Registry successfully deleted'), 'Delete');
+        return redirect()->back();
     }
 
     public function sub_folder(Request $request)
