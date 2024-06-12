@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ModalityController;
 use App\Http\Controllers\Admin\TicketsController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Shedules\TimeController;
 use App\Http\Controllers\Users\AlumnoController;
 use App\Http\Controllers\Users\RepresentativeController;
 use App\Http\Controllers\Users\TeacherController;
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Support\Facades\Route;
 
@@ -151,7 +153,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/regiones/{region}/edit', [RegionController::class, 'edit'])->name('regiones.edit');
     Route::put('/regiones/update/{region}', [RegionController::class, 'update'])->name('regiones.update');
     Route::delete('/regiones/destroy/{region}', [RegionController::class, 'destroy'])->name('regiones.destroy');
-
+    // CRUD CIUDADES
+    Route::get('/cities', [CityController::class, 'index'])->name('cities');
+    Route::post('/cities/store', [CityController::class, 'store'])->name('cities.store');
+    Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('cities.edit');
+    Route::put('/cities/update/{city}', [CityController::class, 'update'])->name('cities.update');
+    Route::delete('/cities/destroy/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
     //SHEDULES EXTRAS
     Route::get('/teacher-time/{id}', [ShedulesTeacherController::class, 'teacher_time']);
     Route::get('/consulta/{id}', [ShedulesTeacherController::class, 'consulta']);

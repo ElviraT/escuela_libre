@@ -46,6 +46,12 @@
                                     onclick=" loading_show();">@lang('State')</a>
                             </li>
                         @endcan
+                        @can('cities')
+                        <li><a href="{{ route('cities') }}"
+                                class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
+                                onclick=" loading_show();">@lang('City')</a>
+                        </li>
+                    @endcan
                     </ul>
                 </li>
                 {{-- @endcanany --}}
