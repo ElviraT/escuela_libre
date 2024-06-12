@@ -7,7 +7,6 @@
                 <div class="card-body w-100">
                     <div class="content-page-header p-0">
                         <h5>@lang('Countries')</h5>
-                        
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -43,9 +42,5 @@
     </div>
 @endsection
 @section('modal')
-    {{-- @include('modales.country') --}}
     @include('modales.eliminar')
 @endsection
-{{-- @section('js') --}}
-    @include('controls.js')
-{{-- @endsection --}}

@@ -82,21 +82,21 @@
                                                 <div class="input-block mb-3">
                                                     <label>@lang('Name')</label>
                                                     <input type="text" name="name" id="name"
-                                                        class="form-control" placeholder="Enter Name">
+                                                        class="form-control" placeholder="Enter Name" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="input-block mb-3">
                                                     <label>@lang('Last Name')</label>
                                                     <input type="text" name="last_name" id="last_name"
-                                                        class="form-control" placeholder="Enter Last Name">
+                                                        class="form-control" placeholder="Enter Last Name" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="input-block mb-3">
                                                     <label>@lang('DNI')</label>
                                                     <input type="text" name="dni" id="dni"
-                                                        class="form-control" placeholder="Enter DNI">
+                                                        class="form-control" placeholder="Enter DNI" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -105,7 +105,7 @@
                                                     <div class="cal-icon cal-icon-info">
                                                         <input type="text" name="birthdate" id="birthdate"
                                                             class="datetimepicker form-control"
-                                                            placeholder="Select Date">
+                                                            placeholder="Select Date" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                                 <div class="input-block mb-3">
                                                     <label>@lang('Gender')</label>
                                                     <select class="form-control form-small select" name="id_gender"
-                                                        id="id_gender">
+                                                        id="id_gender" readonly>
                                                         <option>@lang('Select Gender')</option>
                                                         @foreach ($genders as $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }}

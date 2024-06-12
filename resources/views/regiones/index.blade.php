@@ -12,7 +12,6 @@
                                 <a class="btn btn-primary" href="#" data-bs-toggle="modal"
                                     data-bs-action="{{ route('regiones.store') }}" data-bs-target="#state_details"><i
                                         class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add State')</a>
-
                             </div>
                         @endcan
                     </div>
@@ -42,7 +41,7 @@
                                                             {{ $item->country->name }}
                                                         </td>
                                                         {{-- <td><span class="badge" --}}
-                                                                {{-- style="background-color: #E1FFED !important; --}}
+                                                        {{-- style="background-color: #E1FFED !important; --}}
                                                         {{-- color: {{ $item->status->color }} !important;">{{ $item->status->name }}</span> --}}
                                                         {{-- </td> --}}
                                                         <td class="d-flex align-items-center">
@@ -100,5 +99,5 @@
     @include('modales.eliminar')
 @endsection
 @section('js')
-@include('regiones.js')
+    @include('regiones.js')
 @endsection

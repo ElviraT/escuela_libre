@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shedules;
 
 use App\Http\Controllers\Controller;
+use App\Models\Color;
 use App\Models\Day;
 use App\Models\Event;
 use App\Models\Group;
@@ -27,7 +28,10 @@ class TeacherController extends Controller
             ->select('teachers.id as id', DB::raw('CONCAT(users.name, " ", users.last_name) AS name'))
             ->get();
         $matters = Matter::where('id_status', 1)->get();
-        return view('shedules.teacher.index', compact('teachers', 'matters'));
+        $colores = Color::all();
+        $groups = Group::all();
+        $days = Day::all();
+        return view('shedules.teacher.index', compact('teachers', 'matters', 'colores', 'groups', 'days'));
     }
     public function teacher_time($id)
     {
@@ -80,27 +84,34 @@ class TeacherController extends Controller
     {
         $event = Event::where('id_teacher', $id)->get();
         return response()->json($event);
-        //->map(function ($event) {
-        // return $this->transformEvent($event); // Función definida a continuación
-        // });
     }
 
-    private function transformEvent($event)
+    public function edit($id)
     {
-        $recurrence = [
-            'freq' => $event->freq,
-            'interval' => $event->interval,
-            'startRecur' => $event->startRecur,
-            'endRecur' => $event->endRecur,
-        ];
+        $event = Event::where('id', $id)->first();
+        return response()->json($event);
+    }
 
-        return [
-            'id' => $event->id,
-            'title' => $event->title,
-            'startTime' => $event->startime,
-            'endTime' => $event->endtime,
-            'dayOfWeek' => $event->id_day, // 1 for Monday
-            'recurrence' => $recurrence,
-        ];
+    public function update(Request $request, $id)
+    {
+        try {
+            $event = Event::find($id);
+            $event->update($request->post());
+            Toastr::success(__('Updated registration'),  __('Event') . ':' . $request->title);
+        } catch (\Illuminate\Database\QueryException $e) {
+            Toastr::error(__('An error occurred please try again'), 'error');
+        }
+        return Redirect::back();
+    }
+    public function destroy($id)
+    {
+        try {
+            $event = Event::find($id);
+            $event->delete();
+            Toastr::success(__('Registration Successfully Disabled'), __('Deleted'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            Toastr::error(__('An error occurred please try again'), 'error');
+        }
+        return Redirect::back();
     }
 }

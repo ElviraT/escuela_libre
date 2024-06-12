@@ -1,7 +1,5 @@
 @extends('layouts.admin.base')
-@section('style')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.css') }}">
-@endsection
+
 @section('content')
     <div class="card p-3">
         <div class="page-header">
