@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shedules;
+namespace App\Http\Controllers\Schedules;
 
 use App\Http\Controllers\Controller;
 use App\Models\Color;

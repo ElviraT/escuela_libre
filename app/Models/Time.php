@@ -26,6 +26,6 @@ class Time extends Model
 
     public function day(): BelongsTo
     {
-        return $this->belongsTo(Day::class, 'id');
+        return $this->belongsTo(Day::class, 'id_day');
     }
 }

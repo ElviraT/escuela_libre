@@ -55,6 +55,13 @@
                 hiddenDays: noLaborable,
                 droppable: false,
                 businessHours: array_businessHours,
+                timeZoneName: 'short',
+
+                slotLabelFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                },
 
 
                 headerToolbar: {
@@ -65,7 +72,6 @@
                 editable: true,
 
                 eventClick: function(info) {
-                    console.log('Event: ' + info.event.id);
                     $('#id').val(info.event.id);
                     $('#btnEliminar').attr('hidden', false);
                     $('#add_event').modal('show');
