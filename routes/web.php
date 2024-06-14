@@ -23,8 +23,9 @@ use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Shedules\TeacherController as ShedulesTeacherController;
-use App\Http\Controllers\Shedules\TimeController;
+use App\Http\Controllers\Schedules\StudentsController;
+use App\Http\Controllers\Schedules\TeacherController as SchedulesTeacherController;
+use App\Http\Controllers\Schedules\TimeController;
 use App\Http\Controllers\Users\AlumnoController;
 use App\Http\Controllers\Users\RepresentativeController;
 use App\Http\Controllers\Users\TeacherController;
@@ -136,13 +137,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/banks/{bank}/edit', [BankController::class, 'edit'])->name('banks.edit');
     Route::put('/banks/update/{bank}', [BankController::class, 'update'])->name('banks.update');
     Route::delete('/banks/destroy/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
-    // SHEDULES
-    Route::get('/shedules-teacher', [ShedulesTeacherController::class, 'index'])->name('shedules.teacher');
-    Route::get('/shedules-mostrar/{id}', [ShedulesTeacherController::class, 'mostrar'])->name('shedules.mostrar');
-    Route::get('/shedules-classroom', [ShedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
-    Route::get('/shedules/{id}/edit', [ShedulesTeacherController::class, 'edit'])->name('shedules.edit');
-    Route::put('/shedules/update/{event}', [ShedulesTeacherController::class, 'update'])->name('shedules.update');
-    Route::get('/shedules/destroy/{event}', [ShedulesTeacherController::class, 'destroy'])->name('shedules.destroy');
+    // SHEDULES - TEACHER
+    Route::get('/shedules-teacher', [SchedulesTeacherController::class, 'index'])->name('shedules.teacher');
+    Route::get('/shedules-mostrar/{id}', [SchedulesTeacherController::class, 'mostrar'])->name('shedules.mostrar');
+    Route::get('/shedules-classroom', [SchedulesTeacherController::class, 'classroom'])->name('shedules.classroom');
+    Route::get('/shedules/{id}/edit', [SchedulesTeacherController::class, 'edit'])->name('shedules.edit');
+    Route::put('/shedules/update/{event}', [SchedulesTeacherController::class, 'update'])->name('shedules.update');
+    Route::get('/shedules/destroy/{event}', [SchedulesTeacherController::class, 'destroy'])->name('shedules.destroy');
+    // SHEDULES - STUDENTS
+    Route::get('/shedules-students', [StudentsController::class, 'index'])->name('shedules.students');
+    Route::get('/shedules-mostrar-student/{id}', [StudentsController::class, 'mostrar'])->name('shedules.mostrar.student');
 
     // CRUD COUNTRIES
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
@@ -160,11 +164,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/cities/update/{city}', [CityController::class, 'update'])->name('cities.update');
     Route::delete('/cities/destroy/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
     //SHEDULES EXTRAS
-    Route::get('/teacher-time/{id}', [ShedulesTeacherController::class, 'teacher_time']);
-    Route::get('/consulta/{id}', [ShedulesTeacherController::class, 'consulta']);
-    Route::get('/consulta2/{id}/{teacher}', [ShedulesTeacherController::class, 'consulta2']);
-    Route::get('/title/{id}', [ShedulesTeacherController::class, 'title']);
-    Route::post('/shedules-class', [ShedulesTeacherController::class, 'shedules_class'])->name('shedules.class');
+    Route::get('/teacher-time/{id}', [SchedulesTeacherController::class, 'teacher_time']);
+    Route::get('/consulta/{id}', [SchedulesTeacherController::class, 'consulta']);
+    Route::get('/consulta2/{id}/{teacher}', [SchedulesTeacherController::class, 'consulta2']);
+    Route::get('/title/{id}', [SchedulesTeacherController::class, 'title']);
+    Route::post('/shedules-class', [SchedulesTeacherController::class, 'shedules_class'])->name('shedules.class');
 
     // CRUD FOLDERS
     Route::get('/folders', [FolderController::class, 'index'])->name('folders');
