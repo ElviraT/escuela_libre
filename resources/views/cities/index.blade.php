@@ -99,9 +99,9 @@
     </div>
 @endsection
 @section('modal')
-    {{-- @include('modales.city') --}}
-    {{-- @include('modales.eliminar') --}}
+    @include('modales.city')
+    @include('modales.eliminar')
 @endsection
 @section('js')
-    {{-- @include('regiones.js') --}}
+     @include('cities.js')
 @endsection

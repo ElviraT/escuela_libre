@@ -36,4 +36,25 @@
         // $('#register').val('');
         $('#name').val('');
     });
+     
+    $('#idCountry').on('select2:select', function(event) {
+            var idCountry = $(this).val();
+           
+            $.ajax({
+                url: './combo/' + idCountry + '/state',
+                method: "GET",
+
+                success: function(data) {
+                    var html = "";
+                    $.each(data, function(index, value) {
+                        html += '<option value="' + value.id + '">' + value.name +
+                            "</option>";
+                    });
+                    $("#idState").html(html);
+                },
+                error: function() {
+                    alert("error")
+                }
+            });
+        });
 </script>
