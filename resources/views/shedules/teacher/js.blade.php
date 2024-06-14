@@ -26,7 +26,6 @@
             }
         });
 
-        console.log(array_evento);
         $.getJSON('../teacher-time/' + id, function(objch) {
             var array_businessHours = [];
             var hora_minima = '07:00:00';
@@ -113,7 +112,9 @@
     $(document).on('show.bs.modal', '#add_event', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-
+        $("#id_matter, #id_group, #id_day").select2({
+            dropdownParent: "#add_event"
+        });
         $("#method").val('post');
         $('#startRecur').datetimepicker({
             useCurrent: false,

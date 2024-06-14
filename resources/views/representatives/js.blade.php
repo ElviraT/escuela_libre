@@ -4,7 +4,9 @@
     $(document).on('show.bs.modal', '#add_representative', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        modal.addClass('loading');
+        $("#id_user, #id_status, #id_marital").select2({
+            dropdownParent: "#add_representative"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         modal.removeClass('loading');
@@ -72,19 +74,19 @@
     $(document).on('show.bs.modal', '#add_alumno', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        modal.addClass('loading');
         $('#birthdate').datetimepicker({
             useCurrent: false,
             format: 'YYYY-MM-DD',
             debug: true,
             maxDate: new Date(),
-        })
+        });
+        $("#id_gender, #id_relation, #id_user,#id_group, #id_grade, #id_modality").select2({
+            dropdownParent: "#add_alumno"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
-        modal.removeClass('loading');
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Student')");
-            modal.addClass('loading');
             $('.modal_registro_alumno_id', modal).val(data.bsRecordId);
             $.getJSON('../representatives/alumno/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;

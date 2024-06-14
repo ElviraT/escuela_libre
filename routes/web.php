@@ -177,6 +177,7 @@ Route::middleware('auth')->group(function () {
 
     // CRUD FILE
     Route::post('/folders/file', [FileController::class, 'upload'])->name('files.upload');
+    Route::delete('/files/destroy/{file}', [FileController::class, 'destroy'])->name('files.destroy');
 });
 
 require __DIR__ . '/auth.php';

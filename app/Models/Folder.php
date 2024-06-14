@@ -10,7 +10,7 @@ class Folder extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'id_parent_folder'
+        'name', 'id_parent_folder', 'id_user'
     ];
 
     public function childfolder(): HasMany

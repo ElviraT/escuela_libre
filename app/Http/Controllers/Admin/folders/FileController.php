@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin\folders;
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -23,6 +26,7 @@ class FileController extends Controller
             $files = new File();
             $files->name = $fileName;
             $files->id_folder = $id;
+            $files->id_user = Auth::user()->id;
             $files->save();
 
             Toastr::success(__('Updated registration'), __('File'));
@@ -30,5 +34,23 @@ class FileController extends Controller
             Toastr::error(__('An error occurred please try again'), 'error');
         }
         return redirect()->back();
+    }
+
+    public function destroy(File $file)
+    {
+        $archivo = $file->childfolder->name . '/' . $file->name;
+        $this->_eliminarArchivo($archivo);
+        $file->delete();
+        Toastr::success(__('Registry successfully deleted'), 'Delete');
+        return redirect()->back();
+    }
+
+    private function _eliminarArchivo($name)
+    {
+        $archivo =  $name;
+        app(FilesystemManager::class)->disk('public')->delete($archivo);
+        app(FilesystemManager::class)->disk('local')->delete($archivo);
+        Storage::disk('public')->delete($archivo);
+        Storage::disk('local')->delete($archivo);
     }
 }

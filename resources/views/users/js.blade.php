@@ -9,7 +9,10 @@
             format: 'DD-MM-YYYY',
             debug: true,
         })
-        modal.addClass('loading');
+        $("#country_id,#gender_id, #state_id, #city_id,#status, #role_id").select2({
+            dropdownParent: "#add_user"
+        });
+
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {

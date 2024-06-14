@@ -18,13 +18,13 @@
                 <div class="card-body w-100">
                     <div class="content-page-header p-0">
                         <h5>@lang('Folders')</h5>
-                        {{-- @can('regiones.store') --}}
-                        <div class="list-btn">
-                            <a class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                data-bs-action="{{ route('folders.store') }}" data-bs-target="#folder_add"><i
-                                    class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Folder')</a>
-                        </div>
-                        {{-- @endcan --}}
+                        @can('folders.store')
+                            <div class="list-btn">
+                                <a class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                    data-bs-action="{{ route('folders.store') }}" data-bs-target="#folder_add"><i
+                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Folder')</a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -61,17 +61,21 @@
                                                                     </button>
                                                                     <div class="dropdown-menu sombra"
                                                                         aria-labelledby="btnGroupDrop1">
-                                                                        <a class="dropdown-item" href="#"
-                                                                            id="btnEditar"
-                                                                            onclick="return editar({{ $item->id }})"><i
-                                                                                class="fa fa-edit me-1"></i>@lang('Edit')</a>
-                                                                        <a class="dropdown-item" data-bs-toggle="modal"
-                                                                            data-bs-target="#confirm-delete"
-                                                                            data-bs-record-id="{{ $item->id }}"
-                                                                            data-bs-record-title="{{ 'la Carpeta ' }}{{ $item->name }}"
-                                                                            data-bs-action="{{ route('folders.destroy', $item) }}"
-                                                                            title="{{ __('Delete Users') }}"><i
-                                                                                class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
+                                                                        @can('folders.edit')
+                                                                            <a class="dropdown-item" href="#"
+                                                                                id="btnEditar"
+                                                                                onclick="return editar({{ $item->id }})"><i
+                                                                                    class="fa fa-edit me-1"></i>@lang('Edit Folder')</a>
+                                                                        @endcan
+                                                                        @can('folders.destroy')
+                                                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                                                data-bs-target="#confirm-delete"
+                                                                                data-bs-record-id="{{ $item->id }}"
+                                                                                data-bs-record-title="{{ 'la Carpeta ' }}{{ $item->name }}"
+                                                                                data-bs-action="{{ route('folders.destroy', $item) }}"
+                                                                                title="{{ __('Delete Folder') }}"><i
+                                                                                    class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </div>

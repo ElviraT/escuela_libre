@@ -1,6 +1,7 @@
-<div class="modal custom-modal modal-lg fade" id="add_user" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-md">
-        <div class="modal-content">
+<div class="modal custom-modal modal-lg fade" id="add_user" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="height: 500px!important; overflow-y: scroll">
             <div class="modal-header border-0 pb-0">
                 <div class="form-header modal-header-title text-start mb-0">
                     <h4 class="mb-0 title"></h4>
@@ -143,7 +144,7 @@
                                                 <input type="hidden" name="country" value="" id="country">
                                                 <input type="hidden" name="state" value="" id="state">
                                                 <input type="hidden" name="city" value="" id="city">
-                                                <select class="form-control form-small select" name="country_id"
+                                                <select class="form-control form-small" name="country_id"
                                                     id="country_id">
                                                     <option>@lang('Select')</option>
                                                     @foreach ($countries as $value)

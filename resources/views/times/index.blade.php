@@ -70,9 +70,9 @@
                                                                     <a class="btn btn-greys me-2" data-bs-toggle="modal"
                                                                         data-bs-target="#confirm-delete"
                                                                         data-bs-record-id="{{ $item->id }}"
-                                                                        data-bs-record-title="{{ 'El Horario ' }}"
+                                                                        data-bs-record-title="{{ 'la disponibilidad ' }}"
                                                                         data-bs-action="{{ route('times.destroy', $item) }}"
-                                                                        title="{{ __('Delete Times') }}"><i
+                                                                        title="{{ __('Delete Time') }}"><i
                                                                             class="far fa-trash-alt me-3"></i>@lang('Delete')</a>
                                                                 </li>
                                                             @endcan

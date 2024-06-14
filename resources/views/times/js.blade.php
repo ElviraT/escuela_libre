@@ -4,6 +4,9 @@
     $(document).on('show.bs.modal', '#add_time', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
+        $("#id_teacher, #id_day").select2({
+            dropdownParent: "#add_time"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {

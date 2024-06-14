@@ -4,7 +4,7 @@
     <div class="card p-3">
         <div class="page-header">
             <div class="content-page-header">
-                <h5>@lang('Shedules - Teachers')</h5>
+                <h5>@lang('Schedules - Teachers')</h5>
             </div>
         </div>
 

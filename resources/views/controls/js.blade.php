@@ -6,6 +6,9 @@
             data = $(e.relatedTarget).data();
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
+        $("#id_status").select2({
+            dropdownParent: "#grade_details"
+        });
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Grade')");
             $('.modal_registro_grade_id', modal).val(data.bsRecordId);
@@ -29,6 +32,9 @@
     $(document).on('show.bs.modal', '#group_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
+        $("#id_status,#id_grade").select2({
+            dropdownParent: "#group_details"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {
@@ -56,6 +62,9 @@
     $(document).on('show.bs.modal', '#matter_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
+        $("#id_status,#id_grade").select2({
+            dropdownParent: "#matter_details"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {
@@ -86,6 +95,9 @@
             data = $(e.relatedTarget).data();
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
+        $("#id_status").select2({
+            dropdownParent: "#modality_details"
+        });
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Modality')");
             $('.modal_registro_modality_id', modal).val(data.bsRecordId);

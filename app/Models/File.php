@@ -11,11 +11,11 @@ class File extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'id_folder'
+        'name', 'id_folder','id_user'
     ];
 
     public function childfolder(): BelongsTo
     {
-        return $this->belongsTo(Folder::class);
+        return $this->belongsTo(Folder::class, 'id_folder');
     }
 }

@@ -31,7 +31,7 @@
                 @endcanany
                 {{-- @canany(['chatify', 'tickets']) --}}
                 <li class="submenu">
-                    <a href="#"><i class="fe fe-grid"></i> <span> @lang('Direction')</span> <span
+                    <a href="#"><i class="fe fe-map-pin"></i> <span> @lang('Direction')</span> <span
                             class="menu-arrow"></span></a>
                     <ul>
                         @can('countries')
@@ -47,11 +47,11 @@
                             </li>
                         @endcan
                         @can('cities')
-                        <li><a href="{{ route('cities') }}"
-                                class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
-                                onclick=" loading_show();">@lang('City')</a>
-                        </li>
-                    @endcan
+                            <li><a href="{{ route('cities') }}"
+                                    class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
+                                    onclick=" loading_show();">@lang('City')</a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
                 {{-- @endcanany --}}
@@ -120,7 +120,7 @@
                     @endcan
                 @endcan
                 @canany(['shedules.teacher', 'times'])
-                    <li class="menu-title"><span>@lang('Classromm')</span></li>
+                    <li class="menu-title"><span>@lang('Configuring Classes')</span></li>
                     <li class="submenu">
                         <a href="#"><i class="fe fe-calendar"></i> <span> @lang('Shedules')</span> <span
                                 class="menu-arrow"></span></a>
@@ -141,23 +141,24 @@
                                     </a>
                                 </li>
                             @endcan
-                            {{-- @can('folders') --}}
-                            <li>
-                                <a class="{{ @request()->routeIs('folders') ? 'active' : ' ' }}"
-                                    href="{{ route('folders') }}" onclick=" loading_show();">
-                                    @lang('My Unit')
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
+
                             {{-- @can('shedules.teacher') --}}
                             <li>
                                 <a class="{{ @request()->routeIs('shedules.classroom') ? 'active' : ' ' }}"
                                     href="{{ route('shedules.classroom') }}" onclick=" loading_show();">
-                                    @lang('Class Room')
+                                    @lang('Classroom')
                                 </a>
                             </li>
                             {{-- @endcan --}}
                         </ul>
+                    </li>
+                @endcan
+                @can('folders')
+                    <li>
+                        <a class="{{ @request()->routeIs('folders') || @request()->routeIs('folders.show') ? 'active' : ' ' }}"
+                            href="{{ route('folders') }}" onclick=" loading_show();"><i class="fe fe-folder"></i>
+                            <span> @lang('My Unit')</span>
+                        </a>
                     </li>
                 @endcan
             </ul>

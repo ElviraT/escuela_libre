@@ -64,7 +64,7 @@
                                                                                     data-bs-record-id="{{ $item->id }}"
                                                                                     data-bs-action="{{ route('cities.update', $item) }}">
                                                                                     <i class="fa fa-edit me-1"></i>
-                                                                                    {{ __('Edit city') }}
+                                                                                    {{ __('Edit City') }}
                                                                                 </a>
                                                                             </li>
                                                                         @endcan
@@ -76,7 +76,7 @@
                                                                                     data-bs-record-id="{{ $item->id }}"
                                                                                     data-bs-record-title="{{ ' La comuna ' }}{{ $item->name }}"
                                                                                     data-bs-action="{{ route('cities.destroy', $item) }}"
-                                                                                    title="{{ __('Delete city') }}"><i
+                                                                                    title="{{ __('Delete City') }}"><i
                                                                                         class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
                                                                             </li>
                                                                         @endcan

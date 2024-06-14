@@ -3,7 +3,9 @@
     $(document).on('show.bs.modal', '#add_teacher', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        modal.addClass('loading');
+        $("#idSex, #idMaritalState, #idStatus,#id_user").select2({
+            dropdownParent: "#add_teacher"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {

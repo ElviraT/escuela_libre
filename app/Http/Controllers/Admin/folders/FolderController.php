@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Folder;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
 {
@@ -23,8 +24,10 @@ class FolderController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
+        $id_user = ['id_user' => Auth::user()->id];
+        $resultado = array_merge($request->post(), $id_user);
         try {
-            $folder = Folder::create($request->post());
+            $folder = Folder::create($resultado);
             Toastr::success(__('Added successfully'), __('Folder') . ': ' . $request->input('name'));
         } catch (\Illuminate\Database\QueryException $e) {
             Toastr::error(__('An error occurred please try again'), 'error');
@@ -89,7 +92,8 @@ class FolderController extends Controller
         ]);
         $data = [
             'name' => $request->name,
-            'id_parent_folder' => $request->id
+            'id_parent_folder' => $request->id,
+            'id_user' => Auth::user()->id
         ];
         try {
             $folder = Folder::create($data);
