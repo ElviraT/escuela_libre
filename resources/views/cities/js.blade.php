@@ -35,7 +35,6 @@
         // $('#idStatus').val('').trigger('change.select2');
         // $('#id_user').val('').trigger('change.select2');
         $("#method").val('post');
-        // $('#register').val('');
         $('#name').val('');
     });
     $(document).ready(function() {
