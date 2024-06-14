@@ -6,9 +6,8 @@
     $(document).on('show.bs.modal', '#state_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        modal.addClass('loading');
-        $(document).ready(function() {
-            $(".select").select2();
+        $("#idCountry").select2({
+            dropdownParent: "#state_details"
         });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');

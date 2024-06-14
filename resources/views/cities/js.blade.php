@@ -3,7 +3,9 @@
     $(document).on('show.bs.modal', '#city_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
-        modal.addClass('loading');
+        $("#idCountry,#idState").select2({
+            dropdownParent: "#city_details"
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {
@@ -36,10 +38,10 @@
         // $('#register').val('');
         $('#name').val('');
     });
-     
-    $('#idCountry').on('select2:select', function(event) {
+    $(document).ready(function() {
+        $('#idCountry').on('select2:select', function(event) {
             var idCountry = $(this).val();
-           
+
             $.ajax({
                 url: './combo/' + idCountry + '/state',
                 method: "GET",
@@ -57,4 +59,5 @@
                 }
             });
         });
+    });
 </script>
