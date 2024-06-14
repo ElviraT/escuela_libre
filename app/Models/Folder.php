@@ -20,6 +20,6 @@ class Folder extends Model
 
     public function file(): HasMany
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class, 'id_folder');
     }
 }

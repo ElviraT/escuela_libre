@@ -68,7 +68,7 @@
                                                                                     data-bs-toggle="modal"
                                                                                     data-bs-target="#confirm-delete"
                                                                                     data-bs-record-id="{{ $item->id }}"
-                                                                                    data-bs-record-title="{{ 'la modalidad ' }}{{ $item->name }}"
+                                                                                    data-bs-record-title="{{ 'el banco ' }}{{ $item->name }}"
                                                                                     data-bs-action="{{ route('banks.destroy', $item) }}"
                                                                                     title="{{ __('Delete Bank') }}"><i
                                                                                         class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
@@ -92,10 +92,12 @@
         </div>
     </div>
 @endsection
+
 @section('modal')
     @include('modales.bank')
     @include('modales.eliminar')
 @endsection
+
 @section('js')
     @include('banks.js')
 @endsection

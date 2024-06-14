@@ -42,4 +42,34 @@
             dictDefaultMessage: "Arrastra y suelta los archivos aquí o haz click para seleccionar los archivos",
         };
     });
+
+    $(document).on('show.bs.modal', '#visor_imagen', function(e) {
+        var modal = $(e.delegateTarget),
+            data = $(e.relatedTarget).data();
+        if (data.bsRecordImg != undefined) {
+            var modalHeight = $(this).find(".modal-content").height();
+            $(this).find(".modal-dialog").height(modalHeight);
+            var image = data.bsRecordImg;
+            if (data.bsRecordExtension == 'jpg' || data.bsRecordExtension == 'png' || data.bsRecordExtension ==
+                'jpeg') {
+                $('#img').attr('hidden', false);
+                $('#iframe-container').attr('hidden', true);
+                $('#img').attr("src", image);
+            } else { // if (data.bsRecordExtension == 'pdf') {
+                $('#img').attr('hidden', true);
+                $('#iframe-container').attr('hidden', false);
+                $("#iframe-container").append('<iframe id="myIframe" src="' + image +
+                    '" width="600" height="400"></iframe>');
+                // } else {
+                //     $('#img').attr("src", "{{ asset('assets/img/images.png') }}");
+            }
+            $('.title').text(data.bsRecordTitle);
+        }
+    });
+    $(document).on('hidden.bs.modal', '#visor_imagen', function(e) {
+        $('#img').attr("src", "{{ asset('assets/img/images.png') }}");
+        $('#img').attr('hidden', true);
+        $('#iframe-container').attr('hidden', true);
+        $("#myIframe").remove();
+    });
 </script>

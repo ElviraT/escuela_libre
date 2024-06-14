@@ -20,13 +20,6 @@
                         <input type="file" name="file" multiple required>
                     </div>
             </div>
-
-            {{-- <div class="modal-footer">
-                <button type="button" data-bs-dismiss="modal"
-                    class="btn btn-back cancel-btn me-2">@lang('Close')</button>
-                <button type="submit" data-bs-dismiss="modal"
-                    class="btn btn-primary paid-continue-btn">@lang('Submit')</button>
-            </div> --}}
             </form>
         </div>
     </div>

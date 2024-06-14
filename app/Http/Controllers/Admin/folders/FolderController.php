@@ -40,7 +40,8 @@ class FolderController extends Controller
     {
         $folders = Folder::findOrFail($id);
         $subfolders = $folders->childfolder;
-        return view('my_unit.folders.show', compact('folders', 'subfolders'));
+        $files = $folders->file;
+        return view('my_unit.folders.show', compact('folders', 'subfolders', 'files'));
     }
 
     /**

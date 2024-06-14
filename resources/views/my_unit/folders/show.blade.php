@@ -91,6 +91,56 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <hr>
+                                    <table class="table table-responsive table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'Nº' }}</th>
+                                                <th>@lang('Name')</th>
+                                                <th>@lang('Created on')</th>
+                                                <th>@lang('Actions')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($files as $key => $file)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>
+                                                        @php
+                                                            $extension = pathinfo($file->name);
+                                                        @endphp
+                                                        {{-- {{ dd($extension['extension']) }} --}}
+                                                        @if ($extension['extension'] == 'jpg' || $extension['extension'] == 'png' || $extension['extension'] == 'jpeg')
+                                                            <img src="{{ asset('assets/img/icons/icono_imagen.png') }}"
+                                                                alt="" width="20px">
+                                                        @elseif($extension['extension'] == 'pdf')
+                                                            <img src="{{ asset('assets/img/icons/icono_pdf.jpg') }}"
+                                                                alt="" width="20px">
+                                                        @elseif($extension['extension'] == 'docx')
+                                                            <img src="{{ asset('assets/img/icons/icono_word.png') }}"
+                                                                alt="" width="20px">
+                                                        @elseif($extension['extension'] == 'pptx')
+                                                            <img src="{{ asset('assets/img/icons/icono_pp.jpg') }}"
+                                                                alt="" width="20px">
+                                                        @elseif($extension['extension'] == 'xlsx')
+                                                            <img src="{{ asset('assets/img/icons/icono_xls.png') }}"
+                                                                alt="" width="20px">
+                                                        @endif
+                                                        <a href="#" data-bs-toggle="modal"
+                                                            data-bs-target="#visor_imagen"
+                                                            data-bs-record-title="{{ $file->name }}"
+                                                            data-bs-record-extension="{{ $extension['extension'] }}"
+                                                            data-bs-record-img="{{ asset('storage/' . $folders->name . '/' . $file->name) }}"
+                                                            style="color: black">
+                                                            {{ $file->name }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ $file->created_at->format('j F, Y, g:i A') }}</td>
+                                                    <td></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +154,7 @@
     @include('modales.folder')
     @include('modales.edit_folder')
     @include('modales.upload')
+    @include('modales.visor_img')
     @include('modales.eliminar')
 @endsection
 @section('js')

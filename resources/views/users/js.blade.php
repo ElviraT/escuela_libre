@@ -57,6 +57,7 @@
         $('#address').val('');
         $('#blah').attr("src", "{{ asset('assets/img/avatar.png') }}");
     });
+
     $(document).ready(function() {
         var gender = $('#gender').val();
         var country = $('#country').val();

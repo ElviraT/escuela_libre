@@ -1,9 +1,15 @@
 <script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
 <script>
+    $(document).ready(function() {
+
+    });
     $(document).on('show.bs.modal', '#state_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
         modal.addClass('loading');
+        $(document).ready(function() {
+            $(".select").select2();
+        });
         $("#form-enviar").attr('action', data.bsAction);
         $("#method").val('post');
         if (data.bsRecordId != undefined) {
