@@ -23,6 +23,7 @@ use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Schedules\StudentsController;
 use App\Http\Controllers\Schedules\TeacherController as SchedulesTeacherController;
 use App\Http\Controllers\Schedules\TimeController;
@@ -130,6 +131,7 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{state}/city', 'city');
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
         Route::match(['get', 'post'], '/{grade}/group', 'group');
+        Route::match(['get', 'post'], '/{grade}/matter', 'matter');
     });
     // CRUD BANKS
     Route::get('/banks', [BankController::class, 'index'])->name('banks');
@@ -182,6 +184,14 @@ Route::middleware('auth')->group(function () {
     // CRUD FILE
     Route::post('/folders/file', [FileController::class, 'upload'])->name('files.upload');
     Route::delete('/files/destroy/{file}', [FileController::class, 'destroy'])->name('files.destroy');
+
+    // CRUD RATINGS
+    Route::get('/ratings', [RatingController::class, 'index'])->name('ratings');
+    Route::get('/ratings/data/get/{data}', [RatingController::class, 'getData']);
+    Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
+    Route::get('/ratings/{rating}/edit', [RatingController::class, 'edit'])->name('ratings.edit');
+    Route::put('/ratings/update/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+    Route::delete('/ratings/destroy/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
 });
 
 require __DIR__ . '/auth.php';

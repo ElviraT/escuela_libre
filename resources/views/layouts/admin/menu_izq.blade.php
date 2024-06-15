@@ -141,14 +141,14 @@
                                     </a>
                                 </li>
                             @endcan
-                            {{-- @can('shedules.students') --}}
-                            <li>
-                                <a class="{{ @request()->routeIs('shedules.students') ? 'active' : ' ' }}"
-                                    href="{{ route('shedules.students') }}" onclick=" loading_show();">
-                                    @lang('Schedules Students')
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
+                            @can('shedules.students')
+                                <li>
+                                    <a class="{{ @request()->routeIs('shedules.students') ? 'active' : ' ' }}"
+                                        href="{{ route('shedules.students') }}" onclick=" loading_show();">
+                                        @lang('Schedules Students')
+                                    </a>
+                                </li>
+                            @endcan
 
                             {{-- @can('shedules.teacher') --}}
                             <li>
@@ -169,6 +169,14 @@
                         </a>
                     </li>
                 @endcan
+                {{-- @can('ratings') --}}
+                <li>
+                    <a class="{{ @request()->routeIs('ratings') ? 'active' : ' ' }}" href="{{ route('ratings') }}"
+                        onclick=" loading_show();"><i class="fe fe-check-circle"></i>
+                        <span> @lang('Ratings')</span>
+                    </a>
+                </li>
+                {{-- @endcan --}}
             </ul>
         </div>
     </div>
