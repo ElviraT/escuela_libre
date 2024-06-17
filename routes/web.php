@@ -23,6 +23,7 @@ use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Schedules\StudentsController;
 use App\Http\Controllers\Schedules\TeacherController as SchedulesTeacherController;
@@ -189,9 +190,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/ratings', [RatingController::class, 'index'])->name('ratings');
     Route::get('/ratings/data/get/{data}', [RatingController::class, 'getData']);
     Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
-    Route::get('/ratings/{rating}/edit', [RatingController::class, 'edit'])->name('ratings.edit');
-    Route::put('/ratings/update/{rating}', [RatingController::class, 'update'])->name('ratings.update');
-    Route::delete('/ratings/destroy/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
+    // Route::get('/ratings/{rating}/edit', [RatingController::class, 'edit'])->name('ratings.edit');
+    // Route::put('/ratings/update/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+    // Route::delete('/ratings/destroy/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
+    // CRUD Payments
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
+    Route::post('/payments/store', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+    Route::put('/payments/update/{payment}', [PaymentController::class, 'update'])->name('payments.update');
+    Route::delete('/payments/destroy/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
 });
 
 require __DIR__ . '/auth.php';

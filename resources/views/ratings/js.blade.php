@@ -93,11 +93,41 @@
             var actionCell = row.insertCell();
             var actionButton = document.createElement('button');
             actionButton.setAttribute('id', `action-button-${i}`); // ID único para cada botón
-            actionButton.setAttribute('data-toggle', 'modal');
-            actionButton.setAttribute('data-target', `#actionModal-${i}`); // ID único para cada modal
-            actionButton.innerHTML = "<i class='fas fa-edit'></i>"; // Icono o texto para el botón
+            actionButton.setAttribute('data-bs-toggle', 'modal');
+            actionButton.setAttribute('class', 'btn btn-greys me-2');
+            actionButton.setAttribute('data-bs-record-id', data[i].ID);
+            actionButton.setAttribute('data-bs-target', `#actionModal`); // ID único para cada modal
+            actionButton.innerHTML = "<i class='fa fa-edit me-1'></i>"; // Icono o texto para el botón
             actionCell.appendChild(actionButton);
+            console.log(data[i].ID);
         }
         document.getElementById('table-container').appendChild(table);
     }
+
+    $(document).on('show.bs.modal', '#actionModal', function(e) {
+        var modal = $(e.delegateTarget),
+            data = $(e.relatedTarget).data();
+        $('.title').text("@lang('Add Rating')");
+        var id_teacher = $('#combo_teacher').val();
+        var text_teacher = $('#combo_teacher').find('option:selected').text();
+        var id_grade = $('#combo_grade').val();
+        var text_grade = $('#combo_grade').find('option:selected').text();
+        var id_group = $('#combo_group').val();
+        var text_group = $('#combo_group').find('option:selected').text();
+        var id_matter = $('#combo_matter').val();
+        var text_matter = $('#combo_matter').find('option:selected').text();
+        $('.modal_registro_student_id', modal).val(data.bsRecordId);
+        console.log(id_teacher, text_teacher);
+        $('#name').val('');
+        $('#teacher').text(text_teacher);
+        $('#id_teacher').val(id_teacher);
+        $('#gg').text(text_grade + ' / ' + text_group);
+        $('#id_grade').val(id_grade);
+        $('#id_group').val(id_group);
+        $('#matter').text(text_matter);
+        $('#id_matter').val(id_matter);
+    });
+    $(document).on('hidden.bs.modal', '#actionModal', function(e) {
+        $('#name').val('');
+    });
 </script>

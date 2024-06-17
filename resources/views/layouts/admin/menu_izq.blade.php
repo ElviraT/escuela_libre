@@ -97,6 +97,14 @@
                             </a>
                         </li>
                     @endcan
+                    @can('payments')
+                        <li>
+                            <a class="{{ @request()->routeIs('payments') ? 'active' : ' ' }}" href="{{ route('payments') }}"
+                                onclick=" loading_show();"><i class="fe fe-credit-card"></i> <span>
+                                    @lang('Payments')</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endcanany
                 @canany(['settings', 'controls'])
                     <li class="menu-title"><span>@lang('Settings')</span></li>
@@ -169,14 +177,14 @@
                         </a>
                     </li>
                 @endcan
-                {{-- @can('ratings') --}}
-                <li>
-                    <a class="{{ @request()->routeIs('ratings') ? 'active' : ' ' }}" href="{{ route('ratings') }}"
-                        onclick=" loading_show();"><i class="fe fe-check-circle"></i>
-                        <span> @lang('Ratings')</span>
-                    </a>
-                </li>
-                {{-- @endcan --}}
+                @can('ratings')
+                    <li>
+                        <a class="{{ @request()->routeIs('ratings') ? 'active' : ' ' }}" href="{{ route('ratings') }}"
+                            onclick=" loading_show();"><i class="fe fe-check-circle"></i>
+                            <span> @lang('Ratings')</span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </div>
     </div>

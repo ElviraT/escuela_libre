@@ -73,8 +73,8 @@
         </div>
     @endsection
     @section('modal')
-        {{-- @include('modales.region')
-    @include('modales.eliminar') --}}
+        @include('modales.rating')
+        {{--  @include('modales.eliminar') --}}
     @endsection
     @section('js')
         @include('ratings.js')

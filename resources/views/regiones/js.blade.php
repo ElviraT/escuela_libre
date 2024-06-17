@@ -1,8 +1,5 @@
 <script src="{{ asset('assets/plugins/select2/js/custom-select.js') }}"></script>
 <script>
-    $(document).ready(function() {
-
-    });
     $(document).on('show.bs.modal', '#state_details', function(e) {
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();

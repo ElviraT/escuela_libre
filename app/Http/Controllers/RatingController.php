@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Grade;
 use App\Models\Matter;
+use App\Models\Rating;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class RatingController extends Controller
 {
@@ -28,33 +31,37 @@ class RatingController extends Controller
         return view('ratings.index', compact('teachers', 'grades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            $ratingData = [
+                'id_teacher' => $request->id_teacher,
+                'id_student' => $request->id_student,
+                'id_matter' => $request->id_matter,
+                'id_grade' => $request->id_grade,
+                'id_group' => $request->id_group,
+                'rating' => $request->rating,
+                'comment' => $request->comment,
+            ];
+
+            // Define the unique criteria for identifying an existing rating
+            $uniqueCriteria = [
+                'id_teacher' => $request->id_teacher,
+                'id_student' => $request->id_student,
+                'id_matter' => $request->id_matter,
+                'id_grade' => $request->id_grade,
+                'id_group' => $request->id_group,
+            ];
+
+            $rating = Rating::updateOrCreate($uniqueCriteria, $ratingData);
+            Toastr::success(__('added successfully'));
+        } catch (\Illuminate\Database\QueryException $e) {
+            Toastr::error(__('An error occurred please try again'), 'error');
+        }
+        return Redirect::back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
