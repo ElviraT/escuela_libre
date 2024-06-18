@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RelationshipSeeder::class);
         $this->call(Day::class);
         $this->call(ColorSeeder::class);
+        $this->call(MethodPaymentsSeeder::class);
     }
 }

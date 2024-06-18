@@ -28,19 +28,17 @@
                                                     <th>@lang('Name')</th>
                                                     <th>@lang('Titular')</th>
                                                     <th>@lang('Account')</th>
+                                                    <th>@lang('Saldo')</th>
                                                     <th class="no-sort">@lang('Action')</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($banks as $item)
                                                     <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                {{ $item->name }}
-                                                            </h2>
-                                                        </td>
+                                                        <td>{{ $item->name }}</td>
                                                         <td>{{ $item->titular }}</span>
                                                         <td>{{ $item->account }}</span>
+                                                        <td>{{ number_format($item->monto, 2) }}</span>
                                                         </td>
                                                         <td class="d-flex align-items-center">
                                                             <div class="dropdown dropdown-action">

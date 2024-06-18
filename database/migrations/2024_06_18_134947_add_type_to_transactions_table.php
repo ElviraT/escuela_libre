@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_status')->after('payment_date')->default(3);
-            $table->foreign('id_status')->references('id')->on('statuses');
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->string('type')->after('date')->default('Credito');
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::table('transactions', function (Blueprint $table) {
             //
         });
     }

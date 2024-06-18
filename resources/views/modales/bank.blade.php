@@ -15,25 +15,32 @@
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id" value="" class="modal_registro_bank_id" />
                     <div class="row">
-                        <div class="col-12 mb-3">
+                        <div class="col-md-6 col-sm-12 mb-3">
                             <div class="input-block mb-0">
                                 <label>@lang('Name') <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name" class="form-control"
                                     placeholder="@lang('Enter Name')">
                             </div>
                         </div>
-                        <div class="col-12 mb-3">
+                        <div class="col-md-6 col-sm-12 mb-3">
                             <div class="input-block mb-0">
                                 <label>@lang('Titular') <span class="text-danger">*</span></label>
                                 <input type="text" name="titular" id="titular" class="form-control"
                                     placeholder="@lang('Enter Titular')">
                             </div>
                         </div>
-                        <div class="col-12 mb-3">
+                        <div class="col-md-6 col-sm-12 mb-3">
                             <div class="input-block mb-0">
                                 <label>@lang('Account') <span class="text-danger">*</span></label>
                                 <input type="text" name="account" id="account" class="form-control"
                                     placeholder="@lang('Enter Account')">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mb-3">
+                            <div class="input-block mb-0">
+                                <label>@lang('Initial Balance') <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" name="monto" id="monto" class="form-control"
+                                    placeholder="@lang('Enter Initial Balance')">
                             </div>
                         </div>
 

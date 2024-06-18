@@ -16,7 +16,8 @@ class Payment extends Model
         'monto',
         'reference',
         'payment_date',
-        'id_status'
+        'id_status',
+        'id_method'
     ];
 
     public function representative(): BelongsTo

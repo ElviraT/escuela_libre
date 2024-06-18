@@ -40,10 +40,14 @@
                                                         <td>{{ $item->bank->name }}</td>
                                                         <td>{{ $item->monto }}</td>
                                                         <td>{{ $item->payment_date }}</td>
-                                                        <td><span class="badge"
-                                                                style="background-color: #E1FFED !important; color: {{ $item->status->color }} !important;">
-                                                                {{ $item->status->name }}
-                                                            </span>
+                                                        <td><a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#change_status"
+                                                                data-bs-record-id="{{ $item->id }}">
+                                                                <span class="badge"
+                                                                    style="background-color: #E1FFED !important; color: {{ $item->status->color }} !important;">
+                                                                    {{ $item->status->name }}
+                                                                </span>
+                                                            </a>
                                                         </td>
                                                         <td class="d-flex align-items-center">
                                                             <div class="dropdown dropdown-action">
@@ -98,6 +102,7 @@
 
 @section('modal')
     @include('modales.payment')
+    @include('modales.change_status')
     @include('modales.eliminar')
 @endsection
 

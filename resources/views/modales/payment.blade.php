@@ -66,16 +66,37 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="input-block mb-0">
-                                <label>@lang('Status')</label>
-                                <select class="form-control form-small select" name="id_status" id="id_status">
-                                    <option>Select status</option>
-                                    @foreach ($status as $st)
-                                        <option value="{{ $st->id }}">{{ $st->name }}
+                                <label>@lang('Method Payment')</label>
+                                <select class="form-control form-small select" name="id_method" id="id_method">
+                                    <option>Select method</option>
+                                    @foreach ($methods as $method)
+                                        <option value="{{ $method->id }}">{{ $method->name }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="input-block mb-0">
+                                <label>@lang('Description')</label>
+                                <input type="text" name="description" id="description" class="form-control"
+                                    placeholder="@lang('Enter Description')">
+                            </div>
+                        </div>
+                        @can('payments.change')
+                            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                <div class="input-block mb-0">
+                                    <label>@lang('Status')</label>
+                                    <select class="form-control form-small select" name="id_status" id="status">
+                                        <option>Select status</option>
+                                        @foreach ($status as $st)
+                                            <option value="{{ $st->id }}">{{ $st->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endcan
                     </div>
                 </div>
                 <div class="modal-footer">

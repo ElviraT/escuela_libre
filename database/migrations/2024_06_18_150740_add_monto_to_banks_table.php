@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_status')->after('payment_date')->default(3);
-            $table->foreign('id_status')->references('id')->on('statuses');
+        Schema::table('banks', function (Blueprint $table) {
+            $table->double('monto', 10, 2)->after('titular')->default('0.00');
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::table('banks', function (Blueprint $table) {
             //
         });
     }

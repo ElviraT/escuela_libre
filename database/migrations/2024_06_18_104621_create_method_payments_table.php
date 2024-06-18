@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_status')->after('payment_date')->default(3);
+        Schema::create('method_payments', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('id_status');
+            $table->timestamps();
+
             $table->foreign('id_status')->references('id')->on('statuses');
         });
     }
@@ -22,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payments', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('method_payments');
     }
 };

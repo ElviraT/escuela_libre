@@ -190,15 +190,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/ratings', [RatingController::class, 'index'])->name('ratings');
     Route::get('/ratings/data/get/{data}', [RatingController::class, 'getData']);
     Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
-    // Route::get('/ratings/{rating}/edit', [RatingController::class, 'edit'])->name('ratings.edit');
-    // Route::put('/ratings/update/{rating}', [RatingController::class, 'update'])->name('ratings.update');
-    // Route::delete('/ratings/destroy/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
+
     // CRUD Payments
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::post('/payments/store', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
     Route::put('/payments/update/{payment}', [PaymentController::class, 'update'])->name('payments.update');
+    Route::post('payments/change', [PaymentController::class, 'change'])->name('payments.change');
     Route::delete('/payments/destroy/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+    // Reminder
+    Route::get('/reminder/{id}', [DashboardController::class, 'reminder']);
+    Route::post('/dashboard/change', [DashboardController::class, 'change']);
 });
 
 require __DIR__ . '/auth.php';
