@@ -29,32 +29,32 @@
                         </ul>
                     </li>
                 @endcanany
-                {{-- @canany(['chatify', 'tickets']) --}}
-                <li class="submenu">
-                    <a href="#"><i class="fe fe-map-pin"></i> <span> @lang('Direction')</span> <span
-                            class="menu-arrow"></span></a>
-                    <ul>
-                        @can('countries')
-                            <li><a href="{{ route('countries') }}"
-                                    class="nav-link {{ @request()->routeIs('countries') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('Country')</a>
-                            </li>
-                        @endcan
-                        @can('regiones')
-                            <li><a href="{{ route('regiones') }}"
-                                    class="nav-link {{ @request()->routeIs('regiones') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('State')</a>
-                            </li>
-                        @endcan
-                        @can('cities')
-                            <li><a href="{{ route('cities') }}"
-                                    class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('City')</a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-                {{-- @endcanany --}}
+                @canany(['countries', 'regiones', 'cities'])
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-map-pin"></i> <span> @lang('Direction')</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            @can('countries')
+                                <li><a href="{{ route('countries') }}"
+                                        class="nav-link {{ @request()->routeIs('countries') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('Country')</a>
+                                </li>
+                            @endcan
+                            @can('regiones')
+                                <li><a href="{{ route('regiones') }}"
+                                        class="nav-link {{ @request()->routeIs('regiones') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('State')</a>
+                                </li>
+                            @endcan
+                            @can('cities')
+                                <li><a href="{{ route('cities') }}"
+                                        class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('City')</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
                 @canany(['users', 'teachers', 'representatives', 'permissions'])
                     <li class="menu-title"><span>@lang('User Management')</span></li>
                     @canany(['users'])
@@ -185,6 +185,26 @@
                         </a>
                     </li>
                 @endcan
+                @canany(['report.student'])
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-clipboard"></i> <span> @lang('Reports')</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            @can('report.student')
+                                <li><a href="{{ route('report.student') }}"
+                                        class="nav-link {{ @request()->routeIs('report.student') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('Report Ratings')</a>
+                                </li>
+                            @endcan
+                            {{-- @can('tickets')
+                            <li><a href="{{ route('tickets', '5') }}"
+                                    class="nav-link {{ @request()->routeIs('tickets') || @request()->routeIs('tickets.edit') ? 'active' : ' ' }}"
+                                    onclick=" loading_show();">@lang('Ticket')</a>
+                            </li>
+                        @endcan --}}
+                        </ul>
+                    </li>
+                @endcanany
             </ul>
         </div>
     </div>

@@ -25,6 +25,7 @@ use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\Reports\ReportStudentController;
 use App\Http\Controllers\Schedules\StudentsController;
 use App\Http\Controllers\Schedules\TeacherController as SchedulesTeacherController;
 use App\Http\Controllers\Schedules\TimeController;
@@ -201,6 +202,9 @@ Route::middleware('auth')->group(function () {
     // Reminder
     Route::get('/reminder/{id}', [DashboardController::class, 'reminder']);
     Route::post('/dashboard/change', [DashboardController::class, 'change']);
+    // REPORTES
+    Route::match(['get', 'post'], '/reports/students', [ReportStudentController::class, 'index'])->name('report.student');
+    Route::get('/generar-pdf-student/{id}', [ReportStudentController::class, 'generatePdf'])->name('pdf.student');
 });
 
 require __DIR__ . '/auth.php';

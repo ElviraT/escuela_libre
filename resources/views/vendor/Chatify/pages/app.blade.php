@@ -17,7 +17,7 @@
                     </nav>
                 </nav>
                 {{-- Search input --}}
-                <input type="text" class="messenger-search" placeholder="Search" />
+                <input type="text" class="messenger-search" placeholder="@lang('Search')" />
                 {{-- Tabs --}}
                 {{-- <div class="messenger-listView-tabs">
                 <a href="#" class="active-tab" data-view="users">
@@ -74,16 +74,16 @@
                 </nav>
                 {{-- Internet connection --}}
                 <div class="internet-connection">
-                    <span class="ic-connected">Connected</span>
-                    <span class="ic-connecting">Connecting...</span>
-                    <span class="ic-noInternet">No internet access</span>
+                    <span class="ic-connected">@lang('Connected')</span>
+                    <span class="ic-connecting">@lang('Connecting...')</span>
+                    <span class="ic-noInternet">@lang('No internet access')</span>
                 </div>
             </div>
 
             {{-- Messaging area --}}
             <div class="m-body messages-container app-scroll">
                 <div class="messages">
-                    <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                    <p class="message-hint center-el"><span>@lang('Please select a chat to start messaging')</span></p>
                 </div>
                 {{-- Typing indicator --}}
                 <div class="typing-indicator">
@@ -106,7 +106,7 @@
         <div class="messenger-infoView app-scroll">
             {{-- nav actions --}}
             <nav>
-                <p>User Details</p>
+                <p>@lang('User Details')</p>
                 <a href="#"><i class="fas fa-times"></i></a>
             </nav>
             {!! view('Chatify::layouts.info')->render() !!}

@@ -40,28 +40,10 @@
         margin-top: -7px;
     }
 
-    #sidebar {
+
+    #sidebar-menu {
         overflow-y: auto !important;
         margin-bottom: 47px !important;
-    }
-
-    #sidebar::-webkit-scrollbar {
-        width: 7px;
-        /* width of the entire scrollbar */
-    }
-
-    #sidebar::-webkit-scrollbar-track {
-        background: #00acfe;
-        /* color of the tracking area */
-    }
-
-    #sidebar::-webkit-scrollbar-thumb {
-        background-color: #4a82a1;
-        /* color of the scroll thumb */
-        border-radius: 20px;
-        /* roundness of the scroll thumb */
-        border: 0.5px solid #00acfe;
-        /* creates padding around scroll thumb */
     }
 
     .datetimepicker {
@@ -82,9 +64,5 @@
         opacity: 0.7;
         display: none;
         z-index: 2;
-    }
-
-    #scrolltop:hover {
-        opacity: 1;
     }
 </style>

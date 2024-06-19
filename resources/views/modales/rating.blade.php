@@ -16,17 +16,16 @@
                     <input type="hidden" id="id_student" name="id_student" value=""
                         class="modal_registro_student_id" />
                     <div class="row">
-                        <div class="col-12">
-                            <strong>@lang('Teacher'):&nbsp;</strong><span id="teacher"></span><br>
-                            <strong>@lang('Grade'){{ ' / ' }}@lang('Group'):&nbsp;</strong><span
-                                id="gg"></span><br>
-                            <strong>@lang('Matter'):&nbsp;</strong><span id="matter"></span>
+                        <div class="col-12 mb-2">
+                            <p><strong>@lang('Teacher'):&nbsp;</strong><span id="teacher"></span></p>
+                            <p> <strong>@lang('Grade'){{ ' / ' }}@lang('Group'):&nbsp;</strong><span
+                                    id="gg"></span></p>
+                            <p><strong>@lang('Matter'):&nbsp;</strong><span id="matter"></span></p>
                             <input type="hidden" id="id_matter" name="id_matter">
                             <input type="hidden" id="id_grade" name="id_grade">
                             <input type="hidden" id="id_group" name="id_group">
                             <input type="hidden" id="id_teacher" name="id_teacher">
                         </div>
-                        <br>
                         <hr>
                         <div class="col-12 mb-3">
                             <div class="input-block mb-0">

@@ -12,8 +12,8 @@
                                 <table class="table table-center table-hover datatable" width="100%">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>@lang('Representative')</th>
-                                            <th Class="no-sort">@lang('Actions')</th>
+                                            <th width="80%">@lang('Representative')</th>
+                                            <th width="20%" Class="no-sort">@lang('Actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -22,17 +22,17 @@
                                                 <td>{{ $item->name . ' ' . $item->last_name }}</td>
                                                 <td class="d-flex align-items-center">
 
-                                                    <a href="#" type="button" class="btn btn-greys me-2"
-                                                        onclick="recordatorio('{{ $item->id }}')">
+                                                    <a href="#" type="button" class="btn btn-greys btn-sm me-2"
+                                                        onclick="recordatorio('{{ $item->id }}')"
+                                                        title="{{ __('Reminder') }}">
                                                         <i class="fa fa-envelope me-1"></i>
-                                                        {{ __('Reminder') }}
                                                     </a>
 
-                                                    <a href="#" type="button" class="btn btn-greys me-2"
+                                                    <a href="#" type="button" class="btn btn-greys btn-sm me-2"
                                                         data-bs-toggle="modal" data-bs-target="#cambiar_status"
                                                         data-bs-record-id="{{ $item->id }}"
                                                         title="{{ __('Change Status') }}"><i
-                                                            class="fa fa-user-times me-2"></i>@lang('Change Status')
+                                                            class="fa fa-user-times me-2"></i>
                                                     </a>
                                                 </td>
                                             </tr>

@@ -25,11 +25,11 @@
 
 <body>
     <div class="rec">
-        <p>Hola! <strong>{{ $user->name . ' ' . $user->last_name }}</strong>, </p>
-        <p>se le recuerda que tiene un pango
-            pendiente.
+        <p>{{ '¡Hola!' }} <strong>{{ $user->name . ' ' . $user->last_name }}</strong>,
+            {{ 'ante todo reciba un cordial saludo,' }}</p>
+        <p>{{ 'la presente es para recordarle que tiene un pango pendiente.' }}</p>
+        <p>{{ 'del mes en curso por motivo de' }} <strong>{{ 'Cobro de mensualidad de ' }}{{ env('APP_NAME') }}</strong>
         </p>
-        <p>del mes en curso por motivo de <strong>Cobro de mensualidad de {{ env('APP_NAME') }}</strong></p>
     </div>
 </body>
 

@@ -349,7 +349,30 @@
     "Edit Rating": "Editar Calificación",
     "Delete Rating": "Eliminar Calificación",
     "Rating": "Calificación",
-    "Comment": "Comentario" 
+    "Comment": "Comentario",
+    "Defaulters Of The Month": "Morosos Del Mes",
+    "Reminder": "Enviar Recordatorio",
+    "Change Status": "Cambiar Estatus",
+    "Search":"Buscar",
+    "Saved Messages": "Mensajes guardados",
+    "You": "Tú",
+    "Save messages secretly": "Guardar mensajes en secreto",
+    "MESSAGES": "MENSAJES",
+    "Favorites": "Favoritos",
+    "Your Space": "Tu espacio",
+    "Your Profile": "Tu perfil",
+    "All Messages": "Todos los mensajes",
+    "Type to search..": "Escribe para buscar..",
+    "Connected": "Conectado",
+    "Connecting...": "Conectando...",
+    "No internet access":"Sin acceso a Internet",
+    "Please select a chat to start messaging": "Por favor seleccione un chat para comenzar a enviar mensajes",
+    "User Details": "Detalles de usuario",
+    "Your contact list is empty": "Tu lista de contactos está vacía",
+    "Report Ratings": "Informe de calificaciones",
+    "Reports":"Informes",
+    "Average":"Promedio",
+    "Download": "Descargar"
 
 
 }

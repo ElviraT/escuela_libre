@@ -55,8 +55,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <button class="btn btn-primary" onclick="cargar_tabla()">enviar</button>
+                                        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+                                            <button class="btn btn-primary mt-1" onclick="cargar_tabla()"><i
+                                                    class="fa fa-search"></i>&nbsp;@lang('Search')</button>
                                         </div>
                                     </div>
                                     <div class="row">

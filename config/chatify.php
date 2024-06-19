@@ -8,7 +8,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Salud Integral 360 Messenger'),
+    'name' => env('CHATIFY_NAME', env('APP_NAME')),
 
     /*
     |-------------------------------------
