@@ -23,6 +23,9 @@ use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\Reports\ReportStudentController;
 use App\Http\Controllers\Schedules\StudentsController;
 use App\Http\Controllers\Schedules\TeacherController as SchedulesTeacherController;
 use App\Http\Controllers\Schedules\TimeController;
@@ -130,6 +133,7 @@ Route::middleware('auth')->group(function () {
         Route::match(['get', 'post'], '/{state}/city', 'city');
         Route::match(['get', 'post'], '/{idUser}/user', 'user');
         Route::match(['get', 'post'], '/{grade}/group', 'group');
+        Route::match(['get', 'post'], '/{grade}/matter', 'matter');
     });
     // CRUD BANKS
     Route::get('/banks', [BankController::class, 'index'])->name('banks');
@@ -182,6 +186,25 @@ Route::middleware('auth')->group(function () {
     // CRUD FILE
     Route::post('/folders/file', [FileController::class, 'upload'])->name('files.upload');
     Route::delete('/files/destroy/{file}', [FileController::class, 'destroy'])->name('files.destroy');
+
+    // CRUD RATINGS
+    Route::get('/ratings', [RatingController::class, 'index'])->name('ratings');
+    Route::get('/ratings/data/get/{data}', [RatingController::class, 'getData']);
+    Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
+
+    // CRUD Payments
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
+    Route::post('/payments/store', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+    Route::put('/payments/update/{payment}', [PaymentController::class, 'update'])->name('payments.update');
+    Route::post('payments/change', [PaymentController::class, 'change'])->name('payments.change');
+    Route::delete('/payments/destroy/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+    // Reminder
+    Route::get('/reminder/{id}', [DashboardController::class, 'reminder']);
+    Route::post('/dashboard/change', [DashboardController::class, 'change']);
+    // REPORTES
+    Route::match(['get', 'post'], '/reports/students', [ReportStudentController::class, 'index'])->name('report.student');
+    Route::get('/generar-pdf-student/{id}', [ReportStudentController::class, 'generatePdf'])->name('pdf.student');
 });
 
 require __DIR__ . '/auth.php';

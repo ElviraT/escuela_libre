@@ -15,6 +15,7 @@
                 $('#name', modal).val(obj.name);
                 $('#account', modal).val(obj.account);
                 $('#titular', modal).val(obj.titular);
+                $('#monto', modal).val(obj.monto.toFixed(2));
 
             });
         } else {
@@ -27,5 +28,6 @@
         $('#name').val('');
         $('#account').val('');
         $('#titular').val('');
+        $('#monto').val('');
     });
 </script>

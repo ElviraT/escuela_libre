@@ -29,32 +29,32 @@
                         </ul>
                     </li>
                 @endcanany
-                {{-- @canany(['chatify', 'tickets']) --}}
-                <li class="submenu">
-                    <a href="#"><i class="fe fe-map-pin"></i> <span> @lang('Direction')</span> <span
-                            class="menu-arrow"></span></a>
-                    <ul>
-                        @can('countries')
-                            <li><a href="{{ route('countries') }}"
-                                    class="nav-link {{ @request()->routeIs('countries') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('Country')</a>
-                            </li>
-                        @endcan
-                        @can('regiones')
-                            <li><a href="{{ route('regiones') }}"
-                                    class="nav-link {{ @request()->routeIs('regiones') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('State')</a>
-                            </li>
-                        @endcan
-                        @can('cities')
-                            <li><a href="{{ route('cities') }}"
-                                    class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
-                                    onclick=" loading_show();">@lang('City')</a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-                {{-- @endcanany --}}
+                @canany(['countries', 'regiones', 'cities'])
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-map-pin"></i> <span> @lang('Direction')</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            @can('countries')
+                                <li><a href="{{ route('countries') }}"
+                                        class="nav-link {{ @request()->routeIs('countries') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('Country')</a>
+                                </li>
+                            @endcan
+                            @can('regiones')
+                                <li><a href="{{ route('regiones') }}"
+                                        class="nav-link {{ @request()->routeIs('regiones') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('State')</a>
+                                </li>
+                            @endcan
+                            @can('cities')
+                                <li><a href="{{ route('cities') }}"
+                                        class="nav-link {{ @request()->routeIs('cities') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('City')</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
                 @canany(['users', 'teachers', 'representatives', 'permissions'])
                     <li class="menu-title"><span>@lang('User Management')</span></li>
                     @canany(['users'])
@@ -94,6 +94,14 @@
                             <a class="{{ @request()->routeIs('permissions') || @request()->routeIs('permissions.create') ? 'active' : ' ' }}"
                                 href="{{ route('permissions') }}" onclick=" loading_show();"><i class="fe fe-lock"></i> <span>
                                     @lang('Roles & Permission')</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('payments')
+                        <li>
+                            <a class="{{ @request()->routeIs('payments') ? 'active' : ' ' }}" href="{{ route('payments') }}"
+                                onclick=" loading_show();"><i class="fe fe-credit-card"></i> <span>
+                                    @lang('Payments')</span>
                             </a>
                         </li>
                     @endcan
@@ -141,14 +149,14 @@
                                     </a>
                                 </li>
                             @endcan
-                            {{-- @can('shedules.students') --}}
-                            <li>
-                                <a class="{{ @request()->routeIs('shedules.students') ? 'active' : ' ' }}"
-                                    href="{{ route('shedules.students') }}" onclick=" loading_show();">
-                                    @lang('Schedules Students')
-                                </a>
-                            </li>
-                            {{-- @endcan --}}
+                            @can('shedules.students')
+                                <li>
+                                    <a class="{{ @request()->routeIs('shedules.students') ? 'active' : ' ' }}"
+                                        href="{{ route('shedules.students') }}" onclick=" loading_show();">
+                                        @lang('Schedules Students')
+                                    </a>
+                                </li>
+                            @endcan
 
                             {{-- @can('shedules.teacher') --}}
                             <li>
@@ -169,6 +177,34 @@
                         </a>
                     </li>
                 @endcan
+                @can('ratings')
+                    <li>
+                        <a class="{{ @request()->routeIs('ratings') ? 'active' : ' ' }}" href="{{ route('ratings') }}"
+                            onclick=" loading_show();"><i class="fe fe-check-circle"></i>
+                            <span> @lang('Ratings')</span>
+                        </a>
+                    </li>
+                @endcan
+                @canany(['report.student'])
+                    <li class="submenu">
+                        <a href="#"><i class="fe fe-clipboard"></i> <span> @lang('Reports')</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            @can('report.student')
+                                <li><a href="{{ route('report.student') }}"
+                                        class="nav-link {{ @request()->routeIs('report.student') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('Report Ratings')</a>
+                                </li>
+                            @endcan
+                            {{-- @can('tickets')
+                            <li><a href="{{ route('tickets', '5') }}"
+                                    class="nav-link {{ @request()->routeIs('tickets') || @request()->routeIs('tickets.edit') ? 'active' : ' ' }}"
+                                    onclick=" loading_show();">@lang('Ticket')</a>
+                            </li>
+                        @endcan --}}
+                        </ul>
+                    </li>
+                @endcanany
             </ul>
         </div>
     </div>

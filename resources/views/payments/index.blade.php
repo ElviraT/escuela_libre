@@ -2,17 +2,16 @@
 
 @section('content')
     <div class="row">
-        @include('settings.menu')
-        <div class="col-xl-9 col-md-8">
+        <div class="col-xl-12">
             <div class="card">
                 <div class="card-body w-100">
                     <div class="content-page-header p-0">
-                        <h5>@lang('Banks')</h5>
-                        @can('banks.store')
+                        <h5>@lang('Payments')</h5>
+                        @can('payments.store')
                             <div class="list-btn">
                                 <a class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                    data-bs-action="{{ route('banks.store') }}" data-bs-target="#bank_details"><i
-                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Bank')</a>
+                                    data-bs-action="{{ route('payments.store') }}" data-bs-target="#payment_details"><i
+                                        class="fa fa-plus-circle me-2" aria-hidden="true"></i>@lang('Add Payment')</a>
 
                             </div>
                         @endcan
@@ -25,20 +24,30 @@
                                         <table class="table table-center table-hover datatable" width="100%">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>@lang('Name')</th>
-                                                    <th>@lang('Titular')</th>
-                                                    <th>@lang('Account')</th>
-                                                    <th>@lang('Saldo')</th>
+                                                    <th>@lang('Representative')</th>
+                                                    <th>@lang('Bank')</th>
+                                                    <th>@lang('Monto')</th>
+                                                    <th>@lang('Payment Date')</th>
+                                                    <th>@lang('Status')</th>
                                                     <th class="no-sort">@lang('Action')</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($banks as $item)
+                                                @foreach ($payments as $item)
                                                     <tr>
-                                                        <td>{{ $item->name }}</td>
-                                                        <td>{{ $item->titular }}</span>
-                                                        <td>{{ $item->account }}</span>
-                                                        <td>{{ number_format($item->monto, 2) }}</span>
+                                                        <td>{{ $item->representative->user->name . ' ' . $item->representative->user->last_name }}
+                                                        </td>
+                                                        <td>{{ $item->bank->name }}</td>
+                                                        <td>{{ $item->monto }}</td>
+                                                        <td>{{ $item->payment_date }}</td>
+                                                        <td><a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#change_status"
+                                                                data-bs-record-id="{{ $item->id }}">
+                                                                <span class="badge"
+                                                                    style="background-color: #E1FFED !important; color: {{ $item->status->color }} !important;">
+                                                                    {{ $item->status->name }}
+                                                                </span>
+                                                            </a>
                                                         </td>
                                                         <td class="d-flex align-items-center">
                                                             <div class="dropdown dropdown-action">
@@ -47,28 +56,28 @@
                                                                         class="fas fa-ellipsis-v"></i></a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
                                                                     <ul>
-                                                                        @can('banks.edit')
+                                                                        @can('payments.edit')
                                                                             <li>
                                                                                 <a href="#" type="button"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-target="#bank_details"
+                                                                                    data-bs-target="#payment_details"
                                                                                     class="btn btn-greys me-2"
                                                                                     data-bs-record-id="{{ $item->id }}"
-                                                                                    data-bs-action="{{ route('banks.update', $item) }}">
+                                                                                    data-bs-action="{{ route('payments.update', $item) }}">
                                                                                     <i class="fa fa-edit me-1"></i>
-                                                                                    {{ __('Edit Bank') }}
+                                                                                    {{ __('Edit Payment') }}
                                                                                 </a>
                                                                             </li>
                                                                         @endcan
-                                                                        @can('banks.destroy')
+                                                                        @can('payments.destroy')
                                                                             <li>
                                                                                 <a class="btn btn-greys me-2"
                                                                                     data-bs-toggle="modal"
                                                                                     data-bs-target="#confirm-delete"
                                                                                     data-bs-record-id="{{ $item->id }}"
                                                                                     data-bs-record-title="{{ 'el banco ' }}{{ $item->name }}"
-                                                                                    data-bs-action="{{ route('banks.destroy', $item) }}"
-                                                                                    title="{{ __('Delete Bank') }}"><i
+                                                                                    data-bs-action="{{ route('payments.destroy', $item) }}"
+                                                                                    title="{{ __('Delete Payment') }}"><i
                                                                                         class="far fa-trash-alt me-2"></i>@lang('Delete')</a>
                                                                             </li>
                                                                         @endcan
@@ -92,10 +101,11 @@
 @endsection
 
 @section('modal')
-    @include('modales.bank')
+    @include('modales.payment')
+    @include('modales.change_status')
     @include('modales.eliminar')
 @endsection
 
 @section('js')
-    @include('banks.js')
+    @include('payments.js')
 @endsection

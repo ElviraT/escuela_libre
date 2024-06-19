@@ -23,7 +23,6 @@
                             @php
                                 $uri = [];
                                 $rutas = [
-                                    'chatify',
                                     'logout',
                                     'dashboard',
                                     'verification',
