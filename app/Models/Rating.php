@@ -34,4 +34,8 @@ class Rating extends Model
     {
         return $this->belongsTo(Group::class, 'id_group', 'id');
     }
+    public function student()
+    {
+        return $this->hasOne(Alumno::class, 'id', 'id_student');
+    }
 }

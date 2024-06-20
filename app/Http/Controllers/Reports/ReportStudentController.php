@@ -23,14 +23,16 @@ class ReportStudentController extends Controller
         if ($request->combo_student) {
             $ratings = Rating::where('id_student', $request->combo_student)->get();
             $idStudent = $request->combo_student;
+            // Calcula el promedio de Ratings
+            $totalRating = $ratings->sum('rating');
+            $promedioRating = $totalRating / $ratings->count();
         } else {
             $ratings = [];
             $idStudent = '';
+            $promedioRating = '';
         }
 
-        // Calcula el promedio de Ratings
-        $totalRating = $ratings->sum('rating');
-        $promedioRating = $totalRating / $ratings->count();
+
         return view('reports.students', compact('students', 'ratings', 'idStudent', 'promedioRating'));
     }
 
@@ -38,17 +40,13 @@ class ReportStudentController extends Controller
     {
         // Recuperar el usuario de la base de datos
         $data = Rating::where('id_student', $id)->get();
-        $usuario = User::find($id);
-        // Calcula el promedio de Ratings
-        $totalRating = $data->sum('rating');
-        $promedioRating = $totalRating / $data->count();
 
         // Si el usuario no existe, mostrar un mensaje de error
         if (!$data) {
             return abort(404);
         }
         // Load Blade template
-        $html = view('pdf.rating', ['data' => $data, 'user' => $usuario, 'promedio' => $promedioRating]);
+        $html = view('pdf.rating', ['data' => $data]);
         // Generate PDF using Dompdf
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html->render());
@@ -57,7 +55,7 @@ class ReportStudentController extends Controller
 
         $response = Response::make($dompdf->output(), 200);
         $response->header('Content-Type', 'application/pdf');
-        $response->header('Content-Disposition', 'attachment; filename=Alumno-' . $id . '.pdf');
+        $response->header('Content-Disposition', 'attachment; filename=Alumno-' . $data[0]->student->name . '_' . $data[0]->student->last_name . '.pdf');
 
         return $response;
     }

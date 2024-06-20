@@ -12,22 +12,10 @@
                                 <li>
                                     <div class="dropdown dropdown-action" data-bs-toggle="tooltip" data-bs-placement="left"
                                         title="@lang('Download')">
-                                        <a href="#" class="btn-filters" data-bs-toggle="dropdown"
-                                            aria-expanded="false"><span><i class="fe fe-download"></i></span></a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <ul class="d-block">
-                                                <li>
-                                                    <a class="d-flex align-items-center download-item"
-                                                        href="{{ route('pdf.student', $idStudent) }}"><i
-                                                            class="far fa-file-pdf me-2"></i>PDF</a>
-                                                </li>
-                                                <li>
-                                                    <a class="d-flex align-items-center download-item"
-                                                        href="javascript:void(0);" download><i
-                                                            class="far fa-file-text me-2"></i>CVS</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a class="d-flex align-items-center download-item"
+                                            href="{{ route('pdf.student', $idStudent) }}"><i
+                                                class="far fa-file-pdf me-2"></i>PDF</a>
+
                                     </div>
                                 </li>
                             </ul>
