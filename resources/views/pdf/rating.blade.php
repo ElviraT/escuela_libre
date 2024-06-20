@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <h1>{{ $user->name . ' ' . $user->last_name }}</h1>
+    <h1>{{ $data[0]->student->name . '' . $data[0]->student->last_name }}</h1>
     <p><strong>@lang('Grade')</strong> {{ $data[0]->grade->name }}</p>
     <p><strong>@lang('Group')</strong> {{ $data[0]->group->name }}</p>
 
@@ -64,7 +64,7 @@
         <tfoot>
             <tr align="left">
                 <th><strong>@lang('Average')</strong></th>
-                <th>{{ $promedio }}</th>
+                <th>{{ $data->avg('rating') }}</th>
                 <th></th>
             </tr>
         </tfoot>
