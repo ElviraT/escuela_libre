@@ -31,7 +31,7 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 p-4" style="background-color: rgb(0, 0, 0); opacity:0.7">
+                <div class="col-md-6 col-lg-4 p-2" style="background-color: rgb(0, 0, 0); opacity:0.7">
                     <div class="login-wrap p-0">
                         @yield('content')
                     </div>

@@ -9,7 +9,7 @@
                         onclick=" loading_show();"><i class="fe fe-home"></i> <span>
                             @lang('Dashboard')</span></a>
                 </li>
-                @canany(['chatify', 'tickets'])
+                @canany(['chatify', 'tickets', 'announcements'])
                     <li class="submenu">
                         <a href="#"><i class="fe fe-grid"></i> <span> @lang('Applications')</span> <span
                                 class="menu-arrow"></span></a>
@@ -24,6 +24,12 @@
                                 <li><a href="{{ route('tickets', '5') }}"
                                         class="nav-link {{ @request()->routeIs('tickets') || @request()->routeIs('tickets.edit') ? 'active' : ' ' }}"
                                         onclick=" loading_show();">@lang('Ticket')</a>
+                                </li>
+                            @endcan
+                            @can('announcements')
+                                <li><a href="{{ route('announcements') }}"
+                                        class="nav-link {{ @request()->routeIs('announcements') ? 'active' : ' ' }}"
+                                        onclick=" loading_show();">@lang('Announcements')</a>
                                 </li>
                             @endcan
                         </ul>

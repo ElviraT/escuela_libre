@@ -372,7 +372,15 @@
     "Report Ratings": "Informe de calificaciones",
     "Reports":"Informes",
     "Average":"Promedio",
-    "Download": "Descargar"
-
+    "Download": "Descargar",
+    "Announcements": "Anuncios",
+    "Add Announcement": "Agregar Anuncio",
+    "Edit Announcement": "Editar Anuncio",
+    "Delete Announcement": "Eliminar Anuncio",
+    "Announcement": "Anuncio",
+    "Title": "Título",
+    "Date": "Fecha",
+    "Time": "Hora",
+    "View All": "Ver todos"
 
 }
