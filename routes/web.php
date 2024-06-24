@@ -203,13 +203,15 @@ Route::middleware('auth')->group(function () {
     // Reminder
     Route::get('/reminder/{id}', [DashboardController::class, 'reminder']);
     Route::post('/dashboard/change', [DashboardController::class, 'change']);
-     // CRUD ANUNCIOS
-     Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements');
-     Route::post('/announcements/store', [AnnouncementController::class, 'store'])->name('announcements.store');
-     Route::get('/announcements/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
-     Route::get('/announcements/{announcement}/show', [AnnouncementController::class, 'show'])->name('announcements.show');
-     Route::put('/announcements/update/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
-     Route::delete('/announcements/destroy/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
+    Route::get('/dashboard/anuncio_mostrar/{id}/mostrar', [DashboardController::class, 'mostrar']);
+
+    // CRUD ANUNCIOS
+    Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements');
+    Route::post('/announcements/store', [AnnouncementController::class, 'store'])->name('announcements.store');
+    Route::get('/announcements/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+    Route::get('/announcements/{announcement}/show', [AnnouncementController::class, 'show'])->name('announcements.show');
+    Route::put('/announcements/update/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
+    Route::delete('/announcements/destroy/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
     // REPORTES
     Route::match(['get', 'post'], '/reports/students', [ReportStudentController::class, 'index'])->name('report.student');
     Route::get('/generar-pdf-student/{id}', [ReportStudentController::class, 'generatePdf'])->name('pdf.student');

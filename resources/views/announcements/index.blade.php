@@ -21,7 +21,7 @@
                             <div class="card-table">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped">
+                                        <table class="table table-center table-hover datatable" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>

@@ -13,7 +13,7 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $announcements = Announcement::latest()->get();
+        $announcements = Announcement::all();
         $categories = Category::all();
         return view('announcements.index', compact('announcements', 'categories'));
     }

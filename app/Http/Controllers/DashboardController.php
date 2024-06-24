@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserReminderEmail;
 use App\Models\Alumno;
+use App\Models\Announcement;
 use App\Models\Representative;
 use App\Models\Status;
 use App\Models\Teacher;
 use App\Models\Ticket;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -25,18 +27,25 @@ class DashboardController extends Controller
         $students = Alumno::get()->count();
 
         // CONSULTA MOROSOS
-        $morosos = DB::table('representatives')
-            ->whereNotExists(function ($query) {
-                $query->from('payments')
-                    ->where('payments.id_representative', DB::raw('representatives.id'))
-                    ->whereYear('payments.payment_date', now()->year)
-                    ->whereMonth('payments.payment_date', now()->month);
+        // Obtener el mes y año actual
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+
+        $morosos =  DB::table('representatives')
+            ->join('users', 'representatives.id_user', '=', 'users.id')
+            ->leftJoin('payments', function ($join) use ($currentMonth, $currentYear) {
+                $join->on('payments.id_representative', '=', 'representatives.id')
+                    ->where(DB::raw('MONTH(payments.payment_date)'), $currentMonth)
+                    ->where(DB::raw('YEAR(payments.payment_date)'), $currentYear)
+                    ->where('payments.id_status', 1);
             })
-            ->join('users', 'users.id', 'representatives.id_user')
-            ->select('users.id', 'users.name', 'users.last_name', 'users.email')
+            ->whereNull('payments.id')
+            ->select('users.id', 'users.name', 'users.last_name')
             ->get();
+
         $status = Status::all();
-        return view('dashboard', compact('user', 'tickets', 'teachers', 'students', 'morosos', 'status'));
+        $announcements = Announcement::latest()->paginate(5);
+        return view('dashboard', compact('user', 'tickets', 'teachers', 'students', 'morosos', 'status', 'announcements'));
     }
     public function reminder($id)
     {
@@ -71,5 +80,11 @@ class DashboardController extends Controller
             Toastr::error(__('An error occurred please try again'), 'error');
         }
         return Redirect::back();
+    }
+
+    public function mostrar($id)
+    {
+        $announcement = Announcement::findOrFail($id);
+        return response()->json($announcement);
     }
 }
