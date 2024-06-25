@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->decimal('monto', 10, 2);
             $table->string('reference');
-            $table->string('payment_date');
+            $table->date('payment_date');
             $table->timestamps();
 
             $table->foreign('id_bank')->references('id')->on('banks');

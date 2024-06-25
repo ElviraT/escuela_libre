@@ -102,10 +102,10 @@
     <script src="{{ asset('assets/plugins/countup/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/countup/jquery.missofis-countdown.js') }}"></script>
 
-    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/intro.min.js') }}"></script>
     <script src="{{ asset('js/jquery.loadingModal.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     {!! Toastr::message() !!}
 
     @yield('js')

@@ -43,6 +43,7 @@
             <tr align="left">
                 <th>@lang('Matter')</th>
                 <th>@lang('Rating')</th>
+                <th>@lang('Absence')</th>
                 <th>@lang('Comment')</th>
             </tr>
         </thead>
@@ -57,6 +58,7 @@
                             <span>{{ $item->rating }}</span>
                         @endif
                     </td>
+                    <td>{{ $item->absence }}</td>
                     <td>{{ $item->comment }}</td>
                 </tr>
             @endforeach
@@ -65,6 +67,7 @@
             <tr align="left">
                 <th><strong>@lang('Average')</strong></th>
                 <th>{{ $data->avg('rating') }}</th>
+                <th></th>
                 <th></th>
             </tr>
         </tfoot>

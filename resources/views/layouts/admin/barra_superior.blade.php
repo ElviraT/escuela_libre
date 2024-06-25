@@ -64,7 +64,7 @@
             <div class="card-body">
                 <div class="dash-widget-header">
                     <span class="dash-widget-icon bg-4">
-                        <i class="far fa-file"></i>
+                        <i class="fas fa-book"></i>
                     </span>
                     <div class="dash-count">
                         <div class="dash-title">@lang('Students')</div>

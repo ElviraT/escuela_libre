@@ -20,7 +20,9 @@
                                                     id="combo_teacher">
                                                     <option>@lang('Select teachers')</option>
                                                     @foreach ($teachers as $value)
-                                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                                        <option value="{{ $value->id }}"
+                                                            {{ Auth::user()->id == $value->user ? 'selected' : '' }}>
+                                                            {{ $value->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

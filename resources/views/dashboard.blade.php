@@ -48,7 +48,7 @@
                 </div>
             </div>
         @endif
-        <div class="col-6">
+        <div class="col-6 third">
             <div class="card sombra p-3">
                 <div class="row">
                     <div class="card-table">
@@ -58,8 +58,8 @@
                                 <table class="table table-center table-hover datatable" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Título</th>
-                                            <th>Categoría</th>
+                                            <th>@lang('Title')</th>
+                                            <th>@lang('Category')</th>
                                             <th>Fecha de publicación</th>
                                         </tr>
                                     </thead>

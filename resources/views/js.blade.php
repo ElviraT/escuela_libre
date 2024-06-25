@@ -13,6 +13,11 @@
                 title: "Menu",
                 element: document.querySelector('.second'),
                 intro: 'Panel de navegación del sistema'
+            },
+            {
+                title: "Cartelera informativa",
+                element: document.querySelector('.third'),
+                intro: 'Mostrara información relevante sobre las actividades academicas, si le das click veras el detalle de cada una'
             }
         ],
     });
