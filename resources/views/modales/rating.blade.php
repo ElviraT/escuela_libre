@@ -29,14 +29,21 @@
                         <hr>
                         <div class="col-12 mb-3">
                             <div class="input-block mb-0">
-                                <label>@lang('Rating') <span class="text-danger">*</span></label>
+                                <label>@lang('Rating')</label>
                                 <input type="number" step="0.01" name="rating" id="rating" class="form-control"
                                     placeholder="@lang('Enter Rating')">
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="input-block mb-0">
-                                <label>@lang('Comment') <span class="text-danger">*</span></label>
+                                <label>@lang('Absence')</label>
+                                <input type="number" step="1" name="absence" id="absence" class="form-control"
+                                    placeholder="@lang('Enter Absence')">
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="input-block mb-0">
+                                <label>@lang('Comment')</label>
                                 <input type="text" name="comment" id="comment" class="form-control"
                                     placeholder="@lang('Enter Comment')">
                             </div>

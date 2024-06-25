@@ -381,6 +381,19 @@
     "Title": "Título",
     "Date": "Fecha",
     "Time": "Hora",
-    "View All": "Ver todos"
+    "View All": "Ver todos",
+    "Categories": "Categorias",
+    "Add Category": "Agregar Categoría",
+    "Edit Category": "Editar Categoría",
+    "Delete Category": "Eliminar Categoría",
+    "Category": "Categoría",
+    "Absence": "Inasistencias",
+    "Leaves": "Solicitud de permisos",
+    "Add Leave": "Agregar Permiso",
+    "Edit Leave": "Editar Permiso",
+    "Delete Leave": "Eliminar Permiso",
+    "Leave": "Permiso",
+    "Approve": "Aprobar",
+    "Reject": "Rechazar"
 
 }

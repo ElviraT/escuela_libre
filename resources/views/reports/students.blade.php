@@ -54,12 +54,13 @@
                                                 <div class="card-table">
                                                     <div class="card-body">
                                                         <div class="table-responsive">
-                                                            <table class="table table-center table-hover datatable"
+                                                            <table class="table table-center table-hover datatable border"
                                                                 width="100%">
                                                                 <thead class="thead-light">
                                                                     <tr>
                                                                         <th>@lang('Matter')</th>
                                                                         <th>@lang('Rating')</th>
+                                                                        <th>@lang('Absence')</th>
                                                                         <th>@lang('Comment')</th>
                                                                     </tr>
                                                                 </thead>
@@ -75,6 +76,7 @@
                                                                                     <span>{{ $item->rating }}</span>
                                                                                 @endif
                                                                             </td>
+                                                                            <td>{{ $item->absence }}</td>
                                                                             <td>{{ $item->comment }}</td>
                                                                         </tr>
                                                                     @endforeach
@@ -83,6 +85,7 @@
                                                                     <tr>
                                                                         <th><strong>@lang('Average')</strong></th>
                                                                         <th>{{ $promedioRating }}</th>
+                                                                        <th></th>
                                                                         <th></th>
                                                                     </tr>
                                                                 </tfoot>

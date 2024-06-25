@@ -74,6 +74,7 @@ class PaymentController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request['payment_date'] = DateTime::createFromFormat("d-m-Y", $request['payment_date'])->format("Y-m-d");
         $resultado = $request->all();
         try {
             DB::beginTransaction();

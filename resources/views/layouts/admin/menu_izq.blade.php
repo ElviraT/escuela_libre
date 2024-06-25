@@ -92,6 +92,14 @@
                                         </a>
                                     </li>
                                 @endcan
+                                @can('leaves')
+                                    <li>
+                                        <a class="{{ @request()->routeIs('leaves') || @request()->routeIs('leaves.create') ? 'active' : ' ' }}"
+                                            href="{{ route('leaves') }}" onclick=" loading_show();">
+                                            @lang('Leaves')
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcanany

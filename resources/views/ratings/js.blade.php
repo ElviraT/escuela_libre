@@ -117,7 +117,7 @@
         var id_matter = $('#combo_matter').val();
         var text_matter = $('#combo_matter').find('option:selected').text();
         $('.modal_registro_student_id', modal).val(data.bsRecordId);
-        console.log(id_teacher, text_teacher);
+
         $('#name').val('');
         $('#teacher').text(text_teacher);
         $('#id_teacher').val(id_teacher);

@@ -17,6 +17,7 @@ class Rating extends Model
         'id_grade',
         'id_group',
         'rating',
+        'absence',
         'comment',
     ];
 

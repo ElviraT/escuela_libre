@@ -24,7 +24,7 @@ class RatingController extends Controller
             ->join('teachers', 'users.id', '=', 'teachers.id_user')
             ->where('roles.name', 'Profesor')
             ->where('users.status', 1)
-            ->select('teachers.id as id', DB::raw('CONCAT(users.name, " ", users.last_name) AS name'))
+            ->select('users.id as user', 'teachers.id as id', DB::raw('CONCAT(users.name, " ", users.last_name) AS name'))
             ->get();
         $grades = Grade::all();
 
@@ -42,6 +42,7 @@ class RatingController extends Controller
                 'id_grade' => $request->id_grade,
                 'id_group' => $request->id_group,
                 'rating' => $request->rating,
+                'absence' => $request->absence,
                 'comment' => $request->comment,
             ];
 

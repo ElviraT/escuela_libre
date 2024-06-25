@@ -24,6 +24,7 @@ use App\Http\Controllers\Direction\CityController;
 use App\Http\Controllers\Direction\CountryController;
 use App\Http\Controllers\Direction\RegionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Reports\ReportStudentController;
@@ -215,6 +216,13 @@ Route::middleware('auth')->group(function () {
     // REPORTES
     Route::match(['get', 'post'], '/reports/students', [ReportStudentController::class, 'index'])->name('report.student');
     Route::get('/generar-pdf-student/{id}', [ReportStudentController::class, 'generatePdf'])->name('pdf.student');
+
+    // Definir rutas para solicitudes de ausencia
+    Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves');
+    Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create.view');
+    Route::post('/leave/store', [LeaveController::class, 'createLeave'])->name('leaves.create');
+    Route::put('/leave/{leave}/approve', [LeaveController::class, 'approveLeave'])->name('leaves.approve');
+    Route::put('/leave/{leave}/reject', [LeaveController::class, 'rejectLeave'])->name('leaves.reject');
 });
 
 require __DIR__ . '/auth.php';
