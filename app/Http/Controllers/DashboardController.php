@@ -30,21 +30,25 @@ class DashboardController extends Controller
         // Obtener el mes y año actual
         $currentMonth = date('m');
         $currentYear = date('Y');
-
-        $morosos =  DB::table('representatives')
-            ->join('users', 'representatives.id_user', '=', 'users.id')
-            ->leftJoin('payments', function ($join) use ($currentMonth, $currentYear) {
-                $join->on('payments.id_representative', '=', 'representatives.id')
-                    ->where(DB::raw('MONTH(payments.payment_date)'), $currentMonth)
-                    ->where(DB::raw('YEAR(payments.payment_date)'), $currentYear)
-                    ->where('payments.id_status', 1);
-            })
-            ->whereNull('payments.id')
-            ->select('users.id', 'users.name', 'users.last_name')
-            ->get();
+        if (date('d') >= 05) {
+            $morosos =  DB::table('representatives')
+                ->join('users', 'representatives.id_user', '=', 'users.id')
+                ->leftJoin('payments', function ($join) use ($currentMonth, $currentYear) {
+                    $join->on('payments.id_representative', '=', 'representatives.id')
+                        ->where(DB::raw('MONTH(payments.payment_date)'), $currentMonth)
+                        ->where(DB::raw('YEAR(payments.payment_date)'), $currentYear)
+                        ->where('payments.id_status', 1);
+                })
+                ->whereNull('payments.id')
+                ->select('users.id', 'users.name', 'users.last_name')
+                ->get();
+        } else {
+            $morosos = [];
+        }
 
         $status = Status::all();
         $announcements = Announcement::latest()->paginate(5);
+
         return view('dashboard', compact('user', 'tickets', 'teachers', 'students', 'morosos', 'status', 'announcements'));
     }
     public function reminder($id)
