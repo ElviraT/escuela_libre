@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->string('type')->after('date')->default('Credito');
+            $table->string('type')->after('payment_date')->default('Credito');
         });
     }
 

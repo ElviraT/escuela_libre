@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_teacher')->references('id')->on('teachers');
-            $table->foreign('id_student')->references('id')->on('alunmos');
+            $table->foreign('id_student')->references('id')->on('alumnos');
             $table->foreign('id_matter')->references('id')->on('matters');
             $table->foreign('id_grade')->references('id')->on('grades');
             $table->foreign('id_group')->references('id')->on('groups');
