@@ -65,7 +65,7 @@
             $('.title').text("@lang('Edit Bank')");
             modal.addClass('loading');
             $('.modal_registro_bank_id', modal).val(data.bsRecordId);
-            $.getJSON('../banks/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./banks/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data[0];
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');

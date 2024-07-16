@@ -20,7 +20,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Payment')");
             $('.modal_registro_payment_id', modal).val(data.bsRecordId);
-            $.getJSON('../payments/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./payments/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $('#id_representative').val(obj.id_representative).trigger('change.select2');
                 $('#id_bank').val(obj.id_bank).trigger('change.select2');

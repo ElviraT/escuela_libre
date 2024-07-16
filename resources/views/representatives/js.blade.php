@@ -14,7 +14,7 @@
             $('.title').text("@lang('Edit Representative')");
             modal.addClass('loading');
             $('.modal_registro_representative_id', modal).val(data.bsRecordId);
-            $.getJSON('../representatives/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./representatives/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $('#id_user').val(obj.id_user).trigger('change.select2');
                 $('#id_status').val(obj.id_status).trigger('change.select2');
@@ -39,7 +39,7 @@
     $(document).ready(function() {
         $('#id_user').on('select2:select', function(event) {
             var user = $(this).val();
-            $.getJSON('../users/' + user + '/edit', function(data) {
+            $.getJSON('./users/' + user + '/edit', function(data) {
                 $('#id_gender').val(data[0].gender_id).trigger('change.select2');
                 $('#name').val(data[0].name);
                 $('#last_name').val(data[0].last_name);
@@ -52,7 +52,7 @@
         $('#id_grade').on('select2:select', function(event) {
             var grade = $(this).val();
             $.ajax({
-                url: '../combo/' + grade + '/group',
+                url: './combo/' + grade + '/group',
                 method: "GET",
 
                 success: function(data) {
@@ -88,7 +88,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Student')");
             $('.modal_registro_alumno_id', modal).val(data.bsRecordId);
-            $.getJSON('../representatives/alumno/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./representatives/alumno/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $('#id_gender').val(obj.id_gender).trigger('change.select2');
                 $('#id_relation').val(obj.id_relation).trigger('change.select2');

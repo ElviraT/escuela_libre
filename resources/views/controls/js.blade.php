@@ -12,7 +12,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Grade')");
             $('.modal_registro_grade_id', modal).val(data.bsRecordId);
-            $.getJSON('../grades/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./grades/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
@@ -40,7 +40,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Group')");
             $('.modal_registro_group_id', modal).val(data.bsRecordId);
-            $.getJSON('../groups/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./groups/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
@@ -70,7 +70,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Matter')");
             $('.modal_registro_matter_id', modal).val(data.bsRecordId);
-            $.getJSON('../matters/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./matters/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
@@ -101,7 +101,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Modality')");
             $('.modal_registro_modality_id', modal).val(data.bsRecordId);
-            $.getJSON('../modalities/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./modalities/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');

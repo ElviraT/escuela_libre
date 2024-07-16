@@ -63,7 +63,7 @@
 
     function mostrarDetalles(id) {
 
-        $.getJSON('../dashboard/anuncio_mostrar/' + id + '/mostrar', function(data) {
+        $.getJSON('./dashboard/anuncio_mostrar/' + id + '/mostrar', function(data) {
             $('#content').text(data.content);
         });
 

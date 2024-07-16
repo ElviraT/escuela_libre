@@ -38,7 +38,7 @@
                 <img src="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}"
                     alt="Logo" width="45%">
             </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
