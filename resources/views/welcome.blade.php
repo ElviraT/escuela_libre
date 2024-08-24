@@ -195,7 +195,7 @@
 
 
     <!-- Class Start -->
-    <div class="container-fluid pt-5">
+    {{-- <div class="container-fluid pt-5">
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Popular Classes</span></p>
@@ -291,7 +291,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Class End -->
 
 
@@ -353,7 +353,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-fluid pt-5">
+    {{-- <div class="container-fluid pt-5">
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Our Teachers</span></p>
@@ -426,12 +426,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Team End -->
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid py-5">
+    {{-- <div class="container-fluid py-5">
         <div class="container p-0">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Testimonial</span></p>
@@ -500,12 +500,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Testimonial End -->
 
 
     <!-- Blog Start -->
-    <div class="container-fluid pt-5">
+    {{-- <div class="container-fluid pt-5">
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Latest Blog</span></p>
@@ -562,7 +562,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Blog End -->
 
 

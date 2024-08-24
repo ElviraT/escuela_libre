@@ -15,14 +15,15 @@
                         <div class="col-lg-4 col-md-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Subject')</label>
-                                <input type="text" name="subject" class="form-control" placeholder="Enter Subject">
+                                <input type="text" name="subject" class="form-control" placeholder="Enter Subject"
+                                    required>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Assigned Name')</label>
                                 <input type="text" name="assigned_name" class="form-control"
-                                    placeholder="Enter Assigned Name">
+                                    placeholder="Enter Assigned Name" required>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12">
@@ -30,14 +31,14 @@
                                 <label>@lang('Due Date')</label>
                                 <div class="cal-icon cal-icon-info">
                                     <input type="text" name="due_date" id="due_date"
-                                        class="datetimepicker form-control" placeholder="Select Date">
+                                        class="datetimepicker form-control" placeholder="Select Date" required>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Assignee Name')</label>
-                                <select name="user_id" class="form-control form-small select">
+                                <select name="user_id" class="form-control form-small select" required>
                                     <option>@lang('Assignee Name')</option>
                                     @foreach ($users as $item)
                                         <option value="{{ $item->id }}">
@@ -50,7 +51,7 @@
                         <div class="col-lg-4">
                             <div class="input-block mb-0">
                                 <label>@lang('Priority')</label>
-                                <select name="priority_id" class="form-control form-small select">
+                                <select name="priority_id" class="form-control form-small select" required>
                                     <option>Select Priority</option>
                                     @foreach ($priorities as $priority)
                                         <option value="{{ $priority->id }}">{{ $priority->name }} </option>
@@ -61,7 +62,7 @@
                         <div class="col-lg-4">
                             <div class="input-block mb-0">
                                 <label>@lang('Status')</label>
-                                <select name="state_id" class="form-control form-small select">
+                                <select name="state_id" class="form-control form-small select" required>
                                     <option>Select Status</option>
                                     @foreach ($status as $item)
                                         @if ($item->id != '5')
@@ -74,7 +75,7 @@
                         <div class="col-12">
                             <div class="input-block mb-3">
                                 <label>@lang('Description')</label>
-                                <textarea name="description" rows="3" class="form-control"></textarea>
+                                <textarea name="description" rows="3" class="form-control" required></textarea>
                             </div>
                         </div>
                     </div>
