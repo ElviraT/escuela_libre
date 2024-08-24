@@ -32,11 +32,11 @@
 
 <body>
     <!-- Navbar Start -->
-    <div class="container-fluid bg-light position-relative shadow" style="position: fixed !important; z-index:1;">
+    <div class="container-fluid bg-light position-relative shadow" style="position: fixed !important; z-index:1; mb-5">
         <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
             <a href="#" class="navbar-brand font-weight-bold text-secondary">
                 <img src="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}"
-                    alt="Logo" width="45%">
+                    alt="Logo" width="15%">
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -72,15 +72,17 @@
     <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
         <div class="row align-items-center px-3">
             <div class="col-lg-6 text-center text-lg-left">
-                <h4 class="text-white mb-4 mt-5 mt-lg-0">Kids Learning Center</h4>
-                <h1 class="display-3 font-weight-bold text-white">New Approach to Kids Education</h1>
-                <p class="text-white mb-4">Sea ipsum kasd eirmod kasd magna, est sea et diam ipsum est amet sed sit.
-                    Ipsum dolor no justo dolor et, lorem ut dolor erat dolore sed ipsum at ipsum nonumy amet. Clita
-                    lorem dolore sed stet et est justo dolore.</p>
-                <a href="" class="btn btn-secondary mt-1 py-3 px-5">Learn More</a>
+                <!--<h4 class="text-white mb-4 mt-5 mt-lg-0">Escuela Libre de Educación IA</h4>-->
+                <h4 class="display-3 font-weight-bold text-white">Escuela Libre de Educación IA</h4>
+                <p class="text-white mb-4">Nuestro proyecto educativo te prepara para los exámenes libres, ofreciendo una educación personalizada y de calidad, en un ambiente seguro, en línea y con horario flexible para compatibilizar con otras actividades. 
+                    En nuestra escuela también aprenderás sobre emprendimiento e inteligencia artificial, buscamos fomentar el desarrollo integral y preparar a las y los jóvenes para el futuro que se avecina.
+                    .</p>
+                <a href="" class="btn btn-secondary mt-1 py-3 px-5">
+Escuela Libre de Educación IA
+</a>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
-                <img class="img-fluid mt-5" src="{{ asset('home/img/header.png') }}" alt="">
+                <img class="img-fluid mt-5" src="{{ asset('home/img/header.jpg') }}" alt="" width="90%">
             </div>
         </div>
     </div>
@@ -95,9 +97,8 @@
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Play Ground</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <h4>EXÁMENES LIBRES</h4>
+                            <p class="m-0">Nos aseguramos que nuestros estudiantes tendrán los conocimientos y habilidades necesarios para aprobar los exámenes de acuerdo a lo propuesto en el Currículum Nacional, y certificar sus estudios..</p>
                         </div>
                     </div>
                 </div>
@@ -105,9 +106,8 @@
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Music and Dance</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <h4>ESPACIO SEGURO:</h4>
+                            <p class="m-0">Ofrecemos un ambiente de aprendizaje seguro y libre de bullying, donde los estudiantes se sientan aceptados y respetados. Promovemos el buen trato y educamos en torno a ello..</p>
                         </div>
                     </div>
                 </div>
@@ -115,9 +115,8 @@
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-030-crayons h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Arts and Crafts</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <h4>FLEXIBILIDAD:</h4>
+                            <p class="m-0">Jornada de clases durante las mañanas, que permite a los estudiantes compatibilizar sus estudios con otras actividades: deportivas, culturales, artísticas, personales, etc.</p>
                         </div>
                     </div>
                 </div>
@@ -125,9 +124,8 @@
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-017-toy-car h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Safe Transportation</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <h4>FORMACIÓN PARA EL FUTURO</h4>
+                            <p class="m-0">Dentro del plan de clases se incluye la asignatura de Emprendimiento e Inteligencia Artificial, para preparar a los estudiantes para la vida actual y los desafíos futuros..</p>
                         </div>
                     </div>
                 </div>
@@ -135,9 +133,8 @@
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-025-sandwich h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Healthy food</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <h4>CONTINUIDAD DE ESTUDIOS</h4>
+                            <p class="m-0">Si eres mayor de 18 años puedes terminar tus estudios seleccionando el plan que más se acomode a tus necesidades de reforzamiento y disposición de tiempo..</p>
                         </div>
                     </div>
                 </div>
@@ -146,8 +143,7 @@
                         <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>Educational Tour</h4>
-                            <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet
-                                elitr vero...</p>
+                            <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten haciendo lo que más les gusta: educar.</p>
                         </div>
                     </div>
                 </div>
@@ -166,16 +162,17 @@
                         alt="">
                 </div>
                 <div class="col-lg-7">
-                    <p class="section-title pr-5"><span class="pr-2">Learn About Us</span></p>
-                    <h1 class="mb-4">Best School For Your Kids</h1>
-                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
-                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
-                        dolor</p>
+                    <p class="section-title pr-5"><span class="pr-2">Forma Educativa</span></p>
+                    <h1 class="mb-4">Atrévete a cambiar a una nueva forma de educación.
+                    </h1>
+                    <!<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque innovador proporciona una preparación integral para los exámenes libres, asegurando que cada estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros estudiantes para los desafíos del mañana. </p>
+                    <p>Únete a nosotros y sé parte de una nueva forma de educación. </p>
                     <div class="row pt-2 pb-4">
-                        <div class="col-6 col-md-4">
+                        <!--<div class="col-6 col-md-4">
                             <img class="img-fluid rounded" src="{{ asset('home/img/about-2.jpg') }}" alt="">
-                        </div>
-                        <div class="col-6 col-md-8">
+                        </div>-->
+                        
+                        <!--<div class="col-6 col-md-8">
                             <ul class="list-inline m-0">
                                 <li class="py-2 border-top border-bottom"><i
                                         class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
@@ -183,30 +180,72 @@
                                     sit dolor amet ipsum</li>
                                 <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
                                     diam elitripsum vero.</li>
+                                    <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
+                                    sit dolor amet ipsum</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
+                                    diam elitripsum vero.</li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
-                    <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>
+                <!-- <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
+    
+     <!-- Start ¿CÓMO SON NUESTRAS CLASES? -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <!--<p class="section-title pr-5"><span class="pr-2">Learn About Us</span></p>-->
+                    <h1 class="mb-4">¿CÓMO SON NUESTRAS CLASES?.</h1>
+                    <!--<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque innovador proporciona una preparación integral para los exámenes libres, asegurando que cada estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros estudiantes para los desafíos del mañana. </p>-->
+                    <!--<p>Únete a nosotros y sé parte de una nueva forma de educación. </p>-->
+                    <!--<div class="row pt-2 pb-4">-->
+                            <ul class="list-inline m-0">
+                                <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Clases sincrónicas de acuerdo al horario de cada nivel, a través de plataforma (meet ?)</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Acceso a plataforma con material de clases y actividades disponible 24/7 (gdrive?)</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Sistema de calificaciones e informes para seguimiento académico</li>
+                                    <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Evaluación diagnóstica, acompañamiento y dos ensayos de examen libre</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas que contempla el plan de estudio es de 5° a 2° medio:lenguaje y comunicación, matemática, historia y ciencias sociales, ciencias naturales e inglés. </li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas que contempla el plan de estudio de 3° y 4° medio: lengua y literatura, matemática, filosofía, ciencia para la ciudadanía, educación ciudadana e inglés..</li>
+                            </ul>
+                    <!--<a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
+                </div>
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/pc-1.jpg') }}"
+                        alt="">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!--¿CÓMO SON NUESTRAS CLASES? End -->
 
 
     <!-- Class Start -->
+<<<<<<< HEAD
     {{-- <div class="container-fluid pt-5">
+=======
+    <!--<div class="container-fluid pt-5">
+>>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Popular Classes</span></p>
-                <h1 class="mb-4">Classes for Your Kids</h1>
+                <h1 class="mb-4">¿CÓMO SON NUESTRAS CLASES?</h1>
             </div>
             <div class="row">
                 <div class="col-lg-4 mb-5">
                     <div class="card border-0 bg-light shadow-sm pb-2">
                         <img class="card-img-top mb-2" src="{{ asset('home/img/class-1.jpg') }}" alt="">
                         <div class="card-body text-center">
-                            <h4 class="card-title">Drawing Class</h4>
+                            <!--<h4 class="card-title">Drawing Class</h4>
                             <p class="card-text">Justo ea diam stet diam ipsum no sit, ipsum vero et et diam ipsum duo
                                 et no et, ipsum ipsum erat duo amet clita duo</p>
                         </div>
@@ -291,7 +330,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div> --}}
+=======
+    </div>-->
+>>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
     <!-- Class End -->
 
 
@@ -301,24 +344,21 @@
             <div class="row align-items-center">
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <p class="section-title pr-5"><span class="pr-2">Book A Seat</span></p>
-                    <h1 class="mb-4">Book A Seat For Your Kid</h1>
-                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
-                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
-                        dolor</p>
+                    <h1 class="mb-4">¿Quieres unirte a una nueva educación?</h1>
+                    <p>Contáctanos para hacernos tus preguntas o reservar un cupo para la matrícula 2025. Con nosotros ganarás:</p>
                     <ul class="list-inline m-0">
-                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Labore eos amet dolor amet
-                            diam</li>
-                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Etsea et sit dolor amet ipsum
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tranquilidad, tiempo y seguridad para el aprendizaje de tus hijos.</li>
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tus hijos tendrán herramientas para el futuro en el que nos adentramos.
                         </li>
-                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum
-                            vero.</li>
+                        <!--<li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum
+                            vero.</li>-->
                     </ul>
                     <a href="" class="btn btn-primary mt-4 py-2 px-4">Book Now</a>
                 </div>
                 <div class="col-lg-5">
                     <div class="card border-0">
                         <div class="card-header bg-secondary text-center p-4">
-                            <h1 class="text-white m-0">Book A Seat</h1>
+                            <h1 class="text-white m-0">Únete a nueva educación</h1>
                         </div>
                         <div class="card-body rounded-bottom bg-primary p-5">
                             <form>
@@ -353,7 +393,11 @@
 
 
     <!-- Team Start -->
+<<<<<<< HEAD
     {{-- <div class="container-fluid pt-5">
+=======
+    <!--<div class="container-fluid pt-5">
+>>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Our Teachers</span></p>
@@ -431,7 +475,11 @@
 
 
     <!-- Testimonial Start -->
+<<<<<<< HEAD
     {{-- <div class="container-fluid py-5">
+=======
+    <!--<div class="container-fluid py-5">
+>>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container p-0">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Testimonial</span></p>
@@ -504,8 +552,13 @@
     <!-- Testimonial End -->
 
 
+<<<<<<< HEAD
     <!-- Blog Start -->
     {{-- <div class="container-fluid pt-5">
+=======
+    <!-- Blog Start 
+    <div class="container-fluid pt-5">
+>>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Latest Blog</span></p>
