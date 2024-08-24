@@ -28,11 +28,44 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('home/css/style.css') }}" rel="stylesheet">
+
+    <style>
+        .imgRedonda {
+            width: 400px;
+            height: 400px;
+            border-radius: 160px;
+            border: 10px solid #838e9b;
+
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(199, 199, 199, 0.74);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(199, 199, 199, 0.74);
+            box-shadow: 10px 10px 5px 0px rgba(199, 199, 199, 0.74);
+        }
+
+        body::-webkit-scrollbar {
+            width: 15px;
+            /* width of the entire scrollbar */
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #00394f;
+            /* color of the tracking area */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #17a2b8;
+            /* color of the scroll thumb */
+            border-radius: 20px;
+            /* roundness of the scroll thumb */
+            border: 3px solid #00394f;
+            /* creates padding around scroll thumb */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navbar Start -->
-    <div class="container-fluid bg-light position-relative shadow" style="position: fixed !important; z-index:1; mb-5">
+    <div class="container-fluid bg-light position-relative shadow"
+        style="position: fixed !important; width:100%; z-index:100; background-color: white; top: 0;">
         <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
             <a href="#" class="navbar-brand font-weight-bold text-secondary">
                 <img src="{{ asset(isset($setting) ? Storage::url('logos/' . Session::get('logo')) : '') }}"
@@ -69,22 +102,29 @@
 
 
     <!-- Header Start -->
-    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+    <div class="container-fluid bg-primary px-0 px-md-5 mb-5" style="margin-top: 85px;">
+        <br>
         <div class="row align-items-center px-3">
             <div class="col-lg-6 text-center text-lg-left">
                 <!--<h4 class="text-white mb-4 mt-5 mt-lg-0">Escuela Libre de Educación IA</h4>-->
                 <h4 class="display-3 font-weight-bold text-white">Escuela Libre de Educación IA</h4>
-                <p class="text-white mb-4">Nuestro proyecto educativo te prepara para los exámenes libres, ofreciendo una educación personalizada y de calidad, en un ambiente seguro, en línea y con horario flexible para compatibilizar con otras actividades. 
-                    En nuestra escuela también aprenderás sobre emprendimiento e inteligencia artificial, buscamos fomentar el desarrollo integral y preparar a las y los jóvenes para el futuro que se avecina.
+                <p class="text-white mb-4">Nuestro proyecto educativo te prepara para los exámenes libres, ofreciendo
+                    una educación personalizada y de calidad, en un ambiente seguro, en línea y con horario flexible
+                    para compatibilizar con otras actividades.
+                    En nuestra escuela también aprenderás sobre emprendimiento e inteligencia artificial, buscamos
+                    fomentar el desarrollo integral y preparar a las y los jóvenes para el futuro que se avecina.
                     .</p>
-                <a href="" class="btn btn-secondary mt-1 py-3 px-5">
-Escuela Libre de Educación IA
-</a>
+                <a href="" class="btn btn-secondary mt-1 py-3 px-5 ">
+                    Escuela Libre de Educación IA
+                </a>
+
             </div>
             <div class="col-lg-6 text-center text-lg-right">
-                <img class="img-fluid mt-5" src="{{ asset('home/img/header.jpg') }}" alt="" width="90%">
+                <img class="imgRedonda" src="{{ asset('home/img/header.jpg') }}" alt="" width="80%">
             </div>
+
         </div>
+        <br>
     </div>
     <!-- Header End -->
 
@@ -98,7 +138,9 @@ Escuela Libre de Educación IA
                         <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>EXÁMENES LIBRES</h4>
-                            <p class="m-0">Nos aseguramos que nuestros estudiantes tendrán los conocimientos y habilidades necesarios para aprobar los exámenes de acuerdo a lo propuesto en el Currículum Nacional, y certificar sus estudios..</p>
+                            <p class="m-0">Nos aseguramos que nuestros estudiantes tendrán los conocimientos y
+                                habilidades necesarios para aprobar los exámenes de acuerdo a lo propuesto en el
+                                Currículum Nacional, y certificar sus estudios..</p>
                         </div>
                     </div>
                 </div>
@@ -107,7 +149,9 @@ Escuela Libre de Educación IA
                         <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>ESPACIO SEGURO:</h4>
-                            <p class="m-0">Ofrecemos un ambiente de aprendizaje seguro y libre de bullying, donde los estudiantes se sientan aceptados y respetados. Promovemos el buen trato y educamos en torno a ello..</p>
+                            <p class="m-0">Ofrecemos un ambiente de aprendizaje seguro y libre de bullying, donde los
+                                estudiantes se sientan aceptados y respetados. Promovemos el buen trato y educamos en
+                                torno a ello..</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +160,9 @@ Escuela Libre de Educación IA
                         <i class="flaticon-030-crayons h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>FLEXIBILIDAD:</h4>
-                            <p class="m-0">Jornada de clases durante las mañanas, que permite a los estudiantes compatibilizar sus estudios con otras actividades: deportivas, culturales, artísticas, personales, etc.</p>
+                            <p class="m-0">Jornada de clases durante las mañanas, que permite a los estudiantes
+                                compatibilizar sus estudios con otras actividades: deportivas, culturales, artísticas,
+                                personales, etc.</p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +171,9 @@ Escuela Libre de Educación IA
                         <i class="flaticon-017-toy-car h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>FORMACIÓN PARA EL FUTURO</h4>
-                            <p class="m-0">Dentro del plan de clases se incluye la asignatura de Emprendimiento e Inteligencia Artificial, para preparar a los estudiantes para la vida actual y los desafíos futuros..</p>
+                            <p class="m-0">Dentro del plan de clases se incluye la asignatura de Emprendimiento e
+                                Inteligencia Artificial, para preparar a los estudiantes para la vida actual y los
+                                desafíos futuros..</p>
                         </div>
                     </div>
                 </div>
@@ -134,7 +182,8 @@ Escuela Libre de Educación IA
                         <i class="flaticon-025-sandwich h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>CONTINUIDAD DE ESTUDIOS</h4>
-                            <p class="m-0">Si eres mayor de 18 años puedes terminar tus estudios seleccionando el plan que más se acomode a tus necesidades de reforzamiento y disposición de tiempo..</p>
+                            <p class="m-0">Si eres mayor de 18 años puedes terminar tus estudios seleccionando el
+                                plan que más se acomode a tus necesidades de reforzamiento y disposición de tiempo..</p>
                         </div>
                     </div>
                 </div>
@@ -143,7 +192,8 @@ Escuela Libre de Educación IA
                         <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>Educational Tour</h4>
-                            <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten haciendo lo que más les gusta: educar.</p>
+                            <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten
+                                haciendo lo que más les gusta: educar.</p>
                         </div>
                     </div>
                 </div>
@@ -165,14 +215,19 @@ Escuela Libre de Educación IA
                     <p class="section-title pr-5"><span class="pr-2">Forma Educativa</span></p>
                     <h1 class="mb-4">Atrévete a cambiar a una nueva forma de educación.
                     </h1>
-                    <!<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque innovador proporciona una preparación integral para los exámenes libres, asegurando que cada estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros estudiantes para los desafíos del mañana. </p>
-                    <p>Únete a nosotros y sé parte de una nueva forma de educación. </p>
-                    <div class="row pt-2 pb-4">
-                        <!--<div class="col-6 col-md-4">
+                    <!<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque
+                        innovador proporciona una preparación integral para los exámenes libres, asegurando que cada
+                        estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos
+                        ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos
+                        habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros
+                        estudiantes para los desafíos del mañana. </p>
+                        <p>Únete a nosotros y sé parte de una nueva forma de educación. </p>
+                        <div class="row pt-2 pb-4">
+                            <!--<div class="col-6 col-md-4">
                             <img class="img-fluid rounded" src="{{ asset('home/img/about-2.jpg') }}" alt="">
                         </div>-->
-                        
-                        <!--<div class="col-6 col-md-8">
+
+                            <!--<div class="col-6 col-md-8">
                             <ul class="list-inline m-0">
                                 <li class="py-2 border-top border-bottom"><i
                                         class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
@@ -188,15 +243,15 @@ Escuela Libre de Educación IA
                                     diam elitripsum vero.</li>
                             </ul>
                         </div>-->
-                    </div>
-                <!-- <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
+                        </div>
+                        <!-- <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
-    
-     <!-- Start ¿CÓMO SON NUESTRAS CLASES? -->
+
+    <!-- Start ¿CÓMO SON NUESTRAS CLASES? -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
@@ -206,16 +261,23 @@ Escuela Libre de Educación IA
                     <!--<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque innovador proporciona una preparación integral para los exámenes libres, asegurando que cada estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros estudiantes para los desafíos del mañana. </p>-->
                     <!--<p>Únete a nosotros y sé parte de una nueva forma de educación. </p>-->
                     <!--<div class="row pt-2 pb-4">-->
-                            <ul class="list-inline m-0">
-                                <li class="py-2 border-top border-bottom"><i
-                                        class="fa fa-check text-primary mr-3"></i>Clases sincrónicas de acuerdo al horario de cada nivel, a través de plataforma (meet ?)</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Acceso a plataforma con material de clases y actividades disponible 24/7 (gdrive?)</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Sistema de calificaciones e informes para seguimiento académico</li>
-                                    <li class="py-2 border-top border-bottom"><i
-                                        class="fa fa-check text-primary mr-3"></i>Evaluación diagnóstica, acompañamiento y dos ensayos de examen libre</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas que contempla el plan de estudio es de 5° a 2° medio:lenguaje y comunicación, matemática, historia y ciencias sociales, ciencias naturales e inglés. </li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas que contempla el plan de estudio de 3° y 4° medio: lengua y literatura, matemática, filosofía, ciencia para la ciudadanía, educación ciudadana e inglés..</li>
-                            </ul>
+                    <ul class="list-inline m-0">
+                        <li class="py-2 border-top border-bottom"><i class="fa fa-check text-primary mr-3"></i>Clases
+                            sincrónicas de acuerdo al horario de cada nivel, a través de plataforma (meet ?)</li>
+                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Acceso a
+                            plataforma con material de clases y actividades disponible 24/7 (gdrive?)</li>
+                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Sistema de
+                            calificaciones e informes para seguimiento académico</li>
+                        <li class="py-2 border-top border-bottom"><i
+                                class="fa fa-check text-primary mr-3"></i>Evaluación diagnóstica, acompañamiento y dos
+                            ensayos de examen libre</li>
+                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas
+                            que contempla el plan de estudio es de 5° a 2° medio:lenguaje y comunicación, matemática,
+                            historia y ciencias sociales, ciencias naturales e inglés. </li>
+                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas
+                            que contempla el plan de estudio de 3° y 4° medio: lengua y literatura, matemática,
+                            filosofía, ciencia para la ciudadanía, educación ciudadana e inglés..</li>
+                    </ul>
                     <!--<a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
                 </div>
                 <div class="col-lg-5">
@@ -223,18 +285,14 @@ Escuela Libre de Educación IA
                         alt="">
                 </div>
             </div>
-            
+
         </div>
     </div>
     <!--¿CÓMO SON NUESTRAS CLASES? End -->
 
 
     <!-- Class Start -->
-<<<<<<< HEAD
     {{-- <div class="container-fluid pt-5">
-=======
-    <!--<div class="container-fluid pt-5">
->>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Popular Classes</span></p>
@@ -330,11 +388,7 @@ Escuela Libre de Educación IA
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </div> --}}
-=======
-    </div>-->
->>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
     <!-- Class End -->
 
 
@@ -345,10 +399,13 @@ Escuela Libre de Educación IA
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <p class="section-title pr-5"><span class="pr-2">Book A Seat</span></p>
                     <h1 class="mb-4">¿Quieres unirte a una nueva educación?</h1>
-                    <p>Contáctanos para hacernos tus preguntas o reservar un cupo para la matrícula 2025. Con nosotros ganarás:</p>
+                    <p>Contáctanos para hacernos tus preguntas o reservar un cupo para la matrícula 2025. Con nosotros
+                        ganarás:</p>
                     <ul class="list-inline m-0">
-                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tranquilidad, tiempo y seguridad para el aprendizaje de tus hijos.</li>
-                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tus hijos tendrán herramientas para el futuro en el que nos adentramos.
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tranquilidad, tiempo y
+                            seguridad para el aprendizaje de tus hijos.</li>
+                        <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Tus hijos tendrán herramientas
+                            para el futuro en el que nos adentramos.
                         </li>
                         <!--<li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum
                             vero.</li>-->
@@ -393,11 +450,7 @@ Escuela Libre de Educación IA
 
 
     <!-- Team Start -->
-<<<<<<< HEAD
     {{-- <div class="container-fluid pt-5">
-=======
-    <!--<div class="container-fluid pt-5">
->>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Our Teachers</span></p>
@@ -475,11 +528,7 @@ Escuela Libre de Educación IA
 
 
     <!-- Testimonial Start -->
-<<<<<<< HEAD
     {{-- <div class="container-fluid py-5">
-=======
-    <!--<div class="container-fluid py-5">
->>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container p-0">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Testimonial</span></p>
@@ -552,13 +601,8 @@ Escuela Libre de Educación IA
     <!-- Testimonial End -->
 
 
-<<<<<<< HEAD
     <!-- Blog Start -->
     {{-- <div class="container-fluid pt-5">
-=======
-    <!-- Blog Start 
-    <div class="container-fluid pt-5">
->>>>>>> 2bc17154cf01de1aee744e691b8e196915163474
         <div class="container">
             <div class="text-center pb-2">
                 <p class="section-title px-5"><span class="px-2">Latest Blog</span></p>
