@@ -2,27 +2,27 @@
      <a href="{{ route('home') }}"
          class="d-inline-flex d-sm-inline-flex align-items-center d-md-inline-flex d-lg-none align-items-center device-logo">
          <img src="{{ asset(Storage::url('logos/' . Session::get('logo'))) }}" class="img-fluid logo2" alt="Logo"
-             width="70%">
+             width="35%">
      </a>
      <div class="main-logo d-inline float-start d-lg-flex align-items-center d-none d-sm-none d-md-none">
          <div class="logo-white">
              <a href="{{ route('home') }}">
                  <img src="{{ asset(Storage::url('logos/' . Session::get('company_icon'))) }}"
-                     class="img-fluid logo-blue" alt="Logo" width="70%">
+                     class="img-fluid logo-blue" alt="Logo" width="35%">
              </a>
              <a href="{{ route('home') }}">
                  <img src="{{ asset(Storage::url('logos/' . Session::get('company_icon'))) }}"
-                     class="img-fluid logo-small" alt="Logo" width="70%">
+                     class="img-fluid logo-small" alt="Logo" width="35%">
              </a>
          </div>
          <div class="logo-color">
              <a href="{{ route('home') }}">
                  <img src="{{ asset(Storage::url('logos/' . Session::get('logo'))) }}" class="img-fluid logo-blue"
-                     alt="Logo" width="70%">
+                     alt="Logo" width="35%">
              </a>
              <a href="{{ route('home') }}">
                  <img src="{{ asset(Storage::url('logos/' . Session::get('favicon'))) }}" class="img-fluid logo-small"
-                     alt="Logo" width="70%">
+                     alt="Logo" width="35%">
              </a>
          </div>
      </div>
