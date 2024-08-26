@@ -15,7 +15,7 @@
             var country_id = $(this).val();
             // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
             $.ajax({
-                url: './combo/' + country_id + '/state',
+                url: '../combo/' + country_id + '/state',
                 method: "GET",
 
                 success: function(data) {
@@ -37,7 +37,7 @@
             var state_id = $(this).val();
             // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
             $.ajax({
-                url: './combo/' + state_id + '/city',
+                url: '../combo/' + state_id + '/city',
                 method: "GET",
                 success: function(data) {
                     var html = "";
