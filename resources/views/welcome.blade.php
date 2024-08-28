@@ -142,7 +142,7 @@ Escuela Libre de Educación IA
                     <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                         <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <h4>Educational Tour</h4>
+                            <h4>PROFESORES CON VOCACIÓN</h4>
                             <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten haciendo lo que más les gusta: educar.</p>
                         </div>
                     </div>
