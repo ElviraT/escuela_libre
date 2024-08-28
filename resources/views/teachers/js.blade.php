@@ -11,7 +11,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Teacher')");
             $('.modal_registro_teacher_id', modal).val(data.bsRecordId);
-            $.getJSON('../teachers/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./teachers/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
 
                 $('#idSex').val(obj.idSex).trigger('change.select2');

@@ -18,7 +18,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit User')");
             $('.modal_registro_user_id', modal).val(data.bsRecordId);
-            $.getJSON('../users/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./users/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data[0];
                 var url = "{{ asset(Storage::url('avatar/:img')) }}";
                 var avatar = url.replace(':img', obj.avatar);

@@ -11,7 +11,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Announcement')");
             $('.modal_registro_announcement_id', modal).val(data.bsRecordId);
-            $.getJSON('../announcements/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./announcements/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');

@@ -12,7 +12,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit Time')");
             $('.modal_registro_time_id', modal).val(data.bsRecordId);
-            $.getJSON('../times/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./times/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
                 $('#id_teacher').val(obj.id_teacher).trigger('change.select2');
                 $('#id_day').val(obj.id_day).trigger('change.select2');

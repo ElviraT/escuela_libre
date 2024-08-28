@@ -12,7 +12,7 @@
         var modal = $(e.delegateTarget),
             data = $(e.relatedTarget).data();
         if (data.bsRecordId != undefined) {
-            $.getJSON('../' + data.bsRecordId + '/img', function(data) {
+            $.getJSON('./' + data.bsRecordId + '/img', function(data) {
                 var obj = data;
                 var url = "{{ asset(Storage::url('comment/:img')) }}";
                 var image = url.replace(':img', obj.image);

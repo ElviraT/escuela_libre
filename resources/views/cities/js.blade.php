@@ -11,7 +11,7 @@
         if (data.bsRecordId != undefined) {
             $('.title').text("@lang('Edit State')");
             $('.modal_registro_city_id', modal).val(data.bsRecordId);
-            $.getJSON('../cities/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./cities/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data;
 
                 $('#idCountry').val(obj.idCountry).trigger('change.select2');

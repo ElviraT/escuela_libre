@@ -3,7 +3,7 @@
         $('#combo_grade').on('select2:select', function(event) {
             var grade = $(this).val();
             $.ajax({
-                url: '../combo/' + grade + '/group',
+                url: './combo/' + grade + '/group',
                 method: "GET",
 
                 success: function(data) {
@@ -26,7 +26,7 @@
         $('#combo_grade').on('select2:select', function(event) {
             var grade = $(this).val();
             $.ajax({
-                url: '../combo/' + grade + '/matter',
+                url: './combo/' + grade + '/matter',
                 method: "GET",
 
                 success: function(data) {

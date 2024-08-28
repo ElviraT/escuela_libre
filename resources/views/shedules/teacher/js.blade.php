@@ -26,7 +26,7 @@
             }
         });
 
-        $.getJSON('../teacher-time/' + id, function(objch) {
+        $.getJSON('./teacher-time/' + id, function(objch) {
             var array_businessHours = [];
             var hora_minima = '07:00:00';
             var hora_maxima = '06:59:59';
@@ -135,7 +135,7 @@
         var id_event = $('#id').val();
         if (id_event != '') {
             $('.title').text("@lang('Edit Class')");
-            $.getJSON('../shedules/' + id_event + '/edit', function(data) {
+            $.getJSON('./shedules/' + id_event + '/edit', function(data) {
                 var update = "{{ route('shedules.update', ':id') }}";
                 update = update.replace(':id', id_event);
                 $('#form-enviar').attr('action', update);
@@ -160,7 +160,7 @@
             $("#form-enviar").attr('action', data.bsAction);
             $('.title').text("@lang('Add Class')");
             var teacher = $('#combo_teacher').val();
-            $.getJSON('../consulta/' + teacher, function(data) {
+            $.getJSON('./consulta/' + teacher, function(data) {
 
                 $('#id_teacher').val(teacher);
                 var html = "";

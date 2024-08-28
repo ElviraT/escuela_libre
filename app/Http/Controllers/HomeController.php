@@ -13,4 +13,9 @@ class HomeController extends Controller
         $setting = CompanySettings::first();
         return view('welcome', compact('setting'));
     }
+    public function contact()
+    {
+        
+        return view('contacto');
+    }
 }

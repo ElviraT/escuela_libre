@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 
 // RUTAS DE ACCESO SIN AUTENTICACIÓN
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/set_language/{lang}', [Controller::class, 'set_language'])->name('set_language');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

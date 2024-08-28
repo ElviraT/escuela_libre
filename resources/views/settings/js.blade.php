@@ -15,7 +15,7 @@
             var country_id = $(this).val();
             // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
             $.ajax({
-                url: './combo/' + country_id + '/state',
+                url: '../combo/' + country_id + '/state',
                 method: "GET",
 
                 success: function(data) {
@@ -37,7 +37,7 @@
             var state_id = $(this).val();
             // Enviar una solicitud AJAX para recuperar las subcategorías relacionadas
             $.ajax({
-                url: './combo/' + state_id + '/city',
+                url: '../combo/' + state_id + '/city',
                 method: "GET",
                 success: function(data) {
                     var html = "";
@@ -65,7 +65,7 @@
             $('.title').text("@lang('Edit Bank')");
             modal.addClass('loading');
             $('.modal_registro_bank_id', modal).val(data.bsRecordId);
-            $.getJSON('../banks/' + data.bsRecordId + '/edit', function(data) {
+            $.getJSON('./banks/' + data.bsRecordId + '/edit', function(data) {
                 var obj = data[0];
                 $("#form-enviar").attr('action', data.bsAction);
                 $("#method").val('put');
