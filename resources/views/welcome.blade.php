@@ -1,7 +1,5 @@
-@extends('base.header')
+@extends('base_web.header')
 @section('content')
-
-
     <!-- Header Start -->
     <div class="container-fluid bg-primary px-0 px-md-5 mb-5" style="margin-top: 85px;">
         <br>
@@ -21,7 +19,7 @@
 
             </div>
             <div class="col-lg-6 text-center text-lg-right">
-                <img class="imgRedonda" src="{{ asset('home/img/header.jpg') }}" alt="" width="80%">
+                <img class="imgRedonda img-fluid" src="{{ asset('home/img/header.jpg') }}" alt="" width="80%">
             </div>
 
         </div>
@@ -93,7 +91,8 @@
                         <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
                             <h4>PROFESORES CON VOCACIÓN</h4>
-                            <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten haciendo lo que más les gusta: educar.</p>
+                            <p class="m-0">entregamos las condiciones necesarias para que los profesores disfruten
+                                haciendo lo que más les gusta: educar.</p>
                         </div>
                     </div>
                 </div>
@@ -108,43 +107,42 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5">
-                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/about-1.jpg') }}"
-                        alt="">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/about-1.jpg') }}" alt="">
                 </div>
                 <div class="col-lg-7">
                     <p class="section-title pr-5"><span class="pr-2">Forma Educativa</span></p>
                     <h1 class="mb-4">Atrévete a cambiar a una nueva forma de educación.
                     </h1>
-                    <!<p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque
+                    <p>En Educación IA, te invitamos al nuevo mundo de la educación online en Chile. Nuestro enfoque
                         innovador proporciona una preparación integral para los exámenes libres, asegurando que cada
                         estudiante esté listo para enfrentar y superar estos desafíos académicos. Pero no nos detenemos
                         ahí. Entendemos que el futuro exige más que conocimientos tradicionales. Por eso, fomentamos
                         habilidades esenciales en emprendimiento e inteligencia artificial, preparando a nuestros
                         estudiantes para los desafíos del mañana. </p>
-                        <p>Únete a nosotros y sé parte de una nueva forma de educación. </p>
-                        <div class="row pt-2 pb-4">
-                            <!--<div class="col-6 col-md-4">
-                            <img class="img-fluid rounded" src="{{ asset('home/img/about-2.jpg') }}" alt="">
-                        </div>-->
+                    <p>Únete a nosotros y sé parte de una nueva forma de educación. </p>
+                    <div class="row pt-2 pb-4">
+                        <!--<div class="col-6 col-md-4">
+                                                                    <img class="img-fluid rounded" src="{{ asset('home/img/about-2.jpg') }}" alt="">
+                                                                </div>-->
 
-                            <!--<div class="col-6 col-md-8">
-                            <ul class="list-inline m-0">
-                                <li class="py-2 border-top border-bottom"><i
-                                        class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
-                                    sit dolor amet ipsum</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
-                                    diam elitripsum vero.</li>
-                                    <li class="py-2 border-top border-bottom"><i
-                                        class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
-                                    sit dolor amet ipsum</li>
-                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
-                                    diam elitripsum vero.</li>
-                            </ul>
-                        </div>-->
-                        </div>
-                        <!-- <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
+                        <!--<div class="col-6 col-md-8">
+                                                                    <ul class="list-inline m-0">
+                                                                        <li class="py-2 border-top border-bottom"><i
+                                                                                class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                                                                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
+                                                                            sit dolor amet ipsum</li>
+                                                                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
+                                                                            diam elitripsum vero.</li>
+                                                                            <li class="py-2 border-top border-bottom"><i
+                                                                                class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                                                                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Etsea et
+                                                                            sit dolor amet ipsum</li>
+                                                                        <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Diam dolor
+                                                                            diam elitripsum vero.</li>
+                                                                    </ul>
+                                                                </div>-->
+                    </div>
+                    <!-- <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
                 </div>
             </div>
         </div>
@@ -168,8 +166,8 @@
                             plataforma con material de clases y actividades disponible 24/7 (gdrive?)</li>
                         <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Sistema de
                             calificaciones e informes para seguimiento académico</li>
-                        <li class="py-2 border-top border-bottom"><i
-                                class="fa fa-check text-primary mr-3"></i>Evaluación diagnóstica, acompañamiento y dos
+                        <li class="py-2 border-top border-bottom"><i class="fa fa-check text-primary mr-3"></i>Evaluación
+                            diagnóstica, acompañamiento y dos
                             ensayos de examen libre</li>
                         <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Las asignaturas
                             que contempla el plan de estudio es de 5° a 2° medio:lenguaje y comunicación, matemática,
@@ -181,8 +179,7 @@
                     <!--<a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>-->
                 </div>
                 <div class="col-lg-5">
-                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/pc-1.jpg') }}"
-                        alt="">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('home/img/pc-1.jpg') }}" alt="">
                 </div>
             </div>
 
@@ -297,7 +294,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 mb-5 mb-lg-0">
-                    <p class="section-title pr-5"><span class="pr-2">Book A Seat</span></p>
+                    <p class="section-title pr-5"><span class="pr-2">@lang('Book A Seat')</span></p>
                     <h1 class="mb-4">¿Quieres unirte a una nueva educación?</h1>
                     <p>Contáctanos para hacernos tus preguntas o reservar un cupo para la matrícula 2025. Con nosotros
                         ganarás:</p>
@@ -308,9 +305,8 @@
                             para el futuro en el que nos adentramos.
                         </li>
                         <!--<li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum
-                            vero.</li>-->
+                                                                    vero.</li>-->
                     </ul>
-                    <a href="" class="btn btn-primary mt-4 py-2 px-4">Book Now</a>
                 </div>
                 <div class="col-lg-5">
                     <div class="card border-0">
@@ -318,14 +314,15 @@
                             <h1 class="text-white m-0">Únete a nueva educación</h1>
                         </div>
                         <div class="card-body rounded-bottom bg-primary p-5">
-                            <form>
+                            <form action="mailto:{{ isset($setting) ? $setting->email : '' }}" method="post"
+                                name="sentMessage" id="contactForm" enctype="text/plain">
                                 <div class="form-group">
-                                    <input type="text" class="form-control border-0 p-4" placeholder="Your Name"
-                                        required="required" />
+                                    <input type="text" class="form-control border-0 p-4"
+                                        placeholder="@lang('Name')" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control border-0 p-4" placeholder="Your Email"
-                                        required="required" />
+                                    <input type="email" class="form-control border-0 p-4"
+                                        placeholder="@lang('Email')" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <select class="custom-select border-0 px-4" style="height: 47px;">
@@ -336,8 +333,8 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <button class="btn btn-secondary btn-block border-0 py-3" type="submit">Book
-                                        Now</button>
+                                    <button class="btn btn-secondary btn-block border-0 py-3"
+                                        type="submit">@lang('Book Now')</button>
                                 </div>
                             </form>
                         </div>
@@ -562,5 +559,3 @@
     </div> --}}
     <!-- Blog End -->
 @endsection
-
-   
